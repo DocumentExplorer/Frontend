@@ -1,5 +1,4 @@
-import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import React, { Fragment } from 'react'
 import { Container, Row, Col, Input, Button } from 'mdbreact';
 import './login.css'
 
@@ -7,21 +6,24 @@ class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            windowHeight: window.innerHeight
+            windowHeight: window.innerHeight,
+            username: '',
+            password: ''
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
 
-    onSubmit(values) {
-
+    handleChange(event) {
+        const { name } = event.target
+        this.setState({
+            [name]: event.target.value
+        })
     }
 
-    renderInput(field) {
-        const { meta: { touched, error } } = field
-
-        return (
-            <Input label={field.label} icon={field.icon} group type={field.type} validate error="wrong" success="right" />
-        )
-
+    handleSubmit(event) {
+        console.log(this.state)
+        event.preventDefault()
     }
 
     componentDidMount() {
@@ -29,22 +31,21 @@ class Login extends React.Component {
     }
 
     render() {
-        const { handleSubmit } = this.props
         return (
             <Container>
                 <Row>
                     <Col md="3"></Col>
                     <Col md="6">
                         <form className="login-form" style={{ paddingTop: this.state.windowHeight / 4 + 'px' }}
-                            onSubmit={handleSubmit(this.onSubmit.bind(this))} noValidate
+                            onSubmit={this.handleSubmit}
                         >
                             <p className="h3 text-center mb-4">Logowanie</p>
                             <div className="grey-text">
-                                <Field name="username" label="Type your username" icon="envelope" type="text" error="wrong" success="right" component={this.renderInput.bind(this)} />
-                                <Field name="password" label="Type your password" icon="lock" type="password" component={this.renderInput.bind(this)}/>
+                                <Input name="username" label="Username" icon="user" type="text" onChange={this.handleChange} />
+                                <Input name="password" label="Hasło" icon="lock" type="password" onChange={this.handleChange} />
                             </div>
                             <div className="text-center">
-                                <Button>Login</Button>
+                                <Button type="submit">Login</Button>
                             </div>
                         </form>
                     </Col>
@@ -55,12 +56,13 @@ class Login extends React.Component {
 }
 
 function validate(values) {
-    return values
+    console.log(values)
+    const errors = {}
+    if (values.username < 6) {
+        errors.username = "Must be more longer"
+    }
+    console.log(errors)
+    return errors
 }
 
-const LoginPage = reduxForm({
-    form: 'login',
-    validate: validate
-})(Login)
-
-export { LoginPage }
+export { Login as LoginPage }
