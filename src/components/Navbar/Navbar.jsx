@@ -25,6 +25,5 @@ const NavbarAuthenticated = (props) => (
     </Navbar>
 )
 
-
-const result = state => NavbarHOC(true, NavbarAuthenticated)(state)
+const result = state => NavbarHOC(false, NavbarAuthenticated)(state)
 export default connect(mapStateToProps)(result)
