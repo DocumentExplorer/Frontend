@@ -18,7 +18,7 @@ const NavbarAuthenticated = (props) => (
             </NavbarBrand>
             <NavbarNav right>
                 <Link to="/dashboard">
-                    {props.loginStore.user}
+                    User
                 </Link>
             </NavbarNav>
         </Container>
@@ -26,5 +26,5 @@ const NavbarAuthenticated = (props) => (
 )
 
 
-const result = state => NavbarHOC(false, NavbarAuthenticated)(state)
+const result = state => NavbarHOC(true, NavbarAuthenticated)(state)
 export default connect(mapStateToProps)(result)
