@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react'
 import { Container, Row, Col, Input, Button } from 'mdbreact';
+import { connect } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 import './login.css'
 
 class Login extends React.Component {
@@ -54,6 +56,10 @@ class Login extends React.Component {
         const checkErrorForUsername = this.state.errors.username ? 'red-alert' : ''
         const checkErrorForPassword = this.state.errors.password ? 'red-alert' : ''
 
+        if (true) {
+            return <Redirect to="/dashboard" />
+        }
+
         return (
             <Container>
                 <Row>
@@ -88,5 +94,11 @@ class Login extends React.Component {
     }
 }
 
+function mapStateToProps({ loginResult }) {
+    return {
+        loginResult
+    }
+}
 
-export { Login as LoginPage }
+const page = connect(mapStateToProps)(Login)
+export { page as LoginPage }
