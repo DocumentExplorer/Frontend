@@ -9,4 +9,4 @@ class OrdersPage extends React.Component {
     }
 }
 
-export default OrdersPage
+export { OrdersPage }

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Navbar/Navbar'
-import { LoginPage } from './pages'
+import { LoginPage, Dashboard, OrderPage, OrdersPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
 
 class App extends Component {
@@ -11,8 +11,10 @@ class App extends Component {
         <Fragment>
           <Navbar />
           <Switch>
+            <PrivateRoute path="/orders/:id" component={OrderPage} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/orders" component={OrdersPage} />
             <Route path="/" component={LoginPage} />
-            <PrivateRoute path="/dashboard" component={} />
           </Switch>
         </Fragment>
       </BrowserRouter>
