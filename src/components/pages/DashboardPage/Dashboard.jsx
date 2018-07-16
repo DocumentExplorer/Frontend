@@ -8,8 +8,8 @@ class Dashboard extends React.Component {
         return (
             <Container>
                 <Row>
-                    <Col md="6" sm="12">Test</Col>
-                    <Col md="6" sm="12">
+                    <Col md="9" sm="12">Test</Col>
+                    <Col md="3" sm="12">
                         <OrderList />
                     </Col>
                 </Row>

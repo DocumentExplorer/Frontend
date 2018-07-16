@@ -16,6 +16,7 @@ class App extends Component {
         <Fragment>
           <Navbar />
           <Switch>
+            <PrivateRoute path="/orders/:year" component={OrderPage} />
             <PrivateRoute path="/orders/:id" component={OrderPage} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/orders" component={OrdersPage} />
