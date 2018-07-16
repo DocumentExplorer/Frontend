@@ -1,9 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Container, NavbarBrand, Navbar, NavbarNav } from 'mdbreact'
+import { Container, NavbarBrand, Navbar, NavbarNav, NavItem, Fa } from 'mdbreact'
 import { NavbarHOC } from './NavbarHOC.js'
-import { } from '../helpers/AccountTypeChecker'
 
 function mapStateToProps({ loginResult }) {
     return {
@@ -15,10 +14,11 @@ const NavbarAuthenticated = (props) => (
     <Navbar color="default-color">
         <Container>
             <NavbarBrand>
-                Brand
+                <h3>Brand</h3>
             </NavbarBrand>
             <NavbarNav right>
                 <Link to="/dashboard">
+                    <i class="fa fa-user" aria-hidden="true"></i>
                     User
                 </Link>
             </NavbarNav>
@@ -30,12 +30,19 @@ const NavbarAdmin = (props) => (
     <Navbar color="default-color">
         <Container>
             <NavbarBrand>
-                Brand
+                <h3>Brand</h3>
             </NavbarBrand>
-            <NavbarNav right>
-                <Link to="/dashboard">
-                    Admin
-                </Link>
+            <NavbarNav className="align" right>
+                <NavItem>
+                    <Link to="/management">
+                        <Fa icon="address-book" size="2x" />
+                    </Link>
+                </NavItem>
+                <NavItem>
+                    <Link to="/dashboard">
+                        <Fa icon="user" size="2x" />
+                    </Link>
+                </NavItem>
             </NavbarNav>
         </Container>
     </Navbar>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { getOrders } from '../../redux/actions'
 import { connect } from 'react-redux'
 import ApiHOC from '../helpers/ApiHOC'

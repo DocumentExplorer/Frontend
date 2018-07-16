@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import OrderByYear from '../helpers/OrdersByYears'
 import _ from 'lodash'
 import DateFormat from '../helpers/DateFormat'
 import { ListGroup, ListGroupItem } from 'mdbreact'
 import { withRouter } from 'react-router-dom'
+import { Fa } from 'mdbreact'
 
 class List extends React.Component {
 
@@ -31,13 +32,18 @@ class List extends React.Component {
             })))
         }
         return (
-            <ListGroup className="wrapper">
-                {this.state.years.map((item, i) => (
-                    <ListGroupItem key={i} onClick={this.handleClick.bind(this, item.year)}>
-                        {item.year}
-                    </ListGroupItem>
-                ))}
-            </ListGroup>
+            <Fragment>
+
+                <ListGroup className="wrapper">
+                    <h2>Lata</h2>
+                    {this.state.years.map((item, i) => (
+                        <ListGroupItem key={i} onClick={this.handleClick.bind(this, item.year)}>
+                            <Fa icon="folder"/>
+                            {item.year}
+                        </ListGroupItem>
+                    ))}
+                </ListGroup>
+            </Fragment>
         )
     }
 }

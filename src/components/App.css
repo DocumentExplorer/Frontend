@@ -27,5 +27,22 @@
   to { transform: rotate(360deg); }
 }
 
+a {
+  color: black;
+}
+
+.navbar-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.navbar-nav li {
+  margin-left: 20%;
+}
+i {
+  margin-right: 5px;
+}
+
 
 

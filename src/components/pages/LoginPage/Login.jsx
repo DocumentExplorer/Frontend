@@ -72,13 +72,13 @@ class Login extends React.Component {
                                     onBlur={this.handleBlur}
                                     className={checkErrorForUsername}
                                 />
-                                <p>{this.state.errors.username}</p>
+                                <p className="warning">{this.state.errors.username}</p>
                                 <Input name="password" label="Hasło" icon="lock" type="password"
                                     onChange={this.handleChange}
                                     onBlur={this.handleBlur}
                                     className={checkErrorForPassword}
                                 />
-                                <p>{this.state.errors.password}</p>
+                                <p className="warning">{this.state.errors.password}</p>
                             </div>
                             <div className="text-center">
                                 <Button type="submit">Login</Button>
