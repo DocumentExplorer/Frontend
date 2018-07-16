@@ -1,3 +1,3 @@
-export const apiConstants = {
+export const ApiConstants = {
     rootURL: ''
 }

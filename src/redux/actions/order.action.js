@@ -9,10 +9,10 @@ export function getOrders() {
             data
         }
     }
-    function failed(err) {
+    function failed(error) {
         return {
             type: OrderConstants.GET_ORDERS_FAIL,
-            err
+            error
         }
     }
 
