@@ -22,39 +22,37 @@ class Login extends React.Component {
     }
 
     handleChange(event) {
-        const { name } = event.target
+        const { name, value } = event.target
         this.setState({
-            [name]: event.target.value
+            [name]: value,
+            
         })
-    }
-
-    handleSubmit(event) {
-        console.log(this.state)
-        event.preventDefault()
+        
     }
 
     handleBlur(event) {
-        const { name } = event.target
+        const { name, value } = event.target
         let errors = Object.assign({}, this.state.errors)
-        if (name == 'password') {
-            errors.password = 'Próba'
-        }
-        if (name == 'username') {
-            errors.username = 'Próba'
+        console.log(value.length)
+        if (name == 'username' && value.length >= 4) {
+            errors.username = 'Username zawiera tylko 4 znaki'
+        } else {
+            errors.username = undefined
         }
         this.setState({
             errors
         })
+        console.log(this.state.errors)
     }
 
-    componentDidMount() {
-        console.log(this.state.windowHeight)
+    handleSubmit(event) {
+        event.preventDefault()
     }
 
     render() {
 
-        const checkErrorForUsername = this.state.errors.username ? 'red-alert' : ''
-        const checkErrorForPassword = this.state.errors.password ? 'red-alert' : ''
+        const checkErrorForUsername = this.state.errors.username != undefined ? 'red-alert' : ''
+        const checkErrorForPassword = this.state.errors.password != undefined ? 'red-alert' : ''
 
         if (this.props.loginResult.auth) {
             return <Redirect to="/dashboard" />

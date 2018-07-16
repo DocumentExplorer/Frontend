@@ -1,6 +1,6 @@
 import { LoginConstants } from '../constants'
 
-export default function (state = { auth: true, accountType: 'admin' }, action) {
+export default function (state = { auth: false, accountType: 'admin' }, action) {
     switch (action.type) {
         case LoginConstants.LOGIN_SUCCESS:
             const accountType = action.payload.accountType
