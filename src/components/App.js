@@ -5,6 +5,9 @@ import { LoginPage, Dashboard, OrderPage, OrdersPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
 
 class App extends Component {
+  componentDidMount() {
+    console.log('upadte')
+  }
   render() {
     return (
       <BrowserRouter>

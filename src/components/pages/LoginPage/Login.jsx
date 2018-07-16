@@ -56,7 +56,7 @@ class Login extends React.Component {
         const checkErrorForUsername = this.state.errors.username ? 'red-alert' : ''
         const checkErrorForPassword = this.state.errors.password ? 'red-alert' : ''
 
-        if (true) {
+        if (this.props.loginResult.auth) {
             return <Redirect to="/dashboard" />
         }
 
