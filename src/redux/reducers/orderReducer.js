@@ -1,6 +1,6 @@
 import { OrderConstants } from '../constants'
 
-export default function (state, action) {
+export default function (state = {}, action) {
     switch (action.type) {
         case OrderConstants.GET_ORDERS_SUCCCESS:
             return {

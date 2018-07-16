@@ -15,8 +15,14 @@ export function getOrders() {
             error
         }
     }
+    function request() {
+        return {
+            type: OrderConstants.GET_ORDERS_REQUEST
+        }
+    }
 
     return dispatch => {
+        dispatch(request())
         OrdersService.getOrders()
             .then((data) => {
                 dispatch(success(data))
