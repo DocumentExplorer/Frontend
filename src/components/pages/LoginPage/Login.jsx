@@ -25,9 +25,9 @@ class Login extends React.Component {
         const { name, value } = event.target
         this.setState({
             [name]: value,
-            
+
         })
-        
+
     }
 
     handleBlur(event) {
@@ -42,7 +42,6 @@ class Login extends React.Component {
         this.setState({
             errors
         })
-        console.log(this.state.errors)
     }
 
     handleSubmit(event) {
