@@ -34,12 +34,12 @@ const NavbarAdmin = (props) => (
             </NavbarBrand>
             <NavbarNav right>
                 <Link to="/dashboard">
-                    User
+                    Admin
                 </Link>
             </NavbarNav>
         </Container>
     </Navbar>
 )
 
-const result = state => NavbarHOC(state.loginResult.auth, NavbarAuthenticated)(state)
+const result = state => NavbarHOC(state.loginResult.auth, NavbarAuthenticated, NavbarAdmin)(state)
 export default connect(mapStateToProps)(result)
