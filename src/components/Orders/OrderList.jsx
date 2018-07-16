@@ -2,6 +2,7 @@ import React from 'react'
 import { getOrders } from '../../redux/actions'
 import { connect } from 'react-redux'
 import ApiHOC from '../helpers/ApiHOC'
+import List from './List'
 
 class OrderList extends React.Component {
 
@@ -10,7 +11,6 @@ class OrderList extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <ApiHOC
                 component={List}
@@ -19,11 +19,6 @@ class OrderList extends React.Component {
         )
     }
 }
-
-const List = () => (
-    <div>Działa</div>
-)
-
 
 function mapStateToProps({ orders }) {
     return {

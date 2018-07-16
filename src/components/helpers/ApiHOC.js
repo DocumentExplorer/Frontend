@@ -1,15 +1,14 @@
 import React from 'react'
 
-const ApiHOC = ({ test, component: Component, ...rest }) => {
-    return (
-        test == true
-            ? <Waiting />
-            : <Component {...rest}/>
-    )
-}
+const ApiHOC = ({ test, component: Component, ...rest }) => (
+    test == true
+        ? <Waiting />
+        : <Component {...rest} />
+
+)
 
 const Waiting = props => (
-    <div>Proszę czekać...</div>
+    <div className="waiting">Proszę czekać...</div>
 )
 
 export default ApiHOC
