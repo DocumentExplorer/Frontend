@@ -3,6 +3,7 @@ import { OrderConstants } from '../constants'
 export default function (state = {}, action) {
     switch (action.type) {
         case OrderConstants.GET_ORDERS_SUCCCESS:
+            console.log(action.data)
             return {
                 data: action.data
             }

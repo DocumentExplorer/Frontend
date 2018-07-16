@@ -15,6 +15,7 @@ class OrderList extends React.Component {
             <ApiHOC
                 component={List}
                 test={this.props.orders.waiting}
+                data={this.props.orders.data}
             />
         )
     }

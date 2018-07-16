@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ApiHOC = ({ test, component: Component, ...rest }) => (
+const ApiHOC = ({ test, component: Component, ...data }) => (
     test == true
         ? <Waiting />
-        : <Component {...rest} />
+        : <Component {...data} />
 
 )
 

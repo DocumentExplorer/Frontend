@@ -6,7 +6,7 @@ export function getData() {
             brokerNIP: '3234535345353354',
             clientCountry: 'PL',
             brokerCountry: 'PL',
-            date: '16.07.2018 11:02:52'
+            time: '16.07.2018 11:02:52'
         },
         {
             invoiceNumber: 1212,
@@ -14,7 +14,7 @@ export function getData() {
             brokerNIP: '3234535345353354',
             clientCountry: 'PL',
             brokerCountry: 'PL',
-            date: '16.07.2018 11:02:52'
+            time: '16.07.2018 11:02:52'
         },
         {
             invoiceNumber: 1203,
@@ -22,7 +22,7 @@ export function getData() {
             brokerNIP: '3234535345353354',
             clientCountry: 'PL',
             brokerCountry: 'PL',
-            date: '16.07.2018 11:02:52'
+            time: '16.07.2018 11:02:52'
         }
     ]
 }
