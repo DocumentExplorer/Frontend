@@ -38,12 +38,6 @@ export function checkLogining() {
             type: LoginConstants.LOGIN_SUCCESS
         }
     }
-    function failed(error) {
-        return {
-            type: LoginConstants.LOGIN_FAIL,
-            error
-        }
-    }
     return dispatch => {
         if (localStorage.getItem('token') && localStorage.getItem('user')) {
             dispatch(success())

@@ -3,10 +3,13 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Navbar/Navbar'
 import { LoginPage, Dashboard, OrderPage, OrdersPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
+import { checkLogining } from '../redux/actions'
+import { connect } from 'react-redux'
 
 class App extends Component {
   componentDidMount() {
     console.log('upadte')
+    this.props.checkLogining()
   }
   render() {
     return (
@@ -25,4 +28,5 @@ class App extends Component {
   }
 }
 
-export default App;
+
+export default connect(undefined, { checkLogining })(App);
