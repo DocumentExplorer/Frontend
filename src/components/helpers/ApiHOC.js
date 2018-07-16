@@ -1,11 +1,10 @@
 import React from 'react'
 
-const ApiHOC = (data, Component) => {
-    console.log(props)
+const ApiHOC = ({ test, component: Component, ...rest }) => {
     return (
-        data == undefined
+        test == true
             ? <Waiting />
-            : <Component {...props} />
+            : <Component {...rest}/>
     )
 }
 
