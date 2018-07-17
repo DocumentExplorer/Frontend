@@ -28,7 +28,9 @@ class FindForm extends React.Component {
 
     handleSubmit(event) {
         let picked = _.pickBy(this.state, _.isString)
-        console.log(picked)
+        for(let key in picked) {
+            console.log(key.valueOf())
+        }
         event.preventDefault()
     }
 

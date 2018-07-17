@@ -5,21 +5,21 @@ export default function (state = {}, action) {
         case OrdersConstants.GET_ORDERS_SUCCCESS:
             console.log(action.data)
             return {
+                ...state,
                 data: action.data,
                 waiting: false,
                 error: undefined,
-                ...state
+                
             }
         case OrdersConstants.GET_ORDERS_FAIL:
             return {
+                ...state,
                 error: action.error,
-                waiting: false,
-                ...state
+                waiting: false
             }
         case OrdersConstants.GET_ORDERS_REQUEST:
             return {
-                waiting: true,
-                ...state
+                waiting: true
             }
         case OrdersConstants.FIND_ORDERS_SUCCESS:
             const { matchOrders } = action
@@ -27,7 +27,7 @@ export default function (state = {}, action) {
                 ...state,
                 matchOrders
             }
-        case OrdersConstants.FIND_ORDERS_FAIL: 
+        case OrdersConstants.FIND_ORDERS_FAIL:
             return {
                 ...state,
                 matchOrders: undefined,
