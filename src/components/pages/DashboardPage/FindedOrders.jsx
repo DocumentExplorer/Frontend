@@ -1,7 +1,10 @@
 import React from 'react'
 import { Order } from '../../Orders/Order'
+import { withRouter } from 'react-router-dom'
 
 class FindedOrders extends React.Component {
+
+
     render() {
         console.log(this.props)
         const { data } = this.props
@@ -17,4 +20,4 @@ class FindedOrders extends React.Component {
     }
 }
 
-export default FindedOrders
+export default withRouter(FindedOrders)
