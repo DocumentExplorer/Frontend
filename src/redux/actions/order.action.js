@@ -16,7 +16,14 @@ export function finding(values) {
         }
     }
 
+    function request() {
+        return {
+            type: OrdersConstants.FIND_ORDERS_REQUEST
+        }
+    }
+
     return dispatch => {
+        dispatch(request())
         const lengthOfValues = Object.keys(values).length
         OrdersService.getOrders()
             .then((data) => {
@@ -35,14 +42,11 @@ export function finding(values) {
                         }
                     })
                 });
-                console.log(filtered)
                 dispatch(success(filtered))
             }).catch((err) => {
                 dispatch(failed())
             })
     }
-
-
 }
 
 export function getOrders() {
