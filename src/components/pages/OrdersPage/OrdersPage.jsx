@@ -5,6 +5,8 @@ import { getOrders } from '../../../redux/actions'
 import { Container, Row } from 'mdbreact'
 import ApiHOC from '../../helpers/ApiHOC';
 import OrdersListYear from './OrdersListYear'
+import _ from 'lodash'
+import DateFormat from '../../helpers/DateFormat';
 
 class OrdersPage extends React.Component {
 
@@ -13,20 +15,26 @@ class OrdersPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getOrders(() => {
-            this.state = {
+        const { match: { params: { year } } } = this.props
+        this.props.getOrders((data) => {
+            const filtered = _.filter(data, (item) => {
+                return year == item.time.year
+            })
+            console.log(filtered)
+            // this.setState({
 
-            }
+            // })
         })
     }
 
     render() {
         return (
-            <ApiHOC
-                component={OrdersListYear}
-                test={this.props.orders.waiting}
+            // <ApiHOC
+            //     component={OrdersListYear}
+            //     test={this.props.orders.waiting}
 
-            />
+            // />
+            ''
         )
     }
 }

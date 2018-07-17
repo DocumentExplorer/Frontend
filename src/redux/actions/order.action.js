@@ -1,6 +1,7 @@
 import { OrdersService } from '../services'
 import { OrdersConstants } from '../constants'
 import _ from 'lodash'
+import DateFormat from '../../components/helpers/DateFormat';
 
 
 export function finding(values) {
@@ -49,7 +50,7 @@ export function finding(values) {
     }
 }
 
-export function getOrders() {
+export function getOrders(callback) {
     function success(data) {
         return {
             type: OrdersConstants.GET_ORDERS_SUCCCESS,
@@ -72,6 +73,13 @@ export function getOrders() {
         dispatch(request())
         OrdersService.getOrders()
             .then((data) => {
+                _.forEach(data, (value, i) => {
+                    let converted = new DateFormat(value.time).convert()
+                    value.time = converted
+                })
+                if(callback !== undefined){
+                    callback(data)
+                }
                 dispatch(success(data))
             }).catch(() => {
                 dispatch(failed())
