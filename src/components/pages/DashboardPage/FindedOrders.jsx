@@ -1,18 +1,18 @@
 import React from 'react'
-import { Card, CardBody, CardImage, CardText, CardTitle, Button } from 'mdbreact'
+import { Order } from '../../Orders/Order'
 
 class FindedOrders extends React.Component {
     render() {
         console.log(this.props)
-        
+        const { data } = this.props
         return (
-            <Card>
-                <CardBody>
-                    <CardTitle>Card title</CardTitle>
-                    <CardText>Some quick example text to build on the card title and make up the bulk of the card's content.</CardText>
-                    <Button href="#">Button</Button>
-                </CardBody>
-            </Card>
+            <div style={{ marginTop: '35px' }}>
+                {
+                    data.map((value, i) => (
+                        <Order value={value} key={i} />
+                    ))
+                }
+            </div>
         )
     }
 }

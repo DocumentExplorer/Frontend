@@ -1,16 +1,31 @@
 import React from 'react'
-import { } from 'mdbreact'
+import { Card, CardBody, CardTitle, Fa } from 'mdbreact'
 
 
-const Order = (props) => {
+export const Order = ({ value, key }) => {
     return (
-        <Card style={{ width: '22rem', marginTop: '1rem' }}>
+        <Card key={key} className="custom-card">
             <CardBody>
-                <CardTitle>{props.invoiceNumbar}</CardTitle>
-                <CardTitle tag="h6" sub className="mb-2 text-muted">Panel title</CardTitle>
-                <CardText>Some quick example text to build on the panel title and make up the bulk of the panel's content. </CardText>
-                <a href="#" className="card-link">Panel link</a>
-                <a href="#" className="card-link">Another link</a>
+                <CardTitle>
+                    <Fa icon="briefcase" />
+                    Faktura numer - {value.invoiceNumber}
+                </CardTitle>
+                <CardTitle>
+                    <Fa icon="address-card" />
+                    NIP klienta - {value.clientNIP}
+                </CardTitle>
+                <CardTitle>
+                    <Fa icon="address-card-o" />
+                    NIP pośrednika - {value.brokerNIP}
+                </CardTitle>
+                <CardTitle>
+                    <Fa icon="flag" />
+                    Kraj klienta - {value.clientCountry}
+                </CardTitle>
+                <CardTitle>
+                    <Fa icon="flag-o" />
+                    Kraj pośrednika - {value.brokerCountry}
+                </CardTitle>
             </CardBody>
         </Card>
     )
