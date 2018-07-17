@@ -1,5 +1,6 @@
 import { OrdersService } from '../services'
 import { OrdersConstants } from '../constants'
+import _ from 'lodash'
 
 
 export function finding(values) {
@@ -7,7 +8,7 @@ export function finding(values) {
         return {
             type: OrdersConstants.FIND_ORDERS_SUCCESS,
             match
-        }   
+        }
     }
     function failed() {
         return {
@@ -16,7 +17,20 @@ export function finding(values) {
     }
 
     return dispatch => {
-        
+        _.pickBy(values, (key) => {
+
+        })
+
+        OrdersService.getOrders()
+            .then((data) => {
+                console.log(data)
+                const filtered = _.filter(data, function (item) {
+                    return _.startsWith(tag, input.val());
+                });
+                dispatch(success(filtered))
+            }).catch((err) => {
+                dispatch(failed())
+            })
     }
 
 
