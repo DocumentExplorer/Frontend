@@ -6,9 +6,9 @@ const ApiHOC = ({ test, component: Component, ...data }) => (
         : <Component {...data} />
 
 )
-
 const Waiting = () => (
     <div className="waiting">Proszę czekać...</div>
 )
+
 
 export default ApiHOC
