@@ -1,23 +1,43 @@
 import { OrdersService } from '../services'
-import { OrderConstants } from '../constants'
+import { OrdersConstants } from '../constants'
 
+
+export function finding(values) {
+    function success(match) {
+        return {
+            type: OrdersConstants.FIND_ORDERS_SUCCESS,
+            match
+        }   
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.FIND_ORDERS_FAIL
+        }
+    }
+
+    return dispatch => {
+        
+    }
+
+
+}
 
 export function getOrders() {
     function success(data) {
         return {
-            type: OrderConstants.GET_ORDERS_SUCCCESS,
+            type: OrdersConstants.GET_ORDERS_SUCCCESS,
             data
         }
     }
     function failed(error) {
         return {
-            type: OrderConstants.GET_ORDERS_FAIL,
+            type: OrdersConstants.GET_ORDERS_FAIL,
             error
         }
     }
     function request() {
         return {
-            type: OrderConstants.GET_ORDERS_REQUEST
+            type: OrdersConstants.GET_ORDERS_REQUEST
         }
     }
 
@@ -30,6 +50,4 @@ export function getOrders() {
                 dispatch(failed())
             })
     }
-
-
 }
