@@ -17,17 +17,14 @@ export function finding(values) {
     }
 
     return dispatch => {
-        _.pickBy(values, (key) => {
-
-        })
-
+    
         OrdersService.getOrders()
             .then((data) => {
                 console.log(data)
-                const filtered = _.filter(data, function (item) {
-                    return _.startsWith(tag, input.val());
-                });
-                dispatch(success(filtered))
+                // const filtered = _.filter(data, function (item) {
+                //     return _.startsWith(tag, input.val());
+                // });
+                //dispatch(success(filtered))
             }).catch((err) => {
                 dispatch(failed())
             })
