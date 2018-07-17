@@ -17,15 +17,22 @@ export function finding(values) {
     }
 
     return dispatch => {
+        const lengthOfValues = Object.keys(values).length
         OrdersService.getOrders()
             .then((data) => {
-                const filtered = _.filter(data, function (item) {
+                let filtered = []
+                _.forIn(data, function (item) {
+                    let i = 0
                     _.forIn(item, (value, key) => {
-                        _.forIn(values, (valueTo, keyTo) => {
-                            if(key == keyTo && _.startsWith(value,valueTo)){
-                                return item
+                        for (let keyTo in values) {
+                            if (key == keyTo && _.startsWith(value, values[keyTo])) {
+                                i++
+                                if (i == lengthOfValues) {
+
+                                    filtered.push(item)
+                                }
                             }
-                        })
+                        }
                     })
                 });
                 console.log(filtered)

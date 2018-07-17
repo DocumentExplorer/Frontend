@@ -11,7 +11,7 @@ function getOrders() {
             } else {
                 reject('Użytkownik z tą nazwą i hasłem nie istnieje')
             }
-        }, 3000)
+        }, 100)
 
     })
 }
