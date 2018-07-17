@@ -10,10 +10,11 @@ class FindForm extends React.Component {
         super(props)
         this.state = {
             number: undefined,
-            client_NIP: undefined,
-            broker_NIP: undefined,
-            client_country: undefined,
-            broker_country: undefined
+            clientNIP: undefined,
+            brokerNIP: undefined,
+            clientCountry: undefined,
+            brokerCountry: undefined,
+            invoiceNumber: undefined
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -27,10 +28,14 @@ class FindForm extends React.Component {
     }
 
     handleSubmit(event) {
-        let picked = _.pickBy(this.state, _.isString)
-        for(let key in picked) {
-            console.log(key.valueOf())
-        }
+        let picked = {}
+        let onlyStrings = _.pickBy(this.state, _.isString)
+        _.forIn(onlyStrings, (value, key) => {
+            if (value.length != 0) {
+                picked.push({ key: value })
+            }
+        })
+        this.props.finding(picked)
         event.preventDefault()
     }
 

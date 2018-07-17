@@ -4,10 +4,10 @@ import _ from 'lodash'
 
 
 export function finding(values) {
-    function success(match) {
+    function success(matchOrders) {
         return {
             type: OrdersConstants.FIND_ORDERS_SUCCESS,
-            match
+            matchOrders
         }
     }
     function failed() {
@@ -17,14 +17,19 @@ export function finding(values) {
     }
 
     return dispatch => {
-    
         OrdersService.getOrders()
             .then((data) => {
-                console.log(data)
-                // const filtered = _.filter(data, function (item) {
-                //     return _.startsWith(tag, input.val());
-                // });
-                //dispatch(success(filtered))
+                const filtered = _.filter(data, function (item) {
+                    _.forIn(item, (value, key) => {
+                        _.forIn(values, (valueTo, keyTo) => {
+                            if(key == keyTo && _.startsWith(value,valueTo)){
+                                return item
+                            }
+                        })
+                    })
+                });
+                console.log(filtered)
+                dispatch(success(filtered))
             }).catch((err) => {
                 dispatch(failed())
             })
