@@ -22,15 +22,20 @@ class List extends React.Component {
 
     render() {
         const { data } = this.props
+        const maxLenth = new Date().getFullYear() - 2005
         for (let i = 2005; i <= new Date().getFullYear(); i++) {
-            this.state.years.push(new OrderByYear(i, _.filter(data, (item) => {
-                let converted = new DateFormat(item.time).convert()
-                item.converted = converted
-                if (item.converted.year == i) {
-                    return item
-                }
-            })))
+
+            if (this.state.years.length <= maxLenth) {
+                this.state.years.push(new OrderByYear(i, _.filter(data, (item) => {
+                    let converted = new DateFormat(item.time).convert()
+                    item.converted = converted
+                    if (item.converted.year == i) {
+                        return item
+                    }
+                })))
+            }
         }
+
         return (
             <Fragment>
 
@@ -38,7 +43,7 @@ class List extends React.Component {
                     <h2>Lata</h2>
                     {this.state.years.map((item, i) => (
                         <ListGroupItem key={i} onClick={this.handleClick.bind(this, item.year)}>
-                            <Fa icon="folder"/>
+                            <Fa icon="folder" />
                             {item.year}
                         </ListGroupItem>
                     ))}

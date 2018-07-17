@@ -11,7 +11,6 @@ import { OnActionHOC } from '../../helpers/OnActionHOC'
 
 class Dashboard extends React.Component {
     render() {
-        console.log(this.props.orders)
         return (
             <Container>
                 <Row className="custom-row">

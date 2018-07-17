@@ -3,10 +3,7 @@ import { Order } from '../../Orders/Order'
 import { withRouter } from 'react-router-dom'
 
 class FindedOrders extends React.Component {
-
-
     render() {
-        console.log(this.props)
         const { data } = this.props
         return (
             <div style={{ marginTop: '35px' }}>
