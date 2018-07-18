@@ -1,3 +1,3 @@
 export const ApiConstants = {
-    rootURL: ''
+    rootURL: 'https://documentexplorerapi.azurewebsites.net/'
 }

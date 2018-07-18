@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Container, Row, Col, Input, Button } from 'mdbreact';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { login } from '../../../redux/actions'
 import './login.css'
 
 class Login extends React.Component {
@@ -33,7 +34,6 @@ class Login extends React.Component {
     handleBlur(event) {
         const { name, value } = event.target
         let errors = Object.assign({}, this.state.errors)
-        console.log(value.length)
         if (name == 'username' && value.length >= 4) {
             errors.username = 'Username zawiera tylko 4 znaki'
         } else {
@@ -45,6 +45,10 @@ class Login extends React.Component {
     }
 
     handleSubmit(event) {
+        this.props.login({
+            username: this.state.username,
+            password: this.state.password
+        })
         event.preventDefault()
     }
 
@@ -97,5 +101,5 @@ function mapStateToProps({ loginResult }) {
     }
 }
 
-const page = connect(mapStateToProps)(Login)
+const page = connect(mapStateToProps, { login })(Login)
 export { page as LoginPage }
