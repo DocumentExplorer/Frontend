@@ -1,7 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
 import { convertToNumbers } from '../../helpers/DateFormat';
-
+import { Container, Row, Col, Card, CardBody, CardTitle } from 'mdbreact'
+import { Order } from '../../Orders/Order'
 
 export default ({ data }) => {
     const months = []
@@ -22,22 +23,36 @@ export default ({ data }) => {
         })
     })
     return (
-        <ul>
-            {
-                months.map((value, i) => (
-                    <li key={i}>
-                        {value.month}
-                        {
-                            value.ordersByMonth.map((item, index) => (
-                                <p key={index}>
-                                    {item.invoiceNumber}
-                                </p>
-                            ))
-                        }
-                    </li>
-                ))
-            }
-        </ul>
+        <Container>
+            <Row>
+                {
+                    months.map((value, i) => (
+                        <Col key={i} md="12">
+                            <Card>
+                                <CardBody>
+                                    <CardTitle>
+                                        {value.month}
+                                    </CardTitle>
+                                </CardBody>
+                            </Card>
+                            <Row>
+                                {
+                                    value.ordersByMonth.map((item, index) => (
+
+                                        <Col md="6" sm="12">
+                                            <Order
+                                                key={index}
+                                                value={item}
+                                            />
+                                        </Col>
+                                    ))
+                                }
+                            </Row>
+                        </Col>
+                    ))
+                }
+            </Row>
+        </Container>
     )
 }
 

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export const Order = ({ value, i, onClick, ...rest }) => {
     return (
-        <Link to={`/orders/${value.invoiceNumber}`}>
+        <Link to={`/orders/${value.invoiceNumber}`} {...rest}>
             <Card key={i} className="custom-card" onClick={() => onClick}>
                 <CardBody>
                     <CardTitle>
