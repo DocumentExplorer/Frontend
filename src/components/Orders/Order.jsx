@@ -2,10 +2,14 @@ import React from 'react'
 import { Card, CardBody, CardTitle, Fa } from 'mdbreact'
 import { Link } from 'react-router-dom'
 
-export const Order = ({ value, i, onClick, ...rest }) => {
+export const Order = ({ value, i, onClick, color, ...rest }) => {
     return (
         <Link to={`/orders/${value.invoiceNumber}`} {...rest} key={i}>
-            <Card  className="custom-card" onClick={() => onClick}>
+            <Card className="custom-card" onClick={() => onClick}
+                style={{
+                    borderTop: `20px solid ${color}`
+                }}>
+
                 <CardBody>
                     <CardTitle>
                         <Fa icon="briefcase" />

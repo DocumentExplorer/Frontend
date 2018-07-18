@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "lodash": "^4.17.10",
     "mdbreact": "^4.5.1",
+    "randomcolor": "^0.5.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-redux": "^5.0.7",

@@ -19,6 +19,9 @@ class OrdersPage extends React.Component {
 
     componentDidMount() {
         const { match: { params: { year } } } = this.props
+        this.setState({
+            year
+        })
         this.props.getOrders((data) => {
             const filtered = _.filter(data, (item) => {
                 return year == item.time.year
@@ -35,6 +38,7 @@ class OrdersPage extends React.Component {
                 component={OrdersListYear}
                 test={this.props.orders.waiting}
                 data={this.state.filtered}
+                year={this.state.year}
             />
         )
     }

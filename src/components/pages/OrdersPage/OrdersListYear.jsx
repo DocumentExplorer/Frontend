@@ -4,13 +4,17 @@ import { convertToNumbers } from '../../helpers/DateFormat';
 import { Container, Row, Col, Card, CardBody, CardTitle } from 'mdbreact'
 import { Order } from '../../Orders/Order'
 import { getMonths } from '../../../redux/mock/months'
+import randomcolor from 'randomcolor'
 
-export default ({ data }) => {
+export default ({ data, year }) => {
     const months = []
     const names = getMonths()
     for (let i = 1; i <= 12; i++) {
         months.push({
             month: i,
+            color: randomcolor({
+                hue: 'green'
+            }),
             ordersByMonth: []
         })
     }
@@ -25,7 +29,8 @@ export default ({ data }) => {
         })
     })
     return (
-        <Container>
+        <Container className="custom-row">
+            <h1 className="text-center">{year}</h1>
             <Row>
                 {
                     months.map((value, i) => (
@@ -44,6 +49,7 @@ export default ({ data }) => {
                                         <Col md="6" sm="12" key={index}>
                                             <Order
                                                 value={item}
+                                                color={value.color}
                                             />
                                         </Col>
                                     ))
