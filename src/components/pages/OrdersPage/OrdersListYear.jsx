@@ -57,7 +57,6 @@ export default class extends React.Component {
                                                 <Order
                                                     value={item}
                                                     color={value.color}
-                                                    month={names[value.month - 1]}
                                                 />
                                             </Col>
                                         ))

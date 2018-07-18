@@ -10,7 +10,7 @@ export default class DateFormat {
         year = this.time.slice(6, 10)
         this.day = day
         this.month = month
-        this.day = year
+        this.year = year
         return {
             day,
             month,

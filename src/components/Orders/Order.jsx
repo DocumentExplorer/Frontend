@@ -1,19 +1,11 @@
 import React from 'react'
 import { Card, CardBody, CardTitle, Fa } from 'mdbreact'
 import { Link } from 'react-router-dom'
+import { getMonths } from '../../redux/mock/months'
 
 export const Order = ({ value, i, onClick, color, ...rest }) => {
     const { time } = value
-    let renderTime
-    if (time.day) {
-        renderTime = () => (
-            <React.Fragment>{time.day} {rest.month} {time.year}</React.Fragment>
-        )
-    } else {
-        renderTime = () => (
-            <React.Fragment>{time}</React.Fragment>
-        )
-    }
+    
     return (
         <Link to={`/order/${value.invoiceNumber}`} {...rest} key={i}>
             <Card className="custom-card" onClick={() => onClick}
@@ -47,7 +39,7 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
                     </CardTitle>
                     <CardTitle>
                         <Fa icon="calendar" />
-                        {renderTime()}
+                        {time.day} {getMonths()[time.month - 1]} {time.year}
                     </CardTitle>
                 </CardBody>
             </Card>
