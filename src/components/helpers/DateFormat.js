@@ -20,16 +20,11 @@ export default class DateFormat {
 }
 
 export function convertToNumbers(day, month, year) {
-    if (month.charAt(0) == 0) {
-        month = month.slice(1)
-    }
-    if (day.charAt(0) == 0) {
-        day = day.slice(1)
-    }
+    
     try {
-        day = day.toNumber()
-        month = month.toNumber()
-        year = year.toNumber()
+        day = parseInt(day)
+        month = parseInt(month)
+        year = parseInt(year)
     } catch (err) {
         console.log(err)
     }
