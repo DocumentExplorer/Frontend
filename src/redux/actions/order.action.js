@@ -44,7 +44,6 @@ export function finding(values) {
         const lengthOfValues = Object.keys(values).length
         OrdersService.getOrders()
             .then((data) => {
-                console.log(data)
                 let filtered = []
                 _.forIn(data, function (item) {
                     let i = 0
