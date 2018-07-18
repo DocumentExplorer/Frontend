@@ -22,6 +22,10 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
                 }}>
                 <CardBody>
                     <CardTitle>
+                        <Fa icon="file-o" />
+                        Faktura numer - {value.orderNumber}
+                    </CardTitle>
+                    <CardTitle>
                         <Fa icon="briefcase" />
                         Faktura numer - {value.invoiceNumber}
                     </CardTitle>

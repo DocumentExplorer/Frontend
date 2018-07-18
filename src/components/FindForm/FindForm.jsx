@@ -21,12 +21,13 @@ class FindForm extends React.Component {
 
     handleSubmit(event) {
         let picked = {}
-        let onlyStrings = _.pickBy(this.state, _.isString)
+        let onlyStrings = _.pickBy(this.state, _.isString || _.isNumber)
         _.forIn(onlyStrings, (value, key) => {
             if (value.length != 0) {
                 picked[key] = value
             }
         })
+        console.log(picked)
         this.props.finding(picked)
         event.preventDefault()
     }
@@ -38,6 +39,7 @@ class FindForm extends React.Component {
                     <form>
                         <p className="h3 text-center py-3">Szukanie zleceń</p>
                         <div className="grey-text">
+                            <Input name="orderNumber" label="Numer zlecenia" icon="file-o" group type="text" onChange={this.handleChange} />
                             <Input name="invoiceNumber" label="Numer faktury" icon="briefcase" group type="text" onChange={this.handleChange} />
                             <Input name="clientNIP" label="NIP klienta" icon="address-card" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
                             <Input name="brokerNIP" label="NIP pośrednika" icon="address-card-o" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />

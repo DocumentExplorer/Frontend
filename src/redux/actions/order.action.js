@@ -4,7 +4,20 @@ import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
 
 export function getOrderByInvoiceNumber(invoiceNumber) {
-    
+    function success(order) {
+        return {
+            
+        }
+    }
+
+    function failed() {
+        return {
+
+        }
+    }
+    function request() {
+
+    }
 }
 
 export function finding(values) {
@@ -31,6 +44,7 @@ export function finding(values) {
         const lengthOfValues = Object.keys(values).length
         OrdersService.getOrders()
             .then((data) => {
+                console.log(data)
                 let filtered = []
                 _.forIn(data, function (item) {
                     let i = 0
