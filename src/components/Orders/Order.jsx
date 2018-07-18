@@ -20,7 +20,6 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
                 style={{
                     borderTop: `20px solid ${color}`
                 }}>
-
                 <CardBody>
                     <CardTitle>
                         <Fa icon="briefcase" />

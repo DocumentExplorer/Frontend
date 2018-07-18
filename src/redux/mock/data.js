@@ -1,6 +1,8 @@
 export function getData() {
     return [
-        {
+        {   
+            
+            orderNumbar: 1,
             invoiceNumber: 1209,
             clientNIP: '1212312312313123',
             brokerNIP: '3234535345353354',
@@ -8,7 +10,9 @@ export function getData() {
             brokerCountry: 'PL',
             time: '16.07.2018 11:02:52'
         },
-        {
+        {   
+            
+            orderNumbar: 2,
             invoiceNumber: 1212,
             clientNIP: '1212312312313123',
             brokerNIP: '3234535345353354',
@@ -16,7 +20,8 @@ export function getData() {
             brokerCountry: 'PL',
             time: '16.07.2018 11:02:52'
         },
-        {
+        {   
+            orderNumbar: 3,
             invoiceNumber: 1203,
             clientNIP: '1212312312313123',
             brokerNIP: '3234535345353354',
@@ -24,7 +29,8 @@ export function getData() {
             brokerCountry: 'PL',
             time: '16.07.2018 11:02:52'
         },
-        {
+        {   
+            orderNumbar: 4,
             invoiceNumber: 1203,
             clientNIP: '1212312312313123',
             brokerNIP: '3234535345353354',

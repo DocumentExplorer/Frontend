@@ -4,9 +4,8 @@ import './order.css'
 
 class OrderPage extends React.Component {
 
-    componentDidMount() {
-        
-        
+    constructor() {
+        super()
     }
 
     render() {
