@@ -12,6 +12,9 @@ class OrdersPage extends React.Component {
 
     constructor(props) {
         super(props)
+        this.state = {
+            
+        }
     }
 
     componentDidMount() {
@@ -20,21 +23,19 @@ class OrdersPage extends React.Component {
             const filtered = _.filter(data, (item) => {
                 return year == item.time.year
             })
-            console.log(filtered)
-            // this.setState({
-
-            // })
+            this.setState({
+                filtered
+            })
         })
     }
 
     render() {
         return (
-            // <ApiHOC
-            //     component={OrdersListYear}
-            //     test={this.props.orders.waiting}
-
-            // />
-            ''
+            <ApiHOC
+                component={OrdersListYear}
+                test={this.props.orders.waiting}
+                data={this.state.filtered}
+            />
         )
     }
 }
