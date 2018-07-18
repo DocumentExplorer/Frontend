@@ -2,9 +2,10 @@ import { LoginService } from '../services'
 import { LoginConstants } from '../constants'
 
 export function login(values) {
-    function success() {
+    function success(role) {
         return {
-            type: LoginConstants.LOGIN_SUCCESS
+            type: LoginConstants.LOGIN_SUCCESS,
+            role
         }
     }
     function failed(error) {
@@ -22,9 +23,10 @@ export function login(values) {
 
     return dispatch => {
         dispatch(fetched())
-        LoginService.login(values).then(() => {
-            dispatch(success())
-            //localStorage.setItem()
+        LoginService.login(values).then((data) => {
+            localStorage.setItem("token", data.token)
+            localStorage.setItem("role", data.role)
+            dispatch(success(data.role))
         }).catch((err) => {
             dispatch(failed(err))
         })
@@ -39,8 +41,9 @@ export function checkLogining() {
         }
     }
     return dispatch => {
-        if (localStorage.getItem('token') && localStorage.getItem('user')) {
-            dispatch(success())
+        if (localStorage.getItem('token') && localStorage.getItem('role')) {
+            console.log('Sprawdzam')
+            dispatch(success(localStorage.getItem('role')))
         }
     }
 }

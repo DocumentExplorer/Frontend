@@ -18,7 +18,7 @@ const NavbarAuthenticated = (props) => (
             </NavbarBrand>
             <NavbarNav right>
                 <Link to="/dashboard">
-                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <i className="fa fa-user" aria-hidden="true"></i>
                     User
                 </Link>
             </NavbarNav>
