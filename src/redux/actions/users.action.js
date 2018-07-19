@@ -21,12 +21,13 @@ export function getUsers() {
     }
 
     return dispatch => {
-        request()
+        dispatch(request())
         UserService.getUsers()
             .then((res) => {
-                success(res.data.users)
+                dispatch(success(res.data))
             }).catch((err) => {
-                failed()
+                console.log(err)
+                dispatch(failed())
             })
     }
 

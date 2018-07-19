@@ -5,16 +5,14 @@ function getUsers() {
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/users`,
+            method: 'GET',
             headers: {
-                'Authorization': localStorage.getItem('token')
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
             }
         }).then((res) => {
-            console.log(res)
-            if (res) {
-                resolve(res)
-            }
+            resolve(res)
+
         }).catch((err) => {
-            console.log(err)
             reject(err)
         })
     })
