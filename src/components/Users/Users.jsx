@@ -23,7 +23,7 @@ export const Users = ({ data, ...rest }) => {
                                 <td>{value.username}</td>
                                 <td>{value.role}</td>
                                 <td className="delete">
-                                    <Fa icon="close" size="2x" />
+                                    <Fa icon="close" size="2x" onClick={() => rest.deleteUser(value.id)}/>
                                 </td>
                             </tr>
                         ))
