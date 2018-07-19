@@ -31,5 +31,4 @@ export function getUsers() {
                 dispatch(failed())
             })
     }
-
 }

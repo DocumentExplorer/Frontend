@@ -10,13 +10,15 @@ import { AddUserModal } from './AddUserModal'
 
 class ManagementPage extends React.Component {
 
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
-            test: false
+            test: false,
+            username: '',
+            password: ''
         }
         this.toggle = this.toggle.bind(this);
-
+        this.handleChange = this.handleChange.bind(this)
     }
 
     componentDidMount() {
@@ -33,10 +35,12 @@ class ManagementPage extends React.Component {
         })
     }
     handleChange(e) {
-        console.log(e.target.value)
+        this.setState({
+            [e.target.name]: e.target.value
+        })
     }
     handleSubmit() {
-        console.log('sub')
+        
     }
 
 

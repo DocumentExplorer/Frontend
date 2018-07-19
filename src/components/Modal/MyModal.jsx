@@ -9,8 +9,8 @@ export const MyModal = ({ test, toggle, sumbit, sumbitText, handleChange, title,
                 <Component handleChange={handleChange} />
             </ModalBody>
             <ModalFooter>
-                <Button outline color="primary" onClick={toggle}>Zamknij</Button>{' '}
                 <Button outline onClick={sumbit}>{sumbitText}</Button>
+                <Button outline color="primary" onClick={toggle}>Zamknij</Button>
             </ModalFooter>
         </Modal>
     )
