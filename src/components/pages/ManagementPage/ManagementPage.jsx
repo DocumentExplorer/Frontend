@@ -33,16 +33,15 @@ class ManagementPage extends React.Component {
         })
     }
     handleChange(e) {
-
+        console.log(e.target.value)
     }
     handleSubmit() {
-
+        console.log('sub')
     }
 
 
 
     render() {
-        console.log(this.props.users.request)
         return (
             <Container>
                 <Row className="custom-row">
@@ -61,6 +60,7 @@ class ManagementPage extends React.Component {
                             sumbit={this.handleSubmit}
                             sumbitText={"Dodaj"}
                             component={AddUserModal}
+                            title={"Tworzenie użytkownika"}
                         />
                     </Col>
                 </Row>

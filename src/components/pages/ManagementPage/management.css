@@ -10,3 +10,12 @@
     color: #6287F5;
     cursor: pointer;
 }
+
+.account-type {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 2.5rem;
+    margin-top: 3rem;
+    font-size: 1rem;
+    font-family: "Roboto", sans-serif;
+}

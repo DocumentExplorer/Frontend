@@ -4,7 +4,6 @@ export default function (state = { request: true }, action) {
     switch (action.type) {
         case UserConstants.GET_USERS_SUCCESS:
             const { users } = action
-            console.log(users)
             return {
                 ...state,
                 users,
