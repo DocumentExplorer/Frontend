@@ -5,7 +5,8 @@ import { connect } from 'react-redux'
 import { getUsers } from '../../../redux/actions'
 import { Users } from '../../Users/Users';
 import './management.css'
-import MyModal from '../../Modal/MyModal'
+import { MyModal } from '../../Modal/MyModal'
+import { AddUserModal } from './AddUserModal'
 
 class ManagementPage extends React.Component {
 
@@ -15,6 +16,7 @@ class ManagementPage extends React.Component {
             test: false
         }
         this.toggle = this.toggle.bind(this);
+
     }
 
     componentDidMount() {
@@ -30,6 +32,12 @@ class ManagementPage extends React.Component {
             test: !this.state.test
         })
     }
+    handleChange(e) {
+
+    }
+    handleSubmit() {
+
+    }
 
 
 
@@ -37,7 +45,6 @@ class ManagementPage extends React.Component {
         console.log(this.props.users.request)
         return (
             <Container>
-
                 <Row className="custom-row">
                     <Col>
                         <ApiHOC
@@ -46,7 +53,15 @@ class ManagementPage extends React.Component {
                             test={this.props.users.request}
                             deleteUser={this.deleteUser}
                         />
-                        <Button>Dodaj użytkownika</Button>
+                        <Button onClick={this.toggle}>Dodaj użytkownika</Button>
+                        <MyModal
+                            test={this.state.test}
+                            toggle={this.toggle}
+                            handleChange={this.handleChange}
+                            sumbit={this.handleSubmit}
+                            sumbitText={"Dodaj"}
+                            component={AddUserModal}
+                        />
                     </Col>
                 </Row>
             </Container>
