@@ -11,7 +11,6 @@ export default function (state = { choose: true }, action) {
                 const converted = convertToNumbers(day, month, year)
                 value.time = converted
             })
-            console.log(action.data)
             return {
                 ...state,
                 data: action.data,

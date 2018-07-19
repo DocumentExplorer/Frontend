@@ -20,7 +20,7 @@ const NavbarAuthenticated = (props) => {
                     <NavItem>
                         <Link to="/dashboard">
                             <Fa icon="user" size="2x" />
-                    </Link>
+                        </Link>
                     </NavItem>
                 </NavbarNav>
                 <NavbarNav right>
