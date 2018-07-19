@@ -8,7 +8,7 @@ class ManagementPage extends React.Component {
             <Container>
                 <Row>
                     <Col sm="12">
-                        
+                    
                     </Col>
                 </Row>
             </Container>
