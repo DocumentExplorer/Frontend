@@ -1,6 +1,6 @@
 import React from 'react'
 import ApiHOC from '../../helpers/ApiHOC'
-import { Container, Row, Col } from 'mdbreact'
+import { Container, Row, Col, Button } from 'mdbreact'
 import { connect } from 'react-redux'
 import { getUsers } from '../../../redux/actions'
 import { Users } from '../../Users/Users';
@@ -23,6 +23,7 @@ class ManagementPage extends React.Component {
                             data={this.props.users.users}
                             test={this.props.users.request}
                         />
+                        <Button>Dodaj użytkownika</Button>
                     </Col>
                 </Row>
             </Container>

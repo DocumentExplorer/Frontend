@@ -1,0 +1,12 @@
+.users-list td{
+    font-size: 1.1rem !important;
+}
+
+.delete {
+    color: #2BBBAD;
+    padding-top: 0.85rem !important;
+}
+.delete i:hover {
+    color: #6287F5;
+    cursor: pointer;
+}

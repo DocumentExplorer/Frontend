@@ -1,16 +1,18 @@
 import React from 'react'
 import { Table } from 'mdbreact'
+import { Fa } from 'mdbreact'
 
 export const Users = ({ data, ...rest }) => {
     console.log(rest)
     return (
-        <div style={{display: 'block', maxHeight: '300px', overflowY: 'auto'}}>
-            <Table responsiveMd>
-                <thead className="users-list">
+        <div style={{ display: 'block', maxHeight: '300px', overflowY: 'auto', marginBottom: '30px' }}>
+            <Table className="users-list">
+                <thead >
                     <tr>
                         <th>ID</th>
-                        <th className="th-lg">Name</th>
-                        <th className="th-lg">Surname</th>
+                        <th className="th-lg">Nazwa Użytkownika</th>
+                        <th className="th-lg">Rola</th>
+                        <th className="th-lg">Usuń</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,6 +22,9 @@ export const Users = ({ data, ...rest }) => {
                                 <td>{index}</td>
                                 <td>{value.username}</td>
                                 <td>{value.role}</td>
+                                <td className="delete">
+                                    <Fa icon="close" size="2x" />
+                                </td>
                             </tr>
                         ))
                     }
