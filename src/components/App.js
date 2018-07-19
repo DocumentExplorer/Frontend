@@ -3,6 +3,7 @@ import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Navbar/Navbar'
 import { LoginPage, Dashboard, OrderPage, OrdersPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
+import { AdminRoute } from './helpers/AdminRoute'
 import { checkLogining } from '../redux/actions'
 import { connect } from 'react-redux'
 import './App.css'
@@ -19,7 +20,7 @@ class App extends Component {
           <Switch>
             <PrivateRoute path="/orders/:year" component={OrdersPage} />
             <PrivateRoute path="/order/:order" component={OrderPage} />
-            <PrivateRoute path="/management" component={OrderPage} />
+            <AdminRoute path="/management" component={OrderPage} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/orders" component={OrdersPage} />
             <Route path="/" component={LoginPage} />

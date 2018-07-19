@@ -11,3 +11,13 @@
     color: red;
     padding-left: 40px;
 }
+
+.logout {
+    background: white !important;
+    color: black;
+    font-size: 15px;
+}
+
+.logout:hover {
+    background: white !important;
+}

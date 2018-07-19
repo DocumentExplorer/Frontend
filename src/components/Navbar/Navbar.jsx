@@ -16,20 +16,16 @@ const NavbarAuthenticated = (props) => {
     return (
         <Navbar color="default-color">
             <Container>
-                <NavbarBrand>
-                    <h3>Brand</h3>
-                </NavbarBrand>
                 <NavbarNav left>
                     <NavItem>
                         <Link to="/dashboard">
-                            <i className="fa fa-user" aria-hidden="true"></i>
-                            User
+                            <Fa icon="user" size="2x" />
                     </Link>
                     </NavItem>
                 </NavbarNav>
                 <NavbarNav right>
                     <NavItem>
-                        <button type="button" className="btn btn-outline-primary waves-effect" onClick={props.logout}>Wyloguj</button>
+                        <button type="button" className="btn btn-outline-primary waves-effect logout" onClick={props.logout}>Wyloguj</button>
                     </NavItem>
                 </NavbarNav>
             </Container>
@@ -40,9 +36,6 @@ const NavbarAuthenticated = (props) => {
 const NavbarAdmin = (props) => (
     <Navbar color="default-color">
         <Container>
-            <NavbarBrand>
-                <h3>Brand</h3>
-            </NavbarBrand>
             <NavbarNav className="align" left>
                 <NavItem>
                     <Link to="/management">
@@ -57,7 +50,7 @@ const NavbarAdmin = (props) => (
             </NavbarNav>
             <NavbarNav right>
                 <NavItem>
-                    <button type="button" className="btn btn-outline-primary waves-effect" onClick={props.logout}>Wyloguj</button>
+                    <button type="button" className="btn btn-outline-primary waves-effect logout" onClick={props.logout}>Wyloguj</button>
                 </NavItem>
             </NavbarNav>
         </Container>
