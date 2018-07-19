@@ -21,11 +21,32 @@ function login(values) {
                     resolve(res.data)
                 }
             }).catch((err) => {
+                console.log(err)
                 reject('Użytkownik z tą nazwą i hasłem nie istnieje')
             })
     })
 }
 
+function logout() {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/users/logout`,
+            headers: {
+                'Authorization': localStorage.getItem('token')
+            }
+        }).then((res) => {
+            console.log(res)
+            if (res) {
+                resolve()
+            }
+        }).catch((err) => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
 export const LoginService = {
-    login
+    login,
+    logout
 }

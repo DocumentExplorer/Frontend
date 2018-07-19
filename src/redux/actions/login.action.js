@@ -31,7 +31,30 @@ export function login(values) {
             dispatch(failed(err))
         })
     }
+}
 
+export function logout() {
+
+    function success() {
+        return {
+            type: LoginConstants.LOGOUT_SUCCESS
+        }
+    }
+
+    function request() {
+        return {
+            type: LoginConstants.LOGOUT_FAIL
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        LoginService.logout().then(() => {
+            dispatch(success())
+        }).catch(() => {
+            dispatch(success())
+        })
+    }
 }
 
 export function checkLogining() {
