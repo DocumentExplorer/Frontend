@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'mdbreact'
 import { connect } from 'react-redux'
 import { getUsers } from '../../../redux/actions'
 import { Users } from '../../Users/Users';
+import './management.css'
 
 class ManagementPage extends React.Component {
 
@@ -15,11 +16,8 @@ class ManagementPage extends React.Component {
         console.log(this.props.users.request)
         return (
             <Container>
-                <Row>
-                    <Col sm="12" md="7">
-
-                    </Col>
-                    <Col md="5" sm="12">
+                <Row className="custom-row">
+                    <Col>
                         <ApiHOC
                             component={Users}
                             data={this.props.users.users}
