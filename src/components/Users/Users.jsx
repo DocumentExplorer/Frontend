@@ -6,7 +6,7 @@ export const Users = ({ data, ...rest }) => {
     return (
         <div style={{display: 'block', maxHeight: '300px', overflowY: 'auto'}}>
             <Table responsiveMd>
-                <thead className="mdb-color lighten-4 custom-users">
+                <thead className="users-list">
                     <tr>
                         <th>ID</th>
                         <th className="th-lg">Name</th>
@@ -16,7 +16,7 @@ export const Users = ({ data, ...rest }) => {
                 <tbody>
                     {
                         data.map((value, index) => (
-                            <tr key={index}>
+                            <tr key={index} className="user-list-item">
                                 <td>{index}</td>
                                 <td>{value.username}</td>
                                 <td>{value.role}</td>

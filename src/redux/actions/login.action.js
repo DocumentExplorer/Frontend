@@ -48,12 +48,8 @@ export function logout() {
     }
 
     return dispatch => {
-        dispatch(request())
-        LoginService.logout().then(() => {
-            dispatch(success())
-        }).catch(() => {
-            dispatch(success())
-        })
+        dispatch(success())
+        LoginService.logout()
     }
 }
 

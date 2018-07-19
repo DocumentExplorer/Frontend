@@ -13,7 +13,7 @@ export default function (state = { request: true }, action) {
         case UserConstants.GET_USERS_FAIL:
             return {
                 ...state,
-                request: false
+                request: true
             }
         case UserConstants.GET_USERS_REQUEST:
             return {

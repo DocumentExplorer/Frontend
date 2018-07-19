@@ -13,6 +13,7 @@ function getUsers() {
             resolve(res)
 
         }).catch((err) => {
+            console.log(err)
             reject(err)
         })
     })
