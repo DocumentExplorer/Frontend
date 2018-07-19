@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 
 const AccountTypeChecker = ({ admin: Admin, client: Client, ...rest }) => (
     rest.loginResult.accountType === 'admin'
-        ? <Admin />
-        : <Client />
+        ? <Admin {...rest} />
+        : <Client {...rest} />
 )
 
 function mapStateToProps({ loginResult }) {

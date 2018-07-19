@@ -43,7 +43,7 @@ export function logout() {
 
     function request() {
         return {
-            type: LoginConstants.LOGOUT_FAIL
+            type: LoginConstants.LOGOUT_REQUEST
         }
     }
 
@@ -58,9 +58,10 @@ export function logout() {
 }
 
 export function checkLogining() {
-    function success() {
+    function success(role) {
         return {
-            type: LoginConstants.LOGIN_SUCCESS
+            type: LoginConstants.LOGIN_SUCCESS,
+            role
         }
     }
     return dispatch => {

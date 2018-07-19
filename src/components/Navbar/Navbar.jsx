@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { Container, NavbarBrand, Navbar, NavbarNav, NavItem, Fa } from 'mdbreact'
+import { Container, NavbarBrand, Navbar, NavbarNav, NavItem, Fa, Button } from 'mdbreact'
 import { NavbarHOC } from './NavbarHOC.js'
+import { logout } from '../../redux/actions'
 
 function mapStateToProps({ loginResult }) {
     return {
@@ -10,21 +11,31 @@ function mapStateToProps({ loginResult }) {
     }
 }
 
-const NavbarAuthenticated = (props) => (
-    <Navbar color="default-color">
-        <Container>
-            <NavbarBrand>
-                <h3>Brand</h3>
-            </NavbarBrand>
-            <NavbarNav right>
-                <Link to="/dashboard">
-                    <i className="fa fa-user" aria-hidden="true"></i>
-                    User
-                </Link>
-            </NavbarNav>
-        </Container>
-    </Navbar>
-)
+const NavbarAuthenticated = (props) => {
+    console.log(props)
+    return (
+        <Navbar color="default-color">
+            <Container>
+                <NavbarBrand>
+                    <h3>Brand</h3>
+                </NavbarBrand>
+                <NavbarNav left>
+                    <NavItem>
+                        <Link to="/dashboard">
+                            <i className="fa fa-user" aria-hidden="true"></i>
+                            User
+                    </Link>
+                    </NavItem>
+                </NavbarNav>
+                <NavbarNav right>
+                    <NavItem>
+                        <button type="button" className="btn btn-outline-primary waves-effect" onClick={props.logout}>Wyloguj</button>
+                    </NavItem>
+                </NavbarNav>
+            </Container>
+        </Navbar>
+    )
+}
 
 const NavbarAdmin = (props) => (
     <Navbar color="default-color">
@@ -32,7 +43,7 @@ const NavbarAdmin = (props) => (
             <NavbarBrand>
                 <h3>Brand</h3>
             </NavbarBrand>
-            <NavbarNav className="align" right>
+            <NavbarNav className="align" left>
                 <NavItem>
                     <Link to="/management">
                         <Fa icon="address-book" size="2x" />
@@ -44,9 +55,14 @@ const NavbarAdmin = (props) => (
                     </Link>
                 </NavItem>
             </NavbarNav>
+            <NavbarNav right>
+                <NavItem>
+                    <button type="button" className="btn btn-outline-primary waves-effect" onClick={props.logout}>Wyloguj</button>
+                </NavItem>
+            </NavbarNav>
         </Container>
     </Navbar>
 )
 
 const result = state => NavbarHOC(state.loginResult.auth, NavbarAuthenticated, NavbarAdmin)(state)
-export default connect(mapStateToProps)(result)
+export default connect(mapStateToProps, { logout })(result)
