@@ -20,6 +20,22 @@ function getUsers() {
     })
 }
 
+function getUser(username) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/users/username/${username}`,
+            method: 'GET',
+            headers: {
+                'Authorization': getToken(),
+            }
+        }).then((res) => {
+            resolve(res.data)
+        }).catch((err) => {
+            reject()
+        })
+    })
+}
+
 function deleteUser(id) {
     return new Promise((resolve, reject) => {
         axios({
@@ -38,5 +54,6 @@ function deleteUser(id) {
 
 export const UserService = {
     getUsers,
-    deleteUser
+    deleteUser,
+    getUser
 }

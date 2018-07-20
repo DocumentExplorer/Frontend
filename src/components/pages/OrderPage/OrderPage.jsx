@@ -1,5 +1,6 @@
 import React from 'react'
 import './order.css'
+import { Jumbotron } from '../../Jumbotron/Jumbotron';
 
 
 class OrderPage extends React.Component {
@@ -8,9 +9,15 @@ class OrderPage extends React.Component {
         super()
     }
 
+    componentDidMount() {
+        
+    }
+
     render() {
         return (
-            <div>Order</div>
+            <Jumbotron 
+                
+            />
         )
     }
 }

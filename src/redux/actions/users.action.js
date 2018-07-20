@@ -33,6 +33,38 @@ export function getUsers() {
     }
 }
 
+export function getUser(username) {
+    function success(user) {
+        return {
+            type: UserConstants.GET_USER_SUCCESS,
+            user
+        }
+    }
+
+    function failed(err) {
+        return {
+            type: UserConstants.GET_USER_FAIL,
+            err
+        }
+    }
+    function request() {
+        return {
+            type: UserConstants.GET_USER_REQUEST
+        }
+    }
+
+    return disaptch => {
+        dispatch(request())
+        UserService.getUser(username)
+            .then((user) => {
+                dispatch(success(user))
+            }).catch(() => {
+                disaptch(failed({ error: 'Nie ma takiego użytkownika' }))
+            })
+    }
+
+}
+
 export function deleteUser(id) {
     function success(id) {
         return {
