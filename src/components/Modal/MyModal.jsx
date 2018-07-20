@@ -1,12 +1,12 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
 
-export const MyModal = ({ test, toggle, sumbit, sumbitText, handleChange, title, component: Component, ...props }) => {
+export const MyModal = ({ test, toggle, sumbit, sumbitText, title, component: Component, ...props }) => {
     return (
         <Modal isOpen={test} toggle={toggle}>
             <ModalHeader toggle={toggle}>{title}</ModalHeader>
             <ModalBody>
-                <Component handleChange={handleChange} />
+                <Component {...props} />
             </ModalBody>
             <ModalFooter>
                 <Button outline onClick={sumbit}>{sumbitText}</Button>

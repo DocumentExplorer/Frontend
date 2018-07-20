@@ -2,7 +2,7 @@ import React from 'react'
 import ApiHOC from '../../helpers/ApiHOC'
 import { Container, Row, Col, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
 import { connect } from 'react-redux'
-import { getUsers } from '../../../redux/actions'
+import { getUsers, register } from '../../../redux/actions'
 import { Users } from '../../Users/Users';
 import './management.css'
 import { MyModal } from '../../Modal/MyModal'
@@ -19,6 +19,8 @@ class ManagementPage extends React.Component {
         }
         this.toggle = this.toggle.bind(this);
         this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleSelect = this.handleSelect.bind(this)
     }
 
     componentDidMount() {
@@ -39,11 +41,20 @@ class ManagementPage extends React.Component {
             [e.target.name]: e.target.value
         })
     }
-    handleSubmit() {
-        
+
+    handleSelect(role) {
+        console.log(role)
+        this.setState({
+            role: role.value
+        })
+        console.log(this.state)
     }
 
-
+    handleSubmit() {
+        this.props.register(this.state, () => {
+            setTimeout(this.toggle(), 3000)
+        })
+    }
 
     render() {
         return (
@@ -61,10 +72,12 @@ class ManagementPage extends React.Component {
                             test={this.state.test}
                             toggle={this.toggle}
                             handleChange={this.handleChange}
+                            handleSelect={this.handleSelect}
                             sumbit={this.handleSubmit}
                             sumbitText={"Dodaj"}
                             component={AddUserModal}
                             title={"Tworzenie użytkownika"}
+                            role={this.state.role}
                         />
                     </Col>
                 </Row>
@@ -79,5 +92,5 @@ function mapStateToProps({ users }) {
     }
 }
 
-const component = connect(mapStateToProps, { getUsers })(ManagementPage)
+const component = connect(mapStateToProps, { getUsers, register })(ManagementPage)
 export { component as ManagementPage }

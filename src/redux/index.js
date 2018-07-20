@@ -8,7 +8,7 @@ const RootReducer = combineReducers({
     loginResult: loginReducer,
     orders: orderReducer,
     users: userReducer,
-
+    register: registerReducer
 })
 
 export default RootReducer

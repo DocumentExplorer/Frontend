@@ -1,6 +1,6 @@
 import { RegisterConstants } from '../constants'
 
-export default function (state, action) {
+export default function (state = {}, action) {
     switch (action.type) {
         case RegisterConstants.REGISTER_SUCCESS:
             return {
@@ -11,11 +11,13 @@ export default function (state, action) {
             }
         case RegisterConstants.REGISTER_FAIL:
             return {
+                ...state,
                 error: true,
                 request: false
             }
         case RegisterConstants.REGISTER_REQUEST:
             return {
+                ...state,
                 request: true
             }
         default:
