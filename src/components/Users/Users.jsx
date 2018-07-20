@@ -1,8 +1,9 @@
 import React from 'react'
 import { Table } from 'mdbreact'
 import { Fa } from 'mdbreact'
+import { withRouter } from 'react-router-dom'
 
-export const Users = ({ data, ...rest }) => {
+export const Users = ({ data, changeLocation, ...rest }) => {
     return (
         <div style={{ display: 'block', maxHeight: '300px', overflowY: 'auto', marginBottom: '30px' }}>
             <Table className="users-list">
@@ -18,11 +19,13 @@ export const Users = ({ data, ...rest }) => {
                     {
                         data.map((value, index) => (
                             <tr key={index} className="user-list-item">
-                                <td>{index}</td>
-                                <td>{value.username}</td>
+                                <td onClick={() => changeLocation(value.username)}>{index}</td>
+                                <td onClick={() => changeLocation(value.username)}>
+                                    {value.username}
+                                </td>
                                 <td>{value.role}</td>
                                 <td className="delete">
-                                    <Fa icon="close" size="2x" onClick={() => rest.deleteUser(value.id)}/>
+                                    <Fa icon="close" size="2x" onClick={() => rest.deleteUser(value.id)} />
                                 </td>
                             </tr>
                         ))
@@ -33,4 +36,4 @@ export const Users = ({ data, ...rest }) => {
     )
 }
 
-export default Users
+export default withRouter(Users)

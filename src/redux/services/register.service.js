@@ -14,6 +14,7 @@ function register(values) {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
+            console.log(res)
             resolve()
         }).catch((err) => {
             reject()

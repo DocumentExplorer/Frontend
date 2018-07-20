@@ -27,9 +27,6 @@ export default function (state = initState, action) {
                 request: true
             }
         case UserConstants.DELETE_USER_SUCCESS:
-            console.log(_.filter(state.users, (item) => {
-                return item.id !== action.id
-            }))
             return {
                 ...state,
                 users: _.filter(state.users, (item) => {

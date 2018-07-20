@@ -8,6 +8,7 @@ import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
 import { DeleteUserConfirmation } from './DeleteUserConfirmation'
+import { withRouter } from 'react-router-dom'
 
 class ManagementPage extends React.Component {
 
@@ -20,11 +21,13 @@ class ManagementPage extends React.Component {
             password: ''
         }
         this.toggleAdd = this.toggleAdd.bind(this);
+        this.toggleDelete = this.toggleDelete.bind(this)
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleSelect = this.handleSelect.bind(this)
         this.deleteUser = this.deleteUser.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.changeLocation = this.changeLocation.bind(this)
     }
 
     toggleAdd() {
@@ -57,6 +60,10 @@ class ManagementPage extends React.Component {
         })
     }
 
+    changeLocation(username) {
+        this.props.history.push(`/users/${username}`)
+    }
+
     handleDelete(e) {
         this.setState({
             deleteWindow: false
@@ -86,6 +93,7 @@ class ManagementPage extends React.Component {
                             data={this.props.users.users}
                             addWindow={this.props.users.request}
                             deleteUser={this.deleteUser}
+                            changeLocation={this.changeLocation}
                         />
                         <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
                         <MyModal

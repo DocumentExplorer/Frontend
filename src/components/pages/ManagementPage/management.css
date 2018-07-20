@@ -31,3 +31,8 @@
 .custom-error h5 {
     margin-bottom: 0;
 }
+
+.users-list  tr:hover{
+    cursor: pointer;
+    background: rgba(151, 149, 149, 0.5);
+}
