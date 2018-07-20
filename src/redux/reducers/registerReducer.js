@@ -1,18 +1,18 @@
-import { RegisterConstants } from '../constants'
+import { RegisterConstants, UserConstants } from '../constants'
 
-export default function (state = {}, action) {
+export default function (state = {error: ''}, action) {
     switch (action.type) {
         case RegisterConstants.REGISTER_SUCCESS:
             return {
                 ...state,
                 newUser: action.user,
-                error: false,
+                error: '',
                 request: false
             }
         case RegisterConstants.REGISTER_FAIL:
             return {
                 ...state,
-                error: true,
+                error: 'Username jest już w użyciu',
                 request: false
             }
         case RegisterConstants.REGISTER_REQUEST:

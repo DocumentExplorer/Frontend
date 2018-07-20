@@ -33,9 +33,4 @@ export function getUsers() {
     }
 }
 
-export function addUser(user) {
-    return {
-        type: UserConstants.ADD_USER,
-        user
-    }
-}
+

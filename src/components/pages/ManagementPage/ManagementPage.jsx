@@ -57,6 +57,7 @@ class ManagementPage extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <Container>
                 <Row className="custom-row">
@@ -78,6 +79,7 @@ class ManagementPage extends React.Component {
                             component={AddUserModal}
                             title={"Tworzenie użytkownika"}
                             role={this.state.role}
+                            error={this.props.registerResult.error}
                         />
                     </Col>
                 </Row>
@@ -86,9 +88,10 @@ class ManagementPage extends React.Component {
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, registerResult }) {
     return {
-        users
+        users,
+        registerResult
     }
 }
 

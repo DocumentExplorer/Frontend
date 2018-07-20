@@ -1,6 +1,5 @@
-import { RegisterConstants } from '../constants'
+import { RegisterConstants, UserConstants } from '../constants'
 import { RegisterService } from '../services'
-import { addUser } from './users.action'
 
 export function register(values, callback) {
     function success() {
@@ -18,7 +17,6 @@ export function register(values, callback) {
             .then(() => {
                 dispatch(success())
                 callback()
-                addUser()
             }).catch(() => {
                 dispatch(failed())
             })

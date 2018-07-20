@@ -1,9 +1,9 @@
-import { UserConstants } from '../constants/user.const'
+import { UserConstants, RegisterConstants } from '../constants'
 
-export default function (state = { request: true }, action) {
+export default function (state = { request: true, users: [] }, action) {
     switch (action.type) {
         case UserConstants.GET_USERS_SUCCESS:
-            const { users } = action
+            let { users } = action
             return {
                 ...state,
                 users,
