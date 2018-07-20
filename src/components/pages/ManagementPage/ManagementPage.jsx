@@ -21,15 +21,14 @@ class ManagementPage extends React.Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleSelect = this.handleSelect.bind(this)
+        this.deleteUser = this.deleteUser.bind(this)
     }
 
     componentDidMount() {
         this.props.getUsers()
     }
     deleteUser(id) {
-        this.setState({
-
-        })
+        console.log(id)
     }
     toggle() {
         this.setState({

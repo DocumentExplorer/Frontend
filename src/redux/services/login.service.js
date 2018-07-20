@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ApiConstants } from '../constants'
+import { getToken } from '../../components/helpers/getToken';
 
 function login(values) {
 
@@ -32,7 +33,7 @@ function logout() {
         axios({
             url: `${ApiConstants.rootURL}/users/logout`,
             headers: {
-                'Authorization': localStorage.getItem('token')
+                'Authorization': getToken()
             }
         }).then((res) => {
             console.log(res)

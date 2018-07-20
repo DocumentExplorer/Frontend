@@ -3,7 +3,6 @@ import { Table } from 'mdbreact'
 import { Fa } from 'mdbreact'
 
 export const Users = ({ data, ...rest }) => {
-    
     return (
         <div style={{ display: 'block', maxHeight: '300px', overflowY: 'auto', marginBottom: '30px' }}>
             <Table className="users-list">

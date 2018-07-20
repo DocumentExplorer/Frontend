@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Navbar/Navbar'
-import { LoginPage, Dashboard, OrderPage, OrdersPage, ManagementPage } from './pages'
+import { LoginPage, Dashboard, OrderPage, OrdersPage, ManagementPage, UserPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
 import { AdminRoute } from './helpers/AdminRoute'
 import { checkLogining } from '../redux/actions'
@@ -20,6 +20,8 @@ class App extends Component {
           <Switch>
             <PrivateRoute path="/orders/:year" component={OrdersPage} />
             <PrivateRoute path="/order/:order" component={OrderPage} />
+            
+            <AdminRoute path="/users/:user" component={UserPage}/>
             <AdminRoute path="/management" component={ManagementPage} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/orders" component={OrdersPage} />

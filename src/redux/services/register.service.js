@@ -21,9 +21,26 @@ function register(values) {
             reject()
         })
     })
-
 }
 
+function deleteUser(id) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/users/delete/${id}`,
+            method: 'DELETE',
+            headers: {
+                'Authorization': getToken()
+            }
+        }).then((res) => {
+            resolve()
+        }).catch((err) => {
+            reject()
+        })
+    })
+}
+
+
 export const RegisterService = {
-    register
+    register,
+    deleteUser
 }

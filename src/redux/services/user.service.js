@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { ApiConstants } from '../constants'
+import { getToken } from '../../components/helpers/getToken';
 
 function getUsers() {
     return new Promise((resolve, reject) => {
@@ -7,7 +8,7 @@ function getUsers() {
             url: `${ApiConstants.rootURL}/users`,
             method: 'GET',
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token')
+                'Authorization': getToken()
             }
         }).then((res) => {
             resolve(res)
@@ -19,6 +20,23 @@ function getUsers() {
     })
 }
 
+function deleteUser(id) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/users/delete/${id}`,
+            method: 'DELETE',
+            headers: {
+                'Authorization': getToken()
+            }
+        }).then((res) => {
+            resolve()
+        }).catch((err) => {
+            reject()
+        })
+    })
+}
+
 export const UserService = {
-    getUsers
+    getUsers,
+    deleteUser
 }
