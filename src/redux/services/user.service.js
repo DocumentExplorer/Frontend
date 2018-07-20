@@ -21,6 +21,7 @@ function getUsers() {
 }
 
 function getUser(username) {
+    console.log(username)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/users/username/${username}`,
@@ -29,8 +30,10 @@ function getUser(username) {
                 'Authorization': getToken(),
             }
         }).then((res) => {
+            console.log(res)
             resolve(res.data)
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })

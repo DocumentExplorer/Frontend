@@ -53,13 +53,13 @@ export function getUser(username) {
         }
     }
 
-    return disaptch => {
+    return dispatch => {
         dispatch(request())
         UserService.getUser(username)
             .then((user) => {
                 dispatch(success(user))
             }).catch(() => {
-                disaptch(failed({ error: 'Nie ma takiego użytkownika' }))
+                dispatch(failed({ error: 'Nie ma takiego użytkownika' }))
             })
     }
 

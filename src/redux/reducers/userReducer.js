@@ -3,6 +3,7 @@ import _ from 'lodash'
 
 let initState = {
     request: true,
+    requestUser: true,
     proccessDelete: false,
     users: []
 }
@@ -33,6 +34,23 @@ export default function (state = initState, action) {
                     return item.id !== action.id
                 }),
                 proccessDelete: false
+            }
+        case UserConstants.GET_USER_SUCCESS:
+            return {
+                ...state,
+                user: action.user,
+                requestUser: false
+            }
+        case UserConstants.GET_USER_FAIL:
+            return {
+                ...state,
+                err: action.err,
+                requestUser: false
+            }
+        case UserConstants.GET_USER_REQUEST:
+            return {
+                ...state,
+                requestUser: true
             }
         default:
             return state
