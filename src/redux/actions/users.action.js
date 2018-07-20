@@ -34,9 +34,10 @@ export function getUsers() {
 }
 
 export function deleteUser(id) {
-    function success() {
+    function success(id) {
         return {
-            type: UserConstants.DELETE_USER_SUCCESS
+            type: UserConstants.DELETE_USER_SUCCESS,
+            id
         }
     }
 
@@ -45,12 +46,13 @@ export function deleteUser(id) {
             type: UserConstants.DELETE_USER_REQUEST
         }
     }
-
-    dispatch(request())
-    UserService.deleteUser(id)
-        .then(() => {
-            dispatch(success())
-        })
+    return dispatch => {
+        dispatch(request())
+        UserService.deleteUser(id)
+            .then(() => {
+                dispatch(success(id))
+            })
+    }
 }
 
 

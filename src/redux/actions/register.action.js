@@ -13,8 +13,10 @@ export function register(values, callback) {
         }
     }
     return dispatch => {
+        console.log('daw')
         RegisterService.register(values)
             .then(() => {
+                console.log('utworz')
                 dispatch(success())
                 callback()
             }).catch(() => {

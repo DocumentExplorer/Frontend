@@ -1,6 +1,13 @@
 import { UserConstants, RegisterConstants } from '../constants'
+import _ from 'lodash'
 
-export default function (state = { request: true, users: [] }, action) {
+let initState = {
+    request: true,
+    proccessDelete: false,
+    users: []
+}
+
+export default function (state = initState, action) {
     switch (action.type) {
         case UserConstants.GET_USERS_SUCCESS:
             let { users } = action
@@ -18,6 +25,17 @@ export default function (state = { request: true, users: [] }, action) {
             return {
                 ...state,
                 request: true
+            }
+        case UserConstants.DELETE_USER_SUCCESS:
+            console.log(_.filter(state.users, (item) => {
+                return item.id !== action.id
+            }))
+            return {
+                ...state,
+                users: _.filter(state.users, (item) => {
+                    return item.id !== action.id
+                }),
+                proccessDelete: false
             }
         default:
             return state
