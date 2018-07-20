@@ -3,5 +3,6 @@ export const UserConstants = {
     GET_USERS_FAIL: 'GET_USERS_FAIL',
     GET_USERS_REQUEST: 'GET_USERS_REQUEST',
 
+    ADD_USER: 'ADD_USER'
 
 }

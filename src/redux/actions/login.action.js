@@ -49,7 +49,7 @@ export function logout() {
 
     return dispatch => {
         dispatch(success())
-        LoginService.logout()
+        // LoginService.logout()
     }
 }
 
