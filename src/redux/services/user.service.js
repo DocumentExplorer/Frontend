@@ -65,8 +65,10 @@ export function changePassword(data) {
             },
             data
         }).then((res) => {
+            console.log(res)
             resolve()
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })

@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Button, Input, Row } from 'mdbreact'
 import { Jumbotron } from '../../Jumbotron/Jumbotron';
 import { connect } from 'react-redux'
+import { changePassword } from '../../../redux/actions'
 
 
 class User extends React.Component {
@@ -9,6 +10,7 @@ class User extends React.Component {
     constructor() {
         super()
         this.onChange = this.onChange.bind(this)
+        this.changePassword = this.changePassword.bind(this)
     }
 
     onChange(e) {
@@ -29,7 +31,10 @@ class User extends React.Component {
                 error: 'Hasła różnią się od siebie'
             })
         } else {
-            
+            this.props.changePassword(this.props.user.id, this.state.password)
+            this.setState({
+                error: ''
+            })
         }
     }
 
@@ -68,8 +73,15 @@ const ChangePassword = props => (
         <h4>Zmiana hasła</h4>
         <Input name="password" label="Nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
         <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
-        <Button color="primary" className="change-password-button" onClick={props.changePassword()}>Zmień hasło</Button>
+        <Button color="primary" className="change-password-button" onClick={() => props.changePassword()}>Zmień hasło</Button>
     </form>
 )
 
-export default User
+const mapStateTpProps = ({ users }) => {
+    return {
+        users
+    }
+}
+
+
+export default connect(mapStateTpProps, { changePassword })(User)
