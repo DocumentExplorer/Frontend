@@ -57,12 +57,11 @@ export default function (state = initState, action) {
         case UserConstants.PUT_PASSWORD_SUCCESS:
             return {
                 ...state,
-                put_password: true
+                put_password: 'Udało się zmienić hasło'
             }
         case UserConstants.PUT_PASSWORD_FAIL:
             return {
-                ...state,
-                put_password: 'Nie udało się zmienić hasła'
+                ...state
             }
         default:
             return state

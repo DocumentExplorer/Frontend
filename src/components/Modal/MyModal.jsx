@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalHeader, ModalFooter, Container, Row } from 'mdbreact'
-import ValidationError from '../Error/ValidationError';
+import ValidationError from '../messages/ValidationError'
 
 export const MyModal = ({ test, toggle, sumbit, sumbitText, title, error, component: Component, ...props }) => {
     return (

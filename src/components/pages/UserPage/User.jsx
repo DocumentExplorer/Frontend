@@ -3,7 +3,8 @@ import { Container, Button, Input, Row } from 'mdbreact'
 import { Jumbotron } from '../../Jumbotron/Jumbotron';
 import { connect } from 'react-redux'
 import { changePassword } from '../../../redux/actions'
-import ValidationError from '../../Error/ValidationError'
+import ValidationError from '../../messages/ValidationError'
+import Success from '../../messages/Success'
 
 
 class User extends React.Component {
@@ -11,10 +12,17 @@ class User extends React.Component {
     constructor() {
         super()
         this.state = {
-            error: ''
+            error: '',
+            put_password: ''
         }
         this.onChange = this.onChange.bind(this)
         this.changePassword = this.changePassword.bind(this)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            put_password: nextProps.users.put_password
+        })
     }
 
     onChange(e) {
@@ -37,12 +45,14 @@ class User extends React.Component {
         } else {
             this.props.changePassword(this.props.user.id, this.state.password)
             this.setState({
-                error: ''
+                error: '',
+                password: '',
+                repeat_password: ''
             })
         }
     }
-
     render() {
+        console.log(this.props.users)
         return (
             <Container>
                 <Row>
@@ -53,6 +63,7 @@ class User extends React.Component {
                         changePassword={this.changePassword}
                         onChange={this.onChange}
                         error={this.state.error}
+                        message={this.state.put_password}
                     />
                 </Row>
             </Container>
@@ -83,6 +94,7 @@ const ChangePassword = props => {
                 <Button color="primary" className="change-password-button" onClick={() => props.changePassword()}>Zmień hasło</Button>
             </form>
             <ValidationError error={props.error} />
+            <Success message={props.message} />
         </React.Fragment>
     )
 }
