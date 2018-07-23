@@ -3,6 +3,7 @@ import ApiHOC from '../../helpers/ApiHOC'
 import { connect } from 'react-redux'
 import { getUser } from '../../../redux/actions'
 import User from './User'
+import './userpage.css'
 
 class UserPage extends React.Component {
 

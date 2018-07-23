@@ -1,11 +1,8 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalHeader, ModalFooter, Container, Row } from 'mdbreact'
+import ValidationError from '../messages/ValidationError'
 
 export const MyModal = ({ test, toggle, sumbit, sumbitText, title, error, component: Component, ...props }) => {
-    let danger = 'border border-danger rounded custom-error'
-    if(error === '') {
-        danger = 'custom-error'
-    }
     return (
         <Modal isOpen={test} toggle={toggle}>
             <ModalHeader toggle={toggle}>{title}</ModalHeader>
@@ -19,9 +16,7 @@ export const MyModal = ({ test, toggle, sumbit, sumbitText, title, error, compon
                         <Button outline color="primary" onClick={toggle}>Zamknij</Button>
                     </Row>
                     <Row>
-                        <span className={danger}>
-                            <h5 className="text-center red-text">{error}</h5>
-                        </span>
+                        <ValidationError error={error} />
                     </Row>
                 </Container>
             </ModalFooter>

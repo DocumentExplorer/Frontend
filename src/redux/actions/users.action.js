@@ -87,4 +87,26 @@ export function deleteUser(id) {
     }
 }
 
+export function changePassword(id, password) {
+    function success() {
+        return {
+            type: UserConstants.PUT_PASSWORD_SUCCESS
+        }
+    }
+    function failed() {
+        return {
+            type: UserConstants.PUT_PASSWORD_FAIL
+        }
+    }
+    return dispatch => {
+        console.log(id, password)
+        UserService.changePassword({ id, password })
+            .then(() => {
+                dispatch(success())
+            }).catch(() => {
+                dispatch(failed())
+            })
+    }
+}
+
 

@@ -55,8 +55,28 @@ function deleteUser(id) {
     })
 }
 
+export function changePassword(data) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/users/change-password`,
+            method: 'PUT',
+            headers: {
+                'Authorization': getToken()
+            },
+            data
+        }).then((res) => {
+            console.log(res)
+            resolve()
+        }).catch((err) => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
 export const UserService = {
     getUsers,
     deleteUser,
-    getUser
+    getUser,
+    changePassword
 }
