@@ -1,11 +1,13 @@
 import { UserConstants, RegisterConstants } from '../constants'
 import _ from 'lodash'
+import User from '../../components/pages/UserPage/User';
 
 let initState = {
     request: true,
     requestUser: true,
     proccessDelete: false,
-    users: []
+    users: [],
+    put_password: ''
 }
 
 export default function (state = initState, action) {
@@ -51,6 +53,16 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 requestUser: true
+            }
+        case UserConstants.PUT_PASSWORD_SUCCESS:
+            return {
+                ...state,
+                put_password: true
+            }
+        case UserConstants.PUT_PASSWORD_FAIL:
+            return {
+                ...state,
+                put_password: 'Nie udało się zmienić hasła'
             }
         default:
             return state

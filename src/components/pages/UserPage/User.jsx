@@ -28,6 +28,8 @@ class User extends React.Component {
             this.setState({
                 error: 'Hasła różnią się od siebie'
             })
+        } else {
+            
         }
     }
 

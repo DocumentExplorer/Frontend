@@ -55,9 +55,20 @@ function deleteUser(id) {
     })
 }
 
-export function changePassword(oldPassword, newPassword) {
+export function changePassword(data) {
     return new Promise((resolve, reject) => {
-        //axios
+        axios({
+            url: `${ApiConstants.rootURL}/users/change-password`,
+            method: 'PUT',
+            headers: {
+                'Authorization': getToken()
+            },
+            data
+        }).then((res) => {
+            resolve()
+        }).catch((err) => {
+            reject()
+        })
     })
 }
 
