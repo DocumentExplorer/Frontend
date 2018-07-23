@@ -13,8 +13,6 @@
     flex-direction: row;
     margin-top: 30px;
     margin-bottom: 30px;
-    border-top: 1px solid rgba(122, 122, 122, 0.301);
-    border-bottom: 1px solid rgba(122, 122, 122, 0.301);
     padding-top: 2px;
     padding-bottom: 2px;
     max-width: 300px;
@@ -23,9 +21,9 @@
 }
 
 .group h3 {
-    margin-left: 20px;
+    margin-left: 2rem;
 }
 
-.information-user {
-
+.change-password h4{
+    margin-bottom: 50px;
 }

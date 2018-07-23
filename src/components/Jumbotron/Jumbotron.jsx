@@ -9,7 +9,7 @@ export const Jumbotron = ({ header: Header, body: Body, ...props }) => (
                 <Header {...props} />
             </Col>
             <Col sm="12" md="6">
-                <Body />
+                <Body {...props} />
             </Col>
         </Row>
     </div>

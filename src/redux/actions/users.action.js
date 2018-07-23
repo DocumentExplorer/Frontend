@@ -87,4 +87,8 @@ export function deleteUser(id) {
     }
 }
 
+export function changePassword(password) {
+
+}
+
 

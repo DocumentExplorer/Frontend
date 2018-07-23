@@ -55,8 +55,15 @@ function deleteUser(id) {
     })
 }
 
+export function changePassword(oldPassword, newPassword) {
+    return new Promise((resolve, reject) => {
+        //axios
+    })
+}
+
 export const UserService = {
     getUsers,
     deleteUser,
-    getUser
+    getUser,
+    changePassword
 }

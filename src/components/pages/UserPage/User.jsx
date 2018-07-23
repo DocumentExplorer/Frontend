@@ -1,9 +1,36 @@
 import React from 'react'
 import { Container, Button, Input, Row } from 'mdbreact'
 import { Jumbotron } from '../../Jumbotron/Jumbotron';
+import { connect } from 'react-redux'
 
 
 class User extends React.Component {
+
+    constructor() {
+        super()
+        this.onChange = this.onChange.bind(this)
+    }
+
+    onChange(e) {
+        let { name, value } = e.target
+        this.setState({
+            [name]: value
+        })
+    }
+
+    changePassword() {
+        let { password, repeat_password } = this.state
+        if (password.length === 0) {
+            this.setState({
+                error: 'Nie może być puste'
+            })
+        } else if (password !== repeat_password) {
+            this.setState({
+                error: 'Hasła różnią się od siebie'
+            })
+        }
+    }
+
     render() {
         return (
             <Container>
@@ -12,6 +39,8 @@ class User extends React.Component {
                         header={InformationAboutUser}
                         body={ChangePassword}
                         user={this.props.user}
+                        changePassword={this.changePassword}
+                        onChange={this.onChange}
                     />
                 </Row>
             </Container>
@@ -33,11 +62,11 @@ const InformationAboutUser = ({ user }) => (
 )
 
 const ChangePassword = props => (
-    <form>
-        <Input label="Stare hasło" group type="password" />
-        <Input label="Nowe hasło" group type="password" />
-        <Input label="Powtórz nowe hasło" group type="password" />
-        <Button color="primary" className="change-password-button">Zmień hasło</Button>
+    <form className="change-password">
+        <h4>Zmiana hasła</h4>
+        <Input name="password" label="Nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
+        <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
+        <Button color="primary" className="change-password-button" onClick={props.changePassword()}>Zmień hasło</Button>
     </form>
 )
 
