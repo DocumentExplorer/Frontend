@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container,Button, Input, Row } from 'mdbreact'
+import { Container, Button, Input, Row } from 'mdbreact'
 import { Jumbotron } from '../../Jumbotron/Jumbotron';
 
 
