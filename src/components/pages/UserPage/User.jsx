@@ -1,23 +1,40 @@
 import React from 'react'
+import { Container } from 'mdbreact'
+import { Jumbotron } from '../../Jumbotron/Jumbotron';
+import { Button, Input } from 'mdbreact'
 
-class User extends React.Component {
-    constructor() {
-        super()
-    }
+const User = ({ user, ...props }) => {
 
-    componentDidMount() {
-        this.setState({
-            user: this.props.user
-        })
-    }
-
-    render() {
-        return (
-            <div>
-                {this.props.user.username}
-            </div>
-        )
-    }
+    return (
+        <Container>
+            <Jumbotron
+                header={InformationAboutUser}
+                body={ChangePassword}
+                user={user}
+            />
+        </Container>
+    )
 }
+
+const InformationAboutUser = ({ user }) => (
+    <div className="information-user">
+        <div className="group">
+            <label>Username</label>
+            <h3>{user.username}</h3>
+        </div>
+        <div className="group">
+            <label>Rola</label>
+            <h3>{user.role}</h3>
+        </div>
+    </div>
+)
+
+const ChangePassword = props => (
+    <form>
+        <Input label="Type your email" icon="envelope" group type="email" />
+        <Input label="Type your password" icon="lock" group type="password" />
+        <Button>Login</Button>
+    </form>
+)
 
 export default User
