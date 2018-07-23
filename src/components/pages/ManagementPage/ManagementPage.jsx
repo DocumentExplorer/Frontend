@@ -8,7 +8,7 @@ import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
 import { DeleteUserConfirmation } from './DeleteUserConfirmation'
-import { withRouter } from 'react-router-dom'
+import _ from 'lodash'
 
 class ManagementPage extends React.Component {
 
@@ -18,7 +18,8 @@ class ManagementPage extends React.Component {
             addWindow: false,
             deleteWindow: false,
             username: '',
-            password: ''
+            password: '',
+            role: ''
         }
         this.toggleAdd = this.toggleAdd.bind(this);
         this.toggleDelete = this.toggleDelete.bind(this)
@@ -42,9 +43,18 @@ class ManagementPage extends React.Component {
         })
     }
     handleSubmit() {
-        this.props.register(this.state, () => {
-            this.toggleAdd()
-        })
+        if (this.state.username != '' && this.state.password != '' && this.state.role != '') {
+            this.props.register(this.state, () => {
+                this.toggleAdd()
+            })
+            this.setState({
+                registerErrors: ''
+            })
+        } else {
+            this.setState({
+                registerErrors: 'Wszystkie pola muszą być wypełnione'
+            })
+        }
     }
 
     handleChange(e) {
@@ -76,13 +86,16 @@ class ManagementPage extends React.Component {
     }
 
     handleSelect(role) {
-        console.log(role)
         this.setState({
             role: role.value
         })
-        console.log(this.state)
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            registerErrors: nextProps.registerResult.error
+        })
+    }
     render() {
         return (
             <Container>
@@ -106,7 +119,7 @@ class ManagementPage extends React.Component {
                             component={AddUserModal}
                             title={"Tworzenie użytkownika"}
                             role={this.state.role}
-                            error={this.props.registerResult.error}
+                            error={this.state.registerErrors}
                         />
                         <MyModal
                             test={this.state.deleteWindow}
