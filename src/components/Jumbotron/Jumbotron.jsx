@@ -3,8 +3,8 @@ import './jumbotron.css'
 import { Col, Row, Container } from 'mdbreact'
 
 export const Jumbotron = ({ header: Header, body: Body, ...props }) => (
-    <div className="jumobtron">
-        <Row>
+    <div className="jumbotron">
+        <Row className="custom-row">
             <Col sm="12" md="6">
                 <Header {...props} />
             </Col>

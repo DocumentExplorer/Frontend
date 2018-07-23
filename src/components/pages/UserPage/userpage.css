@@ -1,0 +1,23 @@
+.change-password-button {
+    margin-top: 50px;
+}
+
+.jumbotron {
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.group {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.group h3 {
+    margin-left: 20px;
+}
+
+.information-user {
+    
+}
