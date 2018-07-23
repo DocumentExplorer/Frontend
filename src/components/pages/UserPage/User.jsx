@@ -3,12 +3,16 @@ import { Container, Button, Input, Row } from 'mdbreact'
 import { Jumbotron } from '../../Jumbotron/Jumbotron';
 import { connect } from 'react-redux'
 import { changePassword } from '../../../redux/actions'
+import ValidationError from '../../Error/ValidationError'
 
 
 class User extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            error: ''
+        }
         this.onChange = this.onChange.bind(this)
         this.changePassword = this.changePassword.bind(this)
     }
@@ -48,6 +52,7 @@ class User extends React.Component {
                         user={this.props.user}
                         changePassword={this.changePassword}
                         onChange={this.onChange}
+                        error={this.state.error}
                     />
                 </Row>
             </Container>
@@ -68,14 +73,19 @@ const InformationAboutUser = ({ user }) => (
     </div>
 )
 
-const ChangePassword = props => (
-    <form className="change-password">
-        <h4>Zmiana hasła</h4>
-        <Input name="password" label="Nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
-        <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
-        <Button color="primary" className="change-password-button" onClick={() => props.changePassword()}>Zmień hasło</Button>
-    </form>
-)
+const ChangePassword = props => {
+    return (
+        <React.Fragment>
+            <form className="change-password">
+                <h4>Zmiana hasła</h4>
+                <Input name="password" label="Nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
+                <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
+                <Button color="primary" className="change-password-button" onClick={() => props.changePassword()}>Zmień hasło</Button>
+            </form>
+            <ValidationError error={props.error} />
+        </React.Fragment>
+    )
+}
 
 const mapStateTpProps = ({ users }) => {
     return {
