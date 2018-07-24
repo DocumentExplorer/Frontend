@@ -63,6 +63,12 @@ export default function (state = initState, action) {
             return {
                 ...state
             }
+        case UserConstants.CLEAR_VALIDATION:
+            console.log('dawj')
+            return {
+                ...state,
+                put_password: ''
+            }
         default:
             return state
     }

@@ -87,7 +87,7 @@ export function deleteUser(id) {
     }
 }
 
-export function changePassword(id, password) {
+export function changePassword(id, password, callback) {
     function success() {
         return {
             type: UserConstants.PUT_PASSWORD_SUCCESS
@@ -103,9 +103,17 @@ export function changePassword(id, password) {
         UserService.changePassword({ id, password })
             .then(() => {
                 dispatch(success())
+                callback()
             }).catch(() => {
                 dispatch(failed())
             })
+    }
+}
+
+export function clearValidation() {
+
+    return dispatch => {
+        dispatch({ type: UserConstants.CLEAR_VALIDATION })
     }
 }
 
