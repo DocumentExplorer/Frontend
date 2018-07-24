@@ -26,7 +26,8 @@ class List extends React.Component {
         if (this.state.years.length <= maxLenth) {
             for (let i = 2015; i <= new Date().getFullYear(); i++) {
                 this.state.years.push(new OrderByYear(i, _.filter(data, (item) => {
-                    if (item.time.year == i) {
+                    console.log(item)
+                    if (item.date.year == i) {
                         return item
                     }
                 })))

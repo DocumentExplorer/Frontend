@@ -6,7 +6,7 @@ import DateFormat from '../../components/helpers/DateFormat';
 export function getOrderByInvoiceNumber(invoiceNumber) {
     function success(order) {
         return {
-            
+
         }
     }
 
@@ -22,6 +22,7 @@ export function getOrderByInvoiceNumber(invoiceNumber) {
 
 export function finding(values) {
     function success(matchOrders) {
+        console.log(matchOrders)
         return {
             type: OrdersConstants.FIND_ORDERS_SUCCESS,
             matchOrders
@@ -52,15 +53,16 @@ export function finding(values) {
                             if (key == keyTo && _.startsWith(value, values[keyTo])) {
                                 i++
                                 if (i == lengthOfValues) {
-
                                     filtered.push(item)
                                 }
                             }
                         }
                     })
                 });
+                console.log(filtered)
                 dispatch(success(filtered))
             }).catch((err) => {
+                console.log(err)
                 dispatch(failed())
             })
     }
@@ -90,10 +92,10 @@ export function getOrders(callback) {
         OrdersService.getOrders()
             .then((data) => {
                 _.forEach(data, (value, i) => {
-                    let converted = new DateFormat(value.time).convert()
-                    value.time = converted
+                    let converted = new DateFormat(value.date).convert()
+                    value.date = converted
                 })
-                if(callback !== undefined){
+                if (callback !== undefined) {
                     callback(data)
                 }
                 dispatch(success(data))

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { getMonths } from '../../redux/mock/months'
 
 export const Order = ({ value, i, onClick, color, ...rest }) => {
-    const { time } = value
+    const { date } = value
     
     return (
         <Link to={`/order/${value.invoiceNumber}`} {...rest} key={i}>
@@ -23,11 +23,11 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
                     </CardTitle>
                     <CardTitle>
                         <Fa icon="address-card" />
-                        NIP klienta - {value.clientNIP}
+                        NIP klienta - {value.clientIdentificationNumber}
                     </CardTitle>
                     <CardTitle>
                         <Fa icon="address-card-o" />
-                        NIP pośrednika - {value.brokerNIP}
+                        NIP pośrednika - {value.brokerIdentificationNumber}
                     </CardTitle>
                     <CardTitle>
                         <Fa icon="flag" />
@@ -39,7 +39,7 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
                     </CardTitle>
                     <CardTitle>
                         <Fa icon="calendar" />
-                        {time.day} {getMonths()[time.month - 1]} {time.year}
+                        {date.day} {getMonths()[date.month - 1]} {date.year}
                     </CardTitle>
                 </CardBody>
             </Card>

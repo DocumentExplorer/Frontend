@@ -26,11 +26,11 @@ export default class extends React.Component {
             })
         }
         _.forEach(data, (value) => {
-            let { day, month, year } = value.time
+            let { day, month, year } = value.date
             const converted = convertToNumbers(day, month, year)
-            value.time = converted
+            value.date = converted
             _.forEach(months, (month) => {
-                if (month.month === value.time.month) {
+                if (month.month === value.date.month) {
                     month.ordersByMonth.push(value)
                 }
             })

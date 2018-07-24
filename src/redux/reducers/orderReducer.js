@@ -5,11 +5,11 @@ import DateFormat, { convertToNumbers } from '../../components/helpers/DateForma
 export default function (state = { choose: true }, action) {
     switch (action.type) {
         case OrdersConstants.GET_ORDERS_SUCCCESS:
-
+            console.log(action.data)
             _.forEach(action.data, (value) => {
-                let { day, month, year } = value.time
+                let { day, month, year } = value.date
                 const converted = convertToNumbers(day, month, year)
-                value.time = converted
+                value.date = converted
             })
             return {
                 ...state,
@@ -32,10 +32,11 @@ export default function (state = { choose: true }, action) {
         case OrdersConstants.FIND_ORDERS_SUCCESS:
             const { matchOrders } = action
             _.forEach(matchOrders, (value) => {
-                const date = new DateFormat(value.time).convert()
+                const date = new DateFormat(value.date).convert()
                 const converted = convertToNumbers(date.day, date.month, date.year)
-                value.time = converted
+                value.date = converted
             })
+            console.log(matchOrders)
             return {
                 ...state,
                 matchOrders,

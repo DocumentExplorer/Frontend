@@ -1,13 +1,13 @@
 export default class DateFormat {
-    constructor(time) {
-        this.time = time
+    constructor(date) {
+        this.date = date
     }
 
     convert() {
         let day, month, year
-        day = this.time.slice(0, 2)
-        month = this.time.slice(3, 5)
-        year = this.time.slice(6, 10)
+        day = this.date.slice(0, 2)
+        month = this.date.slice(3, 5)
+        year = this.date.slice(6, 10)
         this.day = day
         this.month = month
         this.year = year
