@@ -42,7 +42,27 @@ function postOrder(order) {
     })
 }
 
+function getOrderById(id) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/orders/${id}`,
+            method: 'GET',
+            headers: {
+                'Authorization': getToken(),
+                'Content-Type': 'application/json'
+            },
+        }).then((res) => {
+            console.log(res)
+            resolve(res.data)
+        }).catch((err) => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
 export const OrdersService = {
     getOrders,
-    postOrder
+    postOrder,
+    getOrderById
 }

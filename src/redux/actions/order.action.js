@@ -3,20 +3,32 @@ import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
 
-export function getOrderByInvoiceNumber(invoiceNumber) {
+export function getOrderById(id) {
     function success(order) {
         return {
-
+            type: OrdersConstants.GET_ORDER_SUCCESS,
+            order
         }
     }
 
     function failed() {
         return {
-
+            type: OrdersConstants.GET_ORDER_FAIL
         }
     }
     function request() {
-
+        return {
+            type: OrdersConstants.GET_ORDER_REQUEST
+        }
+    }
+    return dispatch => {
+        dispatch(request())
+        OrdersService.getOrderById(id)
+            .then((order) => {
+                dispatch(success(order))
+            }).catch(() => {
+                dispatch(failed())
+            })
     }
 }
 
