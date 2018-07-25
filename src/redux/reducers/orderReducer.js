@@ -55,6 +55,24 @@ export default function (state = { choose: true }, action) {
                 finding: true,
                 choose: false
             }
+        case OrdersConstants.POST_ORDER_SUCCESS:
+            return {
+                ...state,
+                newOrderResult: 'Udało się dodać nowe zlecenie',
+                newOrderRequest: false
+            }
+        case OrdersConstants.POST_ORDER_FAIL:
+            return {
+                ...state,
+                newOrderResult: 'Nie udało się dodać nowego zlecenie',
+                newOrderRequest: false
+            }
+        case OrdersConstants.POST_ORDER_REQUEST:
+            return {
+                ...state,
+                newOrderResult: '',
+                newOrderRequest: true
+            }
         default:
             return state
     }

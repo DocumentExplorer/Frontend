@@ -8,13 +8,14 @@ import { connect } from 'react-redux'
 import FindedOrders from './FindedOrders'
 import { Choose } from '../../helpers/Choose'
 import { OnActionHOC } from '../../helpers/OnActionHOC'
+import NewOrder from './NewOrder'
 
 class Dashboard extends React.Component {
     render() {
         return (
             <Container>
                 <Row className="custom-row">
-
+                    <NewOrder />
                 </Row>
                 <Row className="custom-row">
                     <Col md="9" sm="12">
