@@ -52,7 +52,6 @@ function getOrderById(id) {
                 'Content-Type': 'application/json'
             },
         }).then((res) => {
-            console.log(res)
             resolve(res.data)
         }).catch((err) => {
             console.log(err)

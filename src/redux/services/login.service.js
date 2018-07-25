@@ -35,12 +35,12 @@ function logout() {
                 'Authorization': getToken()
             }
         }).then((res) => {
-            console.log(res)
+            
             if (res) {
                 resolve()
             }
         }).catch((err) => {
-            console.log(err)
+            
             reject()
         })
     })

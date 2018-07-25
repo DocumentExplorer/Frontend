@@ -6,6 +6,7 @@ import { Order } from '../../Orders/Order'
 import { getMonths } from '../../../redux/mock/months'
 import randomcolor from 'randomcolor'
 
+
 export default class extends React.Component {
 
     constructor() {
@@ -54,11 +55,13 @@ export default class extends React.Component {
                                     {
                                         value.ordersByMonth.map((item, index) => (
                                             <Col md="6" sm="12" key={index}>
-                                                <Order
-                                                    value={item}
-                                                    color={value.color}
-                                                />
+                                                
+                                                    <Order
+                                                        value={item}
+                                                        color={value.color}
+                                                    />
                                             </Col>
+
                                         ))
                                     }
                                 </Row>

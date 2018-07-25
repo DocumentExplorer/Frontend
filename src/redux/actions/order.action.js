@@ -5,6 +5,7 @@ import DateFormat from '../../components/helpers/DateFormat';
 
 export function getOrderById(id) {
     function success(order) {
+        
         return {
             type: OrdersConstants.GET_ORDER_SUCCESS,
             order
@@ -34,7 +35,6 @@ export function getOrderById(id) {
 
 export function finding(values) {
     function success(matchOrders) {
-        console.log(matchOrders)
         return {
             type: OrdersConstants.FIND_ORDERS_SUCCESS,
             matchOrders
@@ -71,10 +71,8 @@ export function finding(values) {
                         }
                     })
                 });
-                console.log(filtered)
                 dispatch(success(filtered))
             }).catch((err) => {
-                console.log(err)
                 dispatch(failed())
             })
     }

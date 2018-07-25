@@ -2,10 +2,10 @@ import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat, { convertToNumbers } from '../../components/helpers/DateFormat'
 
-export default function (state = { choose: true, newOrderResult: '' }, action) {
+export default function (state = { choose: true, newOrderResult: '', getOrderRequest: true }, action) {
     switch (action.type) {
         case OrdersConstants.GET_ORDERS_SUCCCESS:
-            console.log(action.data)
+
             _.forEach(action.data, (value) => {
                 let { day, month, year } = value.date
                 const converted = convertToNumbers(day, month, year)
@@ -36,7 +36,7 @@ export default function (state = { choose: true, newOrderResult: '' }, action) {
                 const converted = convertToNumbers(date.day, date.month, date.year)
                 value.date = converted
             })
-            console.log(matchOrders)
+
             return {
                 ...state,
                 matchOrders,
@@ -76,9 +76,10 @@ export default function (state = { choose: true, newOrderResult: '' }, action) {
         case OrdersConstants.GET_ORDER_SUCCESS:
             return {
                 ...state,
+                order: action.order,
                 getOrderSuccess: true,
-                getOrderRequest: false,
-                order: action.order
+                getOrderRequest: false
+
             }
         case OrdersConstants.GET_ORDER_FAIL:
             return {
