@@ -25,7 +25,6 @@ class OrderPage extends React.Component {
                     order={this.props.orders.order}
                     style={{ width: '100%', marginTop: '50px' }}
                     footer={Footer}
-                    handleDelete={}
                 />
             </Container>
         )
