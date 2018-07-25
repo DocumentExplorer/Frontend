@@ -60,7 +60,7 @@ class NewOrder extends React.Component {
         return (
             <React.Fragment>
                 <Col md="3" sm="8">
-                    <Button outline onClick={this.toggleNewOrderModal}>Dodaj zlecenie</Button>
+                    <Button color="primary" onClick={this.toggleNewOrderModal}>Dodaj zlecenie</Button>
                 </Col>
                 <MyModal
                     test={this.state.newOrderModal}

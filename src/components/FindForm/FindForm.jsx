@@ -47,7 +47,7 @@ class FindForm extends React.Component {
                             <Input name="brokerCountry" label="Kraj pośrednika" icon="flag-o" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
                         </div>
                         <div className="text-center py-4 mt-3">
-                            <Button color="cyan" type="submit" onClick={this.handleSubmit}>Szukaj</Button>
+                            <Button type="submit" onClick={this.handleSubmit}>Szukaj</Button>
                         </div>
                     </form>
                 </CardBody>

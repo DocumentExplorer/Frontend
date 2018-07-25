@@ -1,8 +1,8 @@
 import React from 'react'
-import { Row, Card, CardBody, CardTitle, Fa } from 'mdbreact'
+import { Row, Card, CardBody, CardTitle, Fa, CardFooter } from 'mdbreact'
 import _ from 'lodash'
 
-export const OrderInformation = ({ order, ...props }) => {
+export const OrderInformation = ({ order, footer: Footer, ...props }) => {
     return (
         <Row>
             <Card {...props}>
@@ -36,6 +36,9 @@ export const OrderInformation = ({ order, ...props }) => {
                         {order.date}
                     </CardTitle>
                 </CardBody>
+                <CardFooter>
+                    <Footer />
+                </CardFooter>
             </Card>
         </Row>
     )
