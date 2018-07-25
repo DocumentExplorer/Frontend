@@ -105,7 +105,7 @@ export function getOrders(callback) {
     }
 }
 
-export function postOrder(order) {
+export function postOrder(order, callback) {
 
     function success() {
         return {
@@ -128,6 +128,7 @@ export function postOrder(order) {
         OrdersService.postOrder(order)
             .then(() => {
                 dispatch(success())
+                callback()
             }).catch(() => {
                 dispatch(failed())
             })

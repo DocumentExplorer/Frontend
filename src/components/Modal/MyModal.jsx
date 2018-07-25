@@ -1,8 +1,9 @@
 import React from 'react'
 import { Button, Modal, ModalBody, ModalHeader, ModalFooter, Container, Row } from 'mdbreact'
 import ValidationError from '../messages/ValidationError'
+import Success from '../messages/Success'
 
-export const MyModal = ({ test, toggle, sumbit, sumbitText, title, error, size = "md", component: Component, ...props }) => {
+export const MyModal = ({ test, toggle, sumbit, sumbitText, title, message, success, size = "md", component: Component, ...props }) => {
     return (
         <Modal isOpen={test} toggle={toggle} size={size}>
             <ModalHeader toggle={toggle}>{title}</ModalHeader>
@@ -16,7 +17,11 @@ export const MyModal = ({ test, toggle, sumbit, sumbitText, title, error, size =
                         <Button outline color="primary" onClick={toggle}>Zamknij</Button>
                     </Row>
                     <Row>
-                        <ValidationError error={error} />
+                        {
+                            success
+                                ? <Success message={message} />
+                                : <ValidationError message={message} />
+                        }
                     </Row>
                 </Container>
             </ModalFooter>

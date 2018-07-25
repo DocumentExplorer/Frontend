@@ -32,7 +32,9 @@ class NewOrder extends React.Component {
 
     addNewOrder() {
         const order = _.pick(this.state, ['number', 'clientCountry', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber'])
-        this.props.postOrder(order)
+        this.props.postOrder(order, () => {
+            setTimeout(() => this.toggleNewOrderModal(), 3000)
+        })
     }
 
     render() {
@@ -50,6 +52,8 @@ class NewOrder extends React.Component {
                     title="Dodaj zlecenie"
                     handleChange={this.handleChange}
                     size="lg"
+                    message={this.props.orders.newOrderResult}
+                    success={this.props.orders.newOrderSuccess}
                 />
             </React.Fragment>
         )
@@ -66,4 +70,10 @@ const addNewOrder = ({ handleChange }) => (
     </React.Fragment>
 )
 
-export default connect(undefined, { postOrder })(NewOrder)
+const mapStateToProps = ({ orders }) => {
+    return {
+        orders
+    }
+}
+
+export default connect(mapStateToProps, { postOrder })(NewOrder)

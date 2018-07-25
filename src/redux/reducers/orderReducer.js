@@ -2,7 +2,7 @@ import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat, { convertToNumbers } from '../../components/helpers/DateFormat'
 
-export default function (state = { choose: true }, action) {
+export default function (state = { choose: true, newOrderResult: '' }, action) {
     switch (action.type) {
         case OrdersConstants.GET_ORDERS_SUCCCESS:
             console.log(action.data)
@@ -59,19 +59,19 @@ export default function (state = { choose: true }, action) {
             return {
                 ...state,
                 newOrderResult: 'Udało się dodać nowe zlecenie',
-                newOrderRequest: false
+                newOrderSuccess: true
             }
         case OrdersConstants.POST_ORDER_FAIL:
             return {
                 ...state,
                 newOrderResult: 'Nie udało się dodać nowego zlecenie',
-                newOrderRequest: false
+                newOrderSuccess: false
             }
         case OrdersConstants.POST_ORDER_REQUEST:
             return {
                 ...state,
                 newOrderResult: '',
-                newOrderRequest: true
+                newOrderSuccess: undefined
             }
         default:
             return state
