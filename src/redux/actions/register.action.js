@@ -12,6 +12,11 @@ export function register(values, callback) {
             type: RegisterConstants.REGISTER_FAIL
         }
     }
+    function clearValidate() {
+        return {
+            type: RegisterConstants.CLEAR_REGISTER_VALIDATION
+        }
+    }
     return dispatch => {
         console.log('daw')
         RegisterService.register(values)

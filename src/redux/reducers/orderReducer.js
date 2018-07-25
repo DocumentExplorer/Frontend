@@ -2,14 +2,14 @@ import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat, { convertToNumbers } from '../../components/helpers/DateFormat'
 
-export default function (state = { choose: true }, action) {
+export default function (state = { choose: true, newOrderResult: '', getOrderRequest: true }, action) {
     switch (action.type) {
         case OrdersConstants.GET_ORDERS_SUCCCESS:
 
             _.forEach(action.data, (value) => {
-                let { day, month, year } = value.time
+                let { day, month, year } = value.date
                 const converted = convertToNumbers(day, month, year)
-                value.time = converted
+                value.date = converted
             })
             return {
                 ...state,
@@ -32,10 +32,11 @@ export default function (state = { choose: true }, action) {
         case OrdersConstants.FIND_ORDERS_SUCCESS:
             const { matchOrders } = action
             _.forEach(matchOrders, (value) => {
-                const date = new DateFormat(value.time).convert()
+                const date = new DateFormat(value.date).convert()
                 const converted = convertToNumbers(date.day, date.month, date.year)
-                value.time = converted
+                value.date = converted
             })
+
             return {
                 ...state,
                 matchOrders,
@@ -53,6 +54,43 @@ export default function (state = { choose: true }, action) {
                 ...state,
                 finding: true,
                 choose: false
+            }
+        case OrdersConstants.POST_ORDER_SUCCESS:
+            return {
+                ...state,
+                newOrderResult: 'Udało się dodać nowe zlecenie',
+                newOrderSuccess: true
+            }
+        case OrdersConstants.POST_ORDER_FAIL:
+            return {
+                ...state,
+                newOrderResult: 'Nie udało się dodać nowego zlecenie',
+                newOrderSuccess: false
+            }
+        case OrdersConstants.POST_ORDER_REQUEST:
+            return {
+                ...state,
+                newOrderResult: '',
+                newOrderSuccess: undefined
+            }
+        case OrdersConstants.GET_ORDER_SUCCESS:
+            return {
+                ...state,
+                order: action.order,
+                getOrderSuccess: true,
+                getOrderRequest: false
+
+            }
+        case OrdersConstants.GET_ORDER_FAIL:
+            return {
+                ...state,
+                getOrderSuccess: false,
+                getOrderRequest: false
+            }
+        case OrdersConstants.GET_ORDER_REQUEST:
+            return {
+                ...state,
+                getOrderRequest: true
             }
         default:
             return state

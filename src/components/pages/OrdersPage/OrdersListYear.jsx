@@ -6,6 +6,7 @@ import { Order } from '../../Orders/Order'
 import { getMonths } from '../../../redux/mock/months'
 import randomcolor from 'randomcolor'
 
+
 export default class extends React.Component {
 
     constructor() {
@@ -26,11 +27,11 @@ export default class extends React.Component {
             })
         }
         _.forEach(data, (value) => {
-            let { day, month, year } = value.time
+            let { day, month, year } = value.date
             const converted = convertToNumbers(day, month, year)
-            value.time = converted
+            value.date = converted
             _.forEach(months, (month) => {
-                if (month.month === value.time.month) {
+                if (month.month === value.date.month) {
                     month.ordersByMonth.push(value)
                 }
             })
@@ -54,11 +55,13 @@ export default class extends React.Component {
                                     {
                                         value.ordersByMonth.map((item, index) => (
                                             <Col md="6" sm="12" key={index}>
-                                                <Order
-                                                    value={item}
-                                                    color={value.color}
-                                                />
+                                                
+                                                    <Order
+                                                        value={item}
+                                                        color={value.color}
+                                                    />
                                             </Col>
+
                                         ))
                                     }
                                 </Row>

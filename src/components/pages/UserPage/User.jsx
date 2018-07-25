@@ -2,7 +2,7 @@ import React from 'react'
 import { Container, Button, Input, Row } from 'mdbreact'
 import { Jumbotron } from '../../Jumbotron/Jumbotron';
 import { connect } from 'react-redux'
-import { changePassword } from '../../../redux/actions'
+import { changePassword, clearValidation } from '../../../redux/actions'
 import ValidationError from '../../messages/ValidationError'
 import Success from '../../messages/Success'
 
@@ -13,13 +13,16 @@ class User extends React.Component {
         super()
         this.state = {
             error: '',
-            put_password: ''
+            put_password: '',
+            password: '',
+            repeat_password: ''
         }
         this.onChange = this.onChange.bind(this)
         this.changePassword = this.changePassword.bind(this)
     }
 
     componentWillReceiveProps(nextProps) {
+        console.log(nextProps)
         this.setState({
             put_password: nextProps.users.put_password
         })
@@ -43,16 +46,22 @@ class User extends React.Component {
                 error: 'Hasła różnią się od siebie'
             })
         } else {
-            this.props.changePassword(this.props.user.id, this.state.password)
+            this.props.changePassword(this.props.user.id, this.state.password, () => {
+                setTimeout(() => {
+                    console.log('Wywołaj')
+                    this.props.clearValidation()
+                }, 9000)
+            })
             this.setState({
                 error: '',
                 password: '',
                 repeat_password: ''
             })
+
         }
+
     }
     render() {
-        console.log(this.props.users)
         return (
             <Container>
                 <Row>
@@ -64,6 +73,9 @@ class User extends React.Component {
                         onChange={this.onChange}
                         error={this.state.error}
                         message={this.state.put_password}
+                        password={this.state.password}
+                        repeat_password={this.state.repeat_password}
+                        success={this.props.users.put_password_success}
                     />
                 </Row>
             </Container>
@@ -89,12 +101,15 @@ const ChangePassword = props => {
         <React.Fragment>
             <form className="change-password">
                 <h4>Zmiana hasła</h4>
-                <Input name="password" label="Nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
-                <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" onChange={(e) => props.onChange(e)} />
+                <Input name="password" label="Nowe hasło" group type="password" value={props.password} onChange={(e) => props.onChange(e)} />
+                <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" value={props.repeat_password} onChange={(e) => props.onChange(e)} />
                 <Button color="primary" className="change-password-button" onClick={() => props.changePassword()}>Zmień hasło</Button>
             </form>
-            <ValidationError error={props.error} />
-            <Success message={props.message} />
+            {
+                props.success ?
+                    <Success message={props.message} />
+                    : <ValidationError message={props.error} />
+            }
         </React.Fragment>
     )
 }
@@ -106,4 +121,4 @@ const mapStateTpProps = ({ users }) => {
 }
 
 
-export default connect(mapStateTpProps, { changePassword })(User)
+export default connect(mapStateTpProps, { changePassword, clearValidation })(User)

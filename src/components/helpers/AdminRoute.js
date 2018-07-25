@@ -3,8 +3,7 @@ import { Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 
-const AdminRoute = ({ component: Component, ...rest }) => {
-    console.log(rest)
+const AdminRoute = ({ component: Component, ...rest }) => { 
     return (
         <Route {...rest} render={(props) => (
             rest.loginResult.accountType === 'admin'

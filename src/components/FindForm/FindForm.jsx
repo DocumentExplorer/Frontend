@@ -39,15 +39,15 @@ class FindForm extends React.Component {
                     <form>
                         <p className="h3 text-center py-3">Szukanie zleceń</p>
                         <div className="grey-text">
-                            <Input name="orderNumber" label="Numer zlecenia" icon="file-o" group type="text" onChange={this.handleChange} />
+                            <Input name="number" label="Numer zlecenia" icon="file-o" group type="text" onChange={this.handleChange} />
                             <Input name="invoiceNumber" label="Numer faktury" icon="briefcase" group type="text" onChange={this.handleChange} />
-                            <Input name="clientNIP" label="NIP klienta" icon="address-card" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
-                            <Input name="brokerNIP" label="NIP pośrednika" icon="address-card-o" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
+                            <Input name="clientIdentificationNumber" label="NIP klienta" icon="address-card" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
+                            <Input name="brokerIdentificationNumber" label="NIP pośrednika" icon="address-card-o" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
                             <Input name="clientCountry" label="Kraj klienta" icon="flag" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
                             <Input name="brokerCountry" label="Kraj pośrednika" icon="flag-o" group type="text" validate error="wrong" success="right" onChange={this.handleChange} />
                         </div>
                         <div className="text-center py-4 mt-3">
-                            <Button color="cyan" type="submit" onClick={this.handleSubmit}>Szukaj</Button>
+                            <Button type="submit" onClick={this.handleSubmit}>Szukaj</Button>
                         </div>
                     </form>
                 </CardBody>

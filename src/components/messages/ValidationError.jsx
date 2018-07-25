@@ -1,7 +1,7 @@
 import React from 'react'
 
-export default ({ error }) => (
+export default ({ message }) => (
     <span className='custom-message'>
-        <h5 className="text-center red-text">{error}</h5>
+        <h5 className="text-center red-text">{message}</h5>
     </span>
 )

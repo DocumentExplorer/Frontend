@@ -57,11 +57,19 @@ export default function (state = initState, action) {
         case UserConstants.PUT_PASSWORD_SUCCESS:
             return {
                 ...state,
+                put_password_success: true,
                 put_password: 'Udało się zmienić hasło'
             }
         case UserConstants.PUT_PASSWORD_FAIL:
             return {
-                ...state
+                ...state,
+                put_password_success: false
+            }
+        case UserConstants.CLEAR_VALIDATION:
+            console.log('dawj')
+            return {
+                ...state,
+                put_password: ''
             }
         default:
             return state

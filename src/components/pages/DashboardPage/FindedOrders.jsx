@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom'
 class FindedOrders extends React.Component {
     render() {
         const { data } = this.props
+        console.log(this.props)
         return (
             <div style={{ marginTop: '35px' }}>
                 {

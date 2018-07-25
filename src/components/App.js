@@ -19,7 +19,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <PrivateRoute path="/orders/:year" component={OrdersPage} />
-            <PrivateRoute path="/order/:order" component={OrderPage} />
+            <PrivateRoute path="/order/:id" component={OrderPage} />
             <AdminRoute path="/users/:username" component={UserPage}/>
             <AdminRoute path="/management" component={ManagementPage} />
             <PrivateRoute path="/dashboard" component={Dashboard} />

@@ -24,7 +24,7 @@ class OrdersPage extends React.Component {
         })
         this.props.getOrders((data) => {
             const filtered = _.filter(data, (item) => {
-                return year == item.time.year
+                return year == item.date.year
             })
             this.setState({
                 filtered

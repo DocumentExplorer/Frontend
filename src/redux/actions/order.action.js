@@ -3,20 +3,33 @@ import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
 
-export function getOrderByInvoiceNumber(invoiceNumber) {
+export function getOrderById(id) {
     function success(order) {
+        
         return {
-            
+            type: OrdersConstants.GET_ORDER_SUCCESS,
+            order
         }
     }
 
     function failed() {
         return {
-
+            type: OrdersConstants.GET_ORDER_FAIL
         }
     }
     function request() {
-
+        return {
+            type: OrdersConstants.GET_ORDER_REQUEST
+        }
+    }
+    return dispatch => {
+        dispatch(request())
+        OrdersService.getOrderById(id)
+            .then((order) => {
+                dispatch(success(order))
+            }).catch(() => {
+                dispatch(failed())
+            })
     }
 }
 
@@ -52,7 +65,6 @@ export function finding(values) {
                             if (key == keyTo && _.startsWith(value, values[keyTo])) {
                                 i++
                                 if (i == lengthOfValues) {
-
                                     filtered.push(item)
                                 }
                             }
@@ -90,13 +102,43 @@ export function getOrders(callback) {
         OrdersService.getOrders()
             .then((data) => {
                 _.forEach(data, (value, i) => {
-                    let converted = new DateFormat(value.time).convert()
-                    value.time = converted
+                    let converted = new DateFormat(value.date).convert()
+                    value.date = converted
                 })
-                if(callback !== undefined){
+                if (callback !== undefined) {
                     callback(data)
                 }
                 dispatch(success(data))
+            }).catch(() => {
+                dispatch(failed())
+            })
+    }
+}
+
+export function postOrder(order, callback) {
+
+    function success() {
+        return {
+            type: OrdersConstants.POST_ORDER_SUCCESS,
+        }
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.POST_ORDER_FAIL,
+        }
+    }
+    function request() {
+        return {
+            type: OrdersConstants.POST_ORDER_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        OrdersService.postOrder(order)
+            .then(() => {
+                dispatch(success())
+                callback()
             }).catch(() => {
                 dispatch(failed())
             })

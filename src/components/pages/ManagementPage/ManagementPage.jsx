@@ -33,7 +33,8 @@ class ManagementPage extends React.Component {
 
     toggleAdd() {
         this.setState({
-            addWindow: !this.state.addWindow
+            addWindow: !this.state.addWindow,
+            registerErrors: ''
         })
     }
 
@@ -119,7 +120,8 @@ class ManagementPage extends React.Component {
                             component={AddUserModal}
                             title={"Tworzenie użytkownika"}
                             role={this.state.role}
-                            error={this.state.registerErrors}
+                            message={this.state.registerErrors}
+                            success={this.props.registerSuccess}
                         />
                         <MyModal
                             test={this.state.deleteWindow}
