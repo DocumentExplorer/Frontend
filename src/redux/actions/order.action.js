@@ -104,3 +104,32 @@ export function getOrders(callback) {
             })
     }
 }
+
+export function postOrder(order) {
+
+    function success() {
+        return {
+            type: OrdersConstants.POST_ORDER_SUCCESS,
+        }
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.POST_ORDER_FAIL,
+        }
+    }
+    function request() {
+        return {
+            type: OrdersConstants.POST_ORDER_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        OrdersService.postOrder(order)
+            .then(() => {
+                dispatch(success())
+            }).catch(() => {
+                dispatch(failed())
+            })
+    }
+}

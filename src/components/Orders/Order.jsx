@@ -5,7 +5,7 @@ import { getMonths } from '../../redux/mock/months'
 
 export const Order = ({ value, i, onClick, color, ...rest }) => {
     const { date } = value
-    
+
     return (
         <Link to={`/order/${value.invoiceNumber}`} {...rest} key={i}>
             <Card className="custom-card" onClick={() => onClick}
@@ -15,7 +15,7 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
                 <CardBody>
                     <CardTitle>
                         <Fa icon="file-o" />
-                        Zlecenie numer - {value.orderNumber}
+                        Zlecenie numer - {value.number}
                     </CardTitle>
                     <CardTitle>
                         <Fa icon="briefcase" />

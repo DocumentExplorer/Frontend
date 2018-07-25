@@ -14,6 +14,9 @@ class Dashboard extends React.Component {
         return (
             <Container>
                 <Row className="custom-row">
+
+                </Row>
+                <Row className="custom-row">
                     <Col md="9" sm="12">
                         <FindForm />
                         <Choose test={this.props.orders.choose} style={{ marginTop: '30px', marginBottom: '30px' }} />
