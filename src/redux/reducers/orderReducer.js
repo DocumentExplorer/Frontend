@@ -73,6 +73,24 @@ export default function (state = { choose: true, newOrderResult: '' }, action) {
                 newOrderResult: '',
                 newOrderSuccess: undefined
             }
+        case OrdersConstants.GET_ORDER_SUCCESS:
+            return {
+                ...state,
+                getOrderSuccess: true,
+                getOrderRequest: false,
+                order: action.order
+            }
+        case OrdersConstants.GET_ORDER_FAIL:
+            return {
+                ...state,
+                getOrderSuccess: false,
+                getOrderRequest: false
+            }
+        case OrdersConstants.GET_ORDER_REQUEST:
+            return {
+                ...state,
+                getOrderRequest: true
+            }
         default:
             return state
     }

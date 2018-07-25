@@ -7,7 +7,7 @@ export const Order = ({ value, i, onClick, color, ...rest }) => {
     const { date } = value
 
     return (
-        <Link to={`/order/${value.invoiceNumber}`} {...rest} key={i}>
+        <Link to={`/order/${value.id}`} {...rest} key={i}>
             <Card className="custom-card" onClick={() => onClick}
                 style={{
                     borderTop: `20px solid ${color}`

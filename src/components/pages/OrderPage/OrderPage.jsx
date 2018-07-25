@@ -1,24 +1,29 @@
 import React from 'react'
 import './order.css'
-import { Jumbotron } from '../../Jumbotron/Jumbotron';
 import ApiHOC from '../../helpers/ApiHOC'
 import { connect } from 'react-redux'
-import { getUser } from '../../../redux/actions'
+import { getOrderById } from '../../../redux/actions'
 
 class OrderPage extends React.Component {
 
+    componentDidMount() {
+        const { match: { params: { id } } } = this.props
+        this.props.getOrderById(id)
+    }
+
     render() {
+        console.log(this.props)
         return (
             <div>Order</div>
         )
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ orders }) {
     return {
-        users
+        orders
     }
 }
 
-const component = connect(mapStateToProps, { getUser })(OrderPage)
+const component = connect(mapStateToProps, { getOrderById })(OrderPage)
 export { component as OrderPage }
