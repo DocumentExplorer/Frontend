@@ -3,7 +3,7 @@ import { Button, Col, Input } from 'mdbreact'
 import { MyModal } from '../../Modal/MyModal';
 import { connect } from 'react-redux'
 import { postOrder } from '../../../redux/actions'
-
+import _ from 'lodash'
 
 class NewOrder extends React.Component {
 
@@ -27,12 +27,12 @@ class NewOrder extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-        console.log(this.state)
     }
 
 
     addNewOrder() {
-        console.log(this.state)
+        const order = _.pick(this.state, ['number', 'clientCountry', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber'])
+        this.props.postOrder(order)
     }
 
     render() {
@@ -49,6 +49,7 @@ class NewOrder extends React.Component {
                     sumbitText="Dodaj"
                     title="Dodaj zlecenie"
                     handleChange={this.handleChange}
+                    size="lg"
                 />
             </React.Fragment>
         )

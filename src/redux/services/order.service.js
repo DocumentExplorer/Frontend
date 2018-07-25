@@ -22,6 +22,7 @@ function getOrders() {
 }
 
 function postOrder(order) {
+    console.log(order)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/orders`,
@@ -32,8 +33,10 @@ function postOrder(order) {
             },
             data: order
         }).then((res) => {
+            console.log(res)
             resolve()
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })
