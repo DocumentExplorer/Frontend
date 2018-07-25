@@ -32,7 +32,8 @@ class NewOrder extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            newOrderResult: nextProps.orders.newOrderResult
+            newOrderResult: nextProps.orders.newOrderResult,
+
         })
     }
 

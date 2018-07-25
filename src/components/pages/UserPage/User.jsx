@@ -75,6 +75,7 @@ class User extends React.Component {
                         message={this.state.put_password}
                         password={this.state.password}
                         repeat_password={this.state.repeat_password}
+                        success={this.props.users.put_password_success}
                     />
                 </Row>
             </Container>
@@ -104,8 +105,11 @@ const ChangePassword = props => {
                 <Input name="repeat_password" label="Powtórz nowe hasło" group type="password" value={props.repeat_password} onChange={(e) => props.onChange(e)} />
                 <Button color="primary" className="change-password-button" onClick={() => props.changePassword()}>Zmień hasło</Button>
             </form>
-            <ValidationError error={props.error} />
-            <Success message={props.message} />
+            {
+                props.success ?
+                    <Success message={props.message} />
+                    : <ValidationError message={props.error} />
+            }
         </React.Fragment>
     )
 }
