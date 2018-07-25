@@ -19,7 +19,8 @@ class NewOrder extends React.Component {
 
     toggleNewOrderModal() {
         this.setState({
-            newOrderModal: !this.state.newOrderModal
+            newOrderModal: !this.state.newOrderModal,
+            newOrderResult: ''
         })
     }
 
@@ -29,12 +30,29 @@ class NewOrder extends React.Component {
         })
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            newOrderResult: nextProps.orders.newOrderResult
+        })
+    }
 
     addNewOrder() {
-        const order = _.pick(this.state, ['number', 'clientCountry', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber'])
-        this.props.postOrder(order, () => {
-            setTimeout(() => this.toggleNewOrderModal(), 3000)
-        })
+        let error
+        let arrayOfProperties = ['number', 'clientCountry', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber']
+        const order = _.pick(this.state, arrayOfProperties)
+        if (_.isEmpty(order) || _.size(order) !== arrayOfProperties.length) {
+            error = true
+            this.setState({
+                newOrderResult: 'Pola są puste'
+            })
+        } else {
+            if (error !== true) {
+                this.props.postOrder(order, () => {
+                    setTimeout(() => this.toggleNewOrderModal(), 2000)
+                })
+            }
+        }
+
     }
 
     render() {
@@ -52,7 +70,7 @@ class NewOrder extends React.Component {
                     title="Dodaj zlecenie"
                     handleChange={this.handleChange}
                     size="lg"
-                    message={this.props.orders.newOrderResult}
+                    message={this.state.newOrderResult}
                     success={this.props.orders.newOrderSuccess}
                 />
             </React.Fragment>
