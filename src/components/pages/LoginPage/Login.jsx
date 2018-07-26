@@ -3,6 +3,7 @@ import { Container, Row, Col, Input, Button } from 'mdbreact';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../../redux/actions'
+import ValidationError from '../../messages/ValidationError'
 import './login.css'
 
 class Login extends React.Component {
@@ -88,6 +89,7 @@ class Login extends React.Component {
                                 <Button type="submit">Login</Button>
                             </div>
                         </form>
+                        <ValidationError message={this.props.loginResult.loginResult} />
                     </Col>
                 </Row>
             </Container>
