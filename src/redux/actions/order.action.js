@@ -2,10 +2,11 @@ import { OrdersService } from '../services'
 import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
+import { lostSession } from './app.action'
 
 export function getOrderById(id) {
     function success(order) {
-        
+
         return {
             type: OrdersConstants.GET_ORDER_SUCCESS,
             order
@@ -73,7 +74,7 @@ export function finding(values) {
                 });
                 dispatch(success(filtered))
             }).catch((err) => {
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }
@@ -110,7 +111,7 @@ export function getOrders(callback) {
                 }
                 dispatch(success(data))
             }).catch(() => {
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }

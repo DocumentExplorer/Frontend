@@ -17,6 +17,7 @@ function login(values) {
             }
         })
             .then((res) => {
+                console.log(res.data)
                 if (res) {
                     resolve(res.data)
                 }

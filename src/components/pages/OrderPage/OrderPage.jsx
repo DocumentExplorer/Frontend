@@ -9,12 +9,38 @@ import { OrderInformation } from './OrderInformation'
 
 class OrderPage extends React.Component {
 
+    constructor() {
+        super()
+        this.state = {
+            modalRemove: false,
+            modalModify: false
+        }
+        this.toggleModalModify = this.toggleModalModify.bind(this)
+        this.toggleModalRemove = this.toggleModalRemove.bind(this)
+    }
+
 
     componentDidMount() {
         const { match: { params: { id } } } = this.props
         this.props.getOrderById(id)
     }
-    
+
+    toggleModalRemove() {
+        this.setState({
+            modalRemove: !this.state.modalRemove
+        })
+    }
+
+    toggleModalModify() {
+        this.setState({
+            modalRemove: !this.state.modalModify
+        })
+    }
+
+    handleDelete() {
+
+    }
+
 
     render() {
         return (
@@ -25,7 +51,7 @@ class OrderPage extends React.Component {
                     order={this.props.orders.order}
                     style={{ width: '100%', marginTop: '50px' }}
                     footer={Footer}
-                    handleDelete={}
+                    handleDelete={this.handleDelete}
                 />
             </Container>
         )

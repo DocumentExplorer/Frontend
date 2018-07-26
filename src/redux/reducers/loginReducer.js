@@ -1,4 +1,4 @@
-import { LoginConstants } from '../constants'
+import { LoginConstants, ApiConstants } from '../constants'
 
 const initState = {
     auth: false,
@@ -33,6 +33,11 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 logout: true
+            }
+        case ApiConstants.LOST_SESSION:
+            return {
+                auth: false,
+                loginResult: 'Twoja sesja wygasła'
             }
         default:
             return state
