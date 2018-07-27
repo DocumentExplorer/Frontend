@@ -15,7 +15,6 @@ export const Logs = ({ data, changeLocation, ...rest }) => {
                         <th className="th-lg">Czas</th>
                         <th className="th-lg">Użytkownik</th>
                         <th className="th-lg">Właściciel</th>
-                        <th className="th-lg">Czego dotyczy</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -29,7 +28,6 @@ export const Logs = ({ data, changeLocation, ...rest }) => {
                                 <td>{value.eventDate}</td>
                                 <td>{value.username}</td>
                                 <td>{value.owner1Name}</td>
-                                <td>{value.invoiceNumber}</td>
                             </tr>
                         ))
                     }
