@@ -1,5 +1,5 @@
 import React from 'react'
 
-export const Log = () => {
+export const Log = () => (
     <div>asd</div>
-}
+)

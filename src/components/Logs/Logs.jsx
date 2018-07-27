@@ -21,7 +21,7 @@ export const Logs = ({ data, changeLocation, ...rest }) => {
                 <tbody>
                     {
                         data.map((value, index) => (
-                            <tr key={index} className="user-list-item">
+                            <tr key={index} className="user-list-item" onClick={() => changeLocation(value.id)}>
                                 <td>{index}</td>
                                 <td>
                                     {value.event}

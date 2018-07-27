@@ -29,7 +29,8 @@ class ManagementPage extends React.Component {
         this.handleSelect = this.handleSelect.bind(this)
         this.deleteUser = this.deleteUser.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
-        this.changeLocation = this.changeLocation.bind(this)
+        this.changeLocationoLog = this.changeLocationoLog.bind(this)
+        this.changeLocationUsername = this.changeLocationUsername.bind(this)
     }
 
     toggleAdd() {
@@ -72,8 +73,12 @@ class ManagementPage extends React.Component {
         })
     }
 
-    changeLocation(username) {
+    changeLocationUsername(username) {
         this.props.history.push(`/users/${username}`)
+    }
+
+    changeLocationoLog(id) {
+        this.props.history.push(`/logs/${id}`)
     }
 
     handleDelete(e) {
@@ -115,15 +120,15 @@ class ManagementPage extends React.Component {
                             data={this.props.users.users}
                             addWindow={this.props.users.request}
                             deleteUser={this.deleteUser}
-                            changeLocation={this.changeLocation}
+                            changeLocation={this.changeLocationUsername}
                         />
                         <div style={{ height: '50px' }}>
-
                         </div>
                         <ApiHOC
                             test={this.props.logs.requestLogs}
                             component={Logs}
                             data={this.props.logs.logs}
+                            changeLocation={this.changeLocationoLog}
                         />
                         <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
                         <MyModal

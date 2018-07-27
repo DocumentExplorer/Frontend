@@ -49,6 +49,7 @@ export function getLogById(id) {
         dispatch(request())
         LogsService.getLogById(id)
             .then((data) => {
+                console.log(data)
                 dispatch(success(data))
             }).catch(() => {
                 dispatch(failed())

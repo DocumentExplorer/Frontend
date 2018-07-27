@@ -6,18 +6,18 @@ import { Log } from './Log'
 
 class LogPage extends React.Component {
     componentDidMount() {
-        // const { match: { params: { id } } } = this.props
-        // this.props.getLogById(id)
+        const { match: { params: { id } } } = this.props
+        this.props.getLogById(id)
         console.log('asd')
     }
 
     render() {
+        console.log(this.props)
         return (
-            // <ApiHOC
-            //     test={this.props.logs.requestLog}
-            //     component={Log}
-            // />
-            <div>asd</div>
+            <ApiHOC
+                test={this.props.logs.requestLog}
+                component={Log}
+            />
         )
     }
 
@@ -29,5 +29,5 @@ const mapStateToProps = ({ logs }) => {
     }
 }
 
-const page = connect(mapStateToProps, getLogById)(LogPage)
+const page = connect(mapStateToProps, { getLogById })(LogPage)
 export { page as LogPage }
