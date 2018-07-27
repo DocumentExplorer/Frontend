@@ -78,9 +78,30 @@ function deleteOrder(id) {
     })
 }
 
+function putOrder(order) {
+    console.log(order)
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/orders`,
+            method: 'PUT',
+            headers: {
+                'Authorization': getToken(),
+                'Content-Type': 'application/json'
+            },
+            data: order
+        }).then((res) => {
+            resolve(res.data)
+        }).catch((err) => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
 export const OrdersService = {
     getOrders,
     postOrder,
     getOrderById,
-    deleteOrder
+    deleteOrder,
+    putOrder
 }

@@ -79,7 +79,7 @@ class NewOrder extends React.Component {
     }
 }
 
-const addNewOrder = ({ handleChange }) => (
+export const addNewOrder = ({ handleChange }) => (
     <React.Fragment>
         <Input name="number" label="Numer zlecenia" icon="file-o" type="text" onChange={(e) => handleChange(e)} />
         <Input name="clientCountry" label="Kraj klienta" icon="flag" type="text" onChange={(e) => handleChange(e)} />

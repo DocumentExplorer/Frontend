@@ -160,3 +160,32 @@ export function deleteOrder(id, callback) {
             })
     }
 }
+
+export function putOrder(order, callback) {
+    function success() {
+        return {
+            type: OrdersConstants.PUT_ORDER_SUCCESS
+        }
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.PUT_ORDER_FAIL
+        }
+    }
+    function request() {
+        return {
+            type: OrdersConstants.PUT_ORDER_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        OrdersService.putOrder(order).then(() => {
+            dispatch(success())
+            callback()
+        }).catch(() => {
+            dispatch(failed())
+        })
+    }
+
+}
