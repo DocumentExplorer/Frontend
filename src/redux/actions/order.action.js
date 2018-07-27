@@ -2,10 +2,11 @@ import { OrdersService } from '../services'
 import { OrdersConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
+import { lostSession } from './app.action'
 
 export function getOrderById(id) {
     function success(order) {
-        
+
         return {
             type: OrdersConstants.GET_ORDER_SUCCESS,
             order
@@ -73,7 +74,7 @@ export function finding(values) {
                 });
                 dispatch(success(filtered))
             }).catch((err) => {
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }
@@ -110,7 +111,7 @@ export function getOrders(callback) {
                 }
                 dispatch(success(data))
             }).catch(() => {
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }
@@ -143,4 +144,49 @@ export function postOrder(order, callback) {
                 dispatch(failed())
             })
     }
+}
+
+export function deleteOrder(id, callback) {
+    function success() {
+        return {
+            type: OrdersConstants.DELETE_ORDER_SUCCESS
+        }
+    }
+    return dispatch => {
+        OrdersService.deleteOrder(id)
+            .then(() => {
+                dispatch(success())
+                callback()
+            })
+    }
+}
+
+export function putOrder(order, callback) {
+    function success(order) {
+        return {
+            type: OrdersConstants.PUT_ORDER_SUCCESS,
+            order
+        }
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.PUT_ORDER_FAIL
+        }
+    }
+    function request() {
+        return {
+            type: OrdersConstants.PUT_ORDER_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        OrdersService.putOrder(order).then(() => {
+            dispatch(success(order))
+            callback()
+        }).catch(() => {
+            dispatch(failed())
+        })
+    }
+
 }

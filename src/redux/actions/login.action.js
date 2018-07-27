@@ -21,12 +21,24 @@ export function login(values) {
         }
     }
 
+    function lostSession() {
+        return {
+            type: LoginConstants.LOGOUT_SUCCESS
+        }
+    }
+
     return dispatch => {
         dispatch(fetched())
         LoginService.login(values).then((data) => {
             localStorage.setItem("token", data.token)
             localStorage.setItem("role", data.role)
             dispatch(success(data.role))
+            var t = new Date()
+            t.setSeconds(t.getSeconds() + data.expiry * 1000)
+            localStorage.setItem('expiryAt', t.toDateString())
+            setTimeout(() => {
+                dispatch(lostSession())
+            }, data.expiry * 1000)
         }).catch((err) => {
             dispatch(failed(err))
         })
@@ -41,15 +53,8 @@ export function logout() {
         }
     }
 
-    function request() {
-        return {
-            type: LoginConstants.LOGOUT_REQUEST
-        }
-    }
-
     return dispatch => {
         dispatch(success())
-        // LoginService.logout()
     }
 }
 

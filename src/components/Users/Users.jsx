@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 export const Users = ({ data, changeLocation, ...rest }) => {
     return (
         <div style={{ display: 'block', maxHeight: '300px', overflowY: 'auto', marginBottom: '30px' }}>
+            <h3>Użytkownicy</h3>
             <Table className="users-list">
                 <thead >
                     <tr>

@@ -92,6 +92,26 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
                 ...state,
                 getOrderRequest: true
             }
+        case OrdersConstants.DELETE_ORDER_SUCCESS:
+            return {
+                ...state
+            }
+        case OrdersConstants.PUT_ORDER_SUCCESS:
+            return {
+                ...state,
+                put_order_error: '',
+                order: action.order
+            }
+        case OrdersConstants.PUT_ORDER_FAIL:
+            return {
+                ...state,
+                put_order_error: 'Nie udało ci się updatować'
+            }
+        case OrdersConstants.PUT_ORDER_REQUEST:
+            return {
+                ...state,
+                put_order_error: ''
+            }
         default:
             return state
     }

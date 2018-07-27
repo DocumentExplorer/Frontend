@@ -1,6 +1,7 @@
 import { UserService } from '../services'
 import { UserConstants } from '../constants'
 import { logout } from '../../components/helpers/logoutHelper'
+import { lostSession } from './app.action'
 
 export function getUsers() {
     function success(users) {
@@ -27,8 +28,7 @@ export function getUsers() {
             .then((res) => {
                 dispatch(success(res.data))
             }).catch((err) => {
-                dispatch(logout())
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }

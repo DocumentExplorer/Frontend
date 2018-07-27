@@ -2,12 +2,13 @@ import React from 'react'
 import ApiHOC from '../../helpers/ApiHOC'
 import { Container, Row, Col, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
 import { connect } from 'react-redux'
-import { getUsers, register, deleteUser } from '../../../redux/actions'
+import { getUsers, register, deleteUser, getLogs } from '../../../redux/actions'
 import { Users } from '../../Users/Users';
 import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
 import { DeleteUserConfirmation } from './DeleteUserConfirmation'
+import Logs from '../../Logs/Logs'
 import _ from 'lodash'
 
 class ManagementPage extends React.Component {
@@ -28,7 +29,8 @@ class ManagementPage extends React.Component {
         this.handleSelect = this.handleSelect.bind(this)
         this.deleteUser = this.deleteUser.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
-        this.changeLocation = this.changeLocation.bind(this)
+        this.changeLocationoLog = this.changeLocationoLog.bind(this)
+        this.changeLocationUsername = this.changeLocationUsername.bind(this)
     }
 
     toggleAdd() {
@@ -71,8 +73,12 @@ class ManagementPage extends React.Component {
         })
     }
 
-    changeLocation(username) {
+    changeLocationUsername(username) {
         this.props.history.push(`/users/${username}`)
+    }
+
+    changeLocationoLog(id) {
+        this.props.history.push(`/logs/${id}`)
     }
 
     handleDelete(e) {
@@ -82,9 +88,7 @@ class ManagementPage extends React.Component {
         this.props.deleteUser(this.state.deleteId)
     }
 
-    componentDidMount() {
-        this.props.getUsers()
-    }
+
 
     handleSelect(role) {
         this.setState({
@@ -97,17 +101,34 @@ class ManagementPage extends React.Component {
             registerErrors: nextProps.registerResult.error
         })
     }
+
+    componentDidMount() {
+        this.props.getUsers()
+        this.props.getLogs()
+    }
+
     render() {
+        console.log('management')
+        console.log(this.props.logs)
         return (
             <Container>
                 <Row className="custom-row">
                     <Col>
                         <ApiHOC
+                            test={this.props.users.request}
                             component={Users}
                             data={this.props.users.users}
                             addWindow={this.props.users.request}
                             deleteUser={this.deleteUser}
-                            changeLocation={this.changeLocation}
+                            changeLocation={this.changeLocationUsername}
+                        />
+                        <div style={{ height: '50px' }}>
+                        </div>
+                        <ApiHOC
+                            test={this.props.logs.requestLogs}
+                            component={Logs}
+                            data={this.props.logs.logs}
+                            changeLocation={this.changeLocationoLog}
                         />
                         <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
                         <MyModal
@@ -139,12 +160,13 @@ class ManagementPage extends React.Component {
     }
 }
 
-function mapStateToProps({ users, registerResult }) {
+function mapStateToProps({ users, registerResult, logs }) {
     return {
         users,
-        registerResult
+        registerResult,
+        logs
     }
 }
 
-const component = connect(mapStateToProps, { getUsers, register, deleteUser })(ManagementPage)
+const component = connect(mapStateToProps, { getUsers, register, deleteUser, getLogs })(ManagementPage)
 export { component as ManagementPage }

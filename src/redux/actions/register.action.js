@@ -1,6 +1,7 @@
 import { RegisterConstants, UserConstants } from '../constants'
 import { RegisterService } from '../services'
 
+
 export function register(values, callback) {
     function success() {
         return {
