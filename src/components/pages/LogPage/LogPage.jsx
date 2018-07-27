@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getLogById } from '../../../redux/actions'
 import ApiHOC from '../../helpers/ApiHOC';
 import { Log } from './Log'
+import { Container } from 'mdbreact'
 
 class LogPage extends React.Component {
     componentDidMount() {
@@ -14,10 +15,14 @@ class LogPage extends React.Component {
     render() {
         console.log(this.props)
         return (
-            <ApiHOC
-                test={this.props.logs.requestLog}
-                component={Log}
-            />
+            <Container>
+                <ApiHOC
+                    test={this.props.logs.requestLog}
+                    component={Log}
+                    log={this.props.logs.log}
+                    history={this.props.history}
+                />
+            </Container>
         )
     }
 
