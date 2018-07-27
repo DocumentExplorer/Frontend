@@ -99,7 +99,8 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
         case OrdersConstants.PUT_ORDER_SUCCESS:
             return {
                 ...state,
-                put_order_error: ''
+                put_order_error: '',
+                order: action.order
             }
         case OrdersConstants.PUT_ORDER_FAIL:
             return {

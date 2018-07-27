@@ -162,9 +162,10 @@ export function deleteOrder(id, callback) {
 }
 
 export function putOrder(order, callback) {
-    function success() {
+    function success(order) {
         return {
-            type: OrdersConstants.PUT_ORDER_SUCCESS
+            type: OrdersConstants.PUT_ORDER_SUCCESS,
+            order
         }
     }
     function failed() {
@@ -181,7 +182,7 @@ export function putOrder(order, callback) {
     return dispatch => {
         dispatch(request())
         OrdersService.putOrder(order).then(() => {
-            dispatch(success())
+            dispatch(success(order))
             callback()
         }).catch(() => {
             dispatch(failed())

@@ -17,7 +17,7 @@ class OrderPage extends React.Component {
         this.state = {
             modalRemove: false,
             modalModify: false,
-            modifyResult: ''
+            modifyResult: '',
         }
         this.toggleModalModify = this.toggleModalModify.bind(this)
         this.toggleModalRemove = this.toggleModalRemove.bind(this)
@@ -25,7 +25,6 @@ class OrderPage extends React.Component {
         this.handleModify = this.handleModify.bind(this)
         this.handleChange = this.handleChange.bind(this)
     }
-
 
     componentDidMount() {
         const { match: { params: { id } } } = this.props
