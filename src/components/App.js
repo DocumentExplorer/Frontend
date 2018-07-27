@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { Switch, BrowserRouter, Route } from 'react-router-dom'
 import Navbar from './Navbar/Navbar'
-import { LoginPage, Dashboard, OrderPage, OrdersPage, ManagementPage, UserPage } from './pages'
+import { LoginPage, Dashboard, OrderPage, OrdersPage, ManagementPage, UserPage, LogPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
 import { AdminRoute } from './helpers/AdminRoute'
 import { checkLogining } from '../redux/actions'
 import { connect } from 'react-redux'
 import './App.css'
+
 
 class App extends Component {
   componentDidMount() {
@@ -18,9 +19,11 @@ class App extends Component {
         <Fragment>
           <Navbar />
           <Switch>
+
             <PrivateRoute path="/orders/:year" component={OrdersPage} />
             <PrivateRoute path="/order/:id" component={OrderPage} />
-            <AdminRoute path="/users/:username" component={UserPage}/>
+            <AdminRoute path="/logs/:id" component={LogPage} />
+            <AdminRoute path="/users/:username" component={UserPage} />
             <AdminRoute path="/management" component={ManagementPage} />
             <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/orders" component={OrdersPage} />
