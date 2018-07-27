@@ -17,6 +17,7 @@ export function getLogs() {
 
     return dispatch => {
         dispatch(request())
+        console.log('start')
         LogsService.getLogs()
             .then((data) => {
                 dispatch(success(data))

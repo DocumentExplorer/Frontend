@@ -1,7 +1,7 @@
 import { LogsConstants } from '../constants'
 
 const initState = {
-
+    requestLogs: true
 }
 
 export default function (state = initState, action) {
