@@ -32,9 +32,14 @@ class Dashboard extends React.Component {
     render() {
         return (
             <Container>
-                <Row className="custom-row">
-                    <NewOrder />
-                </Row>
+                {
+                    localStorage.getItem('role') == 'complementer'
+                        ? ''
+                        : <Row className="custom-row">
+                            <NewOrder />
+                        </Row>
+                }
+
                 <Row className="custom-row">
                     <Col md="9" sm="12">
                         <FindForm />

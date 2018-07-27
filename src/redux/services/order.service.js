@@ -4,7 +4,7 @@ import { getToken } from '../../components/helpers/getToken'
 import { ApiConstants } from '../constants'
 
 function getOrders() {
-    if (localStorage.getItem('role') == 'admin') {
+    if (localStorage.getItem('role') == 'admin' || localStorage.getItem('role') == 'complementer') {
         return new Promise((resolve, reject) => {
             axios({
                 url: `${ApiConstants.rootURL}/orders`,
