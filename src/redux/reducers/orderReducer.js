@@ -92,6 +92,10 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
                 ...state,
                 getOrderRequest: true
             }
+        case OrdersConstants.DELETE_ORDER_SUCCESS:
+            return {
+                ...state
+            }
         default:
             return state
     }

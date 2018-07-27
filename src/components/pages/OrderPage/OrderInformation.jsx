@@ -1,8 +1,10 @@
 import React from 'react'
 import { Row, Card, CardBody, CardTitle, Fa, CardFooter } from 'mdbreact'
 import _ from 'lodash'
+import { Redirect } from 'react-router-dom'
 
 export const OrderInformation = ({ order, footer: Footer, ...props }) => {
+    
     return (
         <Row>
             <Card {...props}>
@@ -37,7 +39,7 @@ export const OrderInformation = ({ order, footer: Footer, ...props }) => {
                     </CardTitle>
                 </CardBody>
                 <CardFooter>
-                    <Footer />
+                    <Footer {...props} />
                 </CardFooter>
             </Card>
         </Row>

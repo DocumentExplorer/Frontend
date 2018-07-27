@@ -2,9 +2,10 @@ import React from 'react'
 import './order.css'
 import ApiHOC from '../../helpers/ApiHOC'
 import { connect } from 'react-redux'
-import { getOrderById } from '../../../redux/actions'
+import { getOrderById, deleteOrder } from '../../../redux/actions'
 import { Container, Button } from 'mdbreact'
 import { OrderInformation } from './OrderInformation'
+import { MyModal } from '../../Modal/MyModal';
 
 
 class OrderPage extends React.Component {
@@ -17,6 +18,8 @@ class OrderPage extends React.Component {
         }
         this.toggleModalModify = this.toggleModalModify.bind(this)
         this.toggleModalRemove = this.toggleModalRemove.bind(this)
+        this.handleDelete = this.handleDelete.bind(this)
+        this.handleModify = this.handleModify.bind(this)
     }
 
 
@@ -38,9 +41,15 @@ class OrderPage extends React.Component {
     }
 
     handleDelete() {
-
+        const { match: { params: { id } } } = this.props
+        this.props.deleteOrder(id, () => {
+            this.props.history.push('/')
+        })
     }
 
+    handleModify(order) {
+
+    }
 
     render() {
         return (
@@ -51,6 +60,10 @@ class OrderPage extends React.Component {
                     order={this.props.orders.order}
                     style={{ width: '100%', marginTop: '50px' }}
                     footer={Footer}
+                    modalModify={this.state.modalModify}
+                    modalRemove={this.state.modalRemove}
+                    toggleModalRemove={this.toggleModalRemove}
+                    toggleModalModify={this.toggleModalModify}
                     handleDelete={this.handleDelete}
                 />
             </Container>
@@ -64,13 +77,40 @@ function mapStateToProps({ orders }) {
     }
 }
 
-const Footer = ({ handleDelete }) => (
-    <React.Fragment>
-        <Button color="danger">Usuń</Button>
-        <Button color="primary">Modyfikuj</Button>
-    </React.Fragment>
+const DeleteOrderConfirmation = () => (
+    <p>Czy na pewno chcesz usunąć to zleceni?</p>
 )
 
+const ModifyModal = () => (
+    <p>asd</p>
+)
 
-const component = connect(mapStateToProps, { getOrderById })(OrderPage)
+const Footer = ({ handleDelete, toggleModalModify, toggleModalRemove, handleModify, ...props }) => {
+    console.log(props)
+    return (
+        <React.Fragment>
+            <Button color="danger" onClick={(e) => toggleModalRemove()}>Usuń</Button>
+            <Button color="primary" onClick={(e) => toggleModalModify()}>Modyfikuj</Button>
+            <MyModal
+                test={props.modalRemove}
+                component={DeleteOrderConfirmation}
+                sumbit={handleDelete}
+                title="Usuwanie"
+                sumbitText="Usuń"
+                toggle={toggleModalRemove}
+            />
+            <MyModal
+                test={props.modalModify}
+                component={ModifyModal}
+                sumbit={handleModify}
+                toggle={toggleModalModify}
+                title="Modyfikacja zlecenia"
+                sumbitText="Modyfikuj"
+            />
+        </React.Fragment>
+    )
+}
+
+
+const component = connect(mapStateToProps, { getOrderById, deleteOrder })(OrderPage)
 export { component as OrderPage }

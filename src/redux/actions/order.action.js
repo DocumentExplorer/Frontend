@@ -145,3 +145,18 @@ export function postOrder(order, callback) {
             })
     }
 }
+
+export function deleteOrder(id, callback) {
+    function success() {
+        return {
+            type: OrdersConstants.DELETE_ORDER_SUCCESS
+        }
+    }
+    return dispatch => {
+        OrdersService.deleteOrder(id)
+            .then(() => {
+                dispatch(success())
+                callback()
+            })
+    }
+}
