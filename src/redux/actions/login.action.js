@@ -33,9 +33,10 @@ export function login(values) {
             localStorage.setItem("token", data.token)
             localStorage.setItem("role", data.role)
             dispatch(success(data.role))
-            console.log(data.expiry)
+            var t = new Date()
+            t.setSeconds(t.getSeconds() + data.expiry * 1000)
+            localStorage.setItem('expiryAt', t.toDateString())
             setTimeout(() => {
-                console.log('dawaj')
                 dispatch(lostSession())
             }, data.expiry * 1000)
         }).catch((err) => {

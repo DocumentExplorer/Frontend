@@ -9,8 +9,26 @@ import FindedOrders from './FindedOrders'
 import { Choose } from '../../helpers/Choose'
 import { OnActionHOC } from '../../helpers/OnActionHOC'
 import NewOrder from './NewOrder'
+import { logout } from '../../../redux/actions'
 
 class Dashboard extends React.Component {
+
+    componentDidMount() {
+        // console.log(Date.parse(localStorage.getItem('expiryAt')) - new Date().getTime())
+        // if (Date.parse(localStorage.getItem('expiryAt')) - new Date().getTime() > 0) {
+        //     let end = Date.parse(localStorage.getItem('expiryAt'))
+        //     console.log('działa')
+        //     console.log((end - new Date().getTime()) / 1000)
+        //     setTimeout(() => {
+        //         this.props.logout()
+        //     }, (end - new Date().getTime()) / 1000)
+
+        // } else {
+
+        //     this.props.logout()
+        // }
+    }
+
     render() {
         return (
             <Container>
@@ -43,10 +61,11 @@ class Dashboard extends React.Component {
 }
 
 
-function mapStateToProps({ orders }) {
+function mapStateToProps({ orders, loginResult }) {
     return {
-        orders
+        orders,
+        loginResult
     }
 }
-const result = connect(mapStateToProps)(Dashboard)
+const result = connect(mapStateToProps, { logout })(Dashboard)
 export { result as Dashboard }
