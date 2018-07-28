@@ -8,7 +8,8 @@ import { OrderInformation } from './OrderInformation'
 import { MyModal } from '../../Modal/MyModal';
 import { addNewOrder } from '../DashboardPage/NewOrder'
 import _ from 'lodash'
-
+import Permissions from './Permissions'
+import { Footer } from './Footer'
 
 class OrderPage extends React.Component {
 
@@ -93,7 +94,6 @@ class OrderPage extends React.Component {
                     component={OrderInformation}
                     test={this.props.orders.getOrderRequest}
                     order={this.props.orders.order}
-                    style={{ width: '100%', marginTop: '50px' }}
                     footer={Footer}
                     modalModify={this.state.modalModify}
                     modalRemove={this.state.modalRemove}
@@ -115,38 +115,6 @@ function mapStateToProps({ orders }) {
     }
 }
 
-const DeleteOrderConfirmation = () => (
-    <p>Czy na pewno chcesz usunąć to zleceni?</p>
-)
-
-const Footer = ({ handleDelete, toggleModalModify, toggleModalRemove, handleModify, modifyResult, ...props }) => {
-    console.log(props)
-    return (
-        <React.Fragment>
-            <Button color="danger" onClick={(e) => toggleModalRemove()}>Usuń</Button>
-            <Button color="primary" onClick={(e) => toggleModalModify()}>Modyfikuj</Button>
-            <MyModal
-                test={props.modalRemove}
-                component={DeleteOrderConfirmation}
-                sumbit={handleDelete}
-                title="Usuwanie"
-                sumbitText="Usuń"
-                toggle={toggleModalRemove}
-            />
-            <MyModal
-                test={props.modalModify}
-                component={addNewOrder}
-                sumbit={handleModify}
-                toggle={toggleModalModify}
-                title="Modyfikacja zlecenia"
-                sumbitText="Modyfikuj"
-                handleChange={props.handleChange}
-                success={false}
-                message={modifyResult}
-            />
-        </React.Fragment>
-    )
-}
 
 
 const component = connect(mapStateToProps, { getOrderById, deleteOrder, putOrder })(OrderPage)
