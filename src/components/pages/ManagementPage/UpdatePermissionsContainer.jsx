@@ -32,11 +32,19 @@ class UpdatePermissionsContainer extends React.Component {
 
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            permissions: nextProps.permissions.permissions
+        })
+    }
+
     componentDidMount() {
         this.props.getPermissions()
+
     }
 
     render() {
+        console.log(this.state)
         let allow = false
         if ((this.props.permissions.requestPermissions == false) && (this.state.modalUpdate == true)) {
             console.log('dawaj')
@@ -53,6 +61,7 @@ class UpdatePermissionsContainer extends React.Component {
                     title="Uprawnienia"
                     toggle={this.toggleModalUpdate}
                     handleChange={this.handleChange}
+                    permissions={this.state.permissions}
                 />
             </Fragment>
         )

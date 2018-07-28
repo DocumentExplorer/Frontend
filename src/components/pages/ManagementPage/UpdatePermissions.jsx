@@ -1,8 +1,43 @@
 import React, { Fragment } from 'react'
+import { Table, Col } from 'mdbreact'
 
-
-export const UpdatePermissions = () => (
+export const UpdatePermissions = ({ permissions }) => (
     <Fragment>
-        
+        <Table>
+            <thead>
+                <tr>
+                    <td>Typ</td>
+                    <td>Użytkownik</td>
+                    <td>Competent</td>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    Object.keys(permissions).map((value) => (
+                        <tr key={value}>
+                            <td>
+                                {value}
+                            </td>
+                            <td>
+                                <input
+                                    type="radio"
+                                    onChange={this.handleChange}
+                                    value="user"
+                                    name={value}
+                                />
+                            </td>
+                            <td>
+                                <input
+                                    type="radio"
+                                    onChange={this.handleChange}
+                                    value="competent"
+                                    name={value}
+                                />
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </Table>
     </Fragment>
 )
