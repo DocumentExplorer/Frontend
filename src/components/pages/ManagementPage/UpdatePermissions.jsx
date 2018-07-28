@@ -19,20 +19,40 @@ export const UpdatePermissions = ({ permissions }) => (
                                 {value}
                             </td>
                             <td>
-                                <input
-                                    type="radio"
-                                    onChange={this.handleChange}
-                                    value="user"
-                                    name={value}
-                                />
+                                {
+                                    permissions[value] === 'user' ?
+                                        <input
+                                            type="radio"
+                                            onChange={this.handleChange}
+                                            value="user"
+                                            name={value}
+                                            defaultChecked
+                                        />
+                                        : <input
+                                            type="radio"
+                                            onChange={this.handleChange}
+                                            value="user"
+                                            name={value}
+                                        />
+                                }
                             </td>
                             <td>
-                                <input
-                                    type="radio"
-                                    onChange={this.handleChange}
-                                    value="competent"
-                                    name={value}
-                                />
+                                {
+                                    permissions[value] === 'competent' ?
+                                        <input
+                                            type="radio"
+                                            onChange={this.handleChange}
+                                            value="competent"
+                                            name={value}
+                                            defaultChecked
+                                        />
+                                        : <input
+                                            type="radio"
+                                            onChange={this.handleChange}
+                                            value="competent"
+                                            name={value}
+                                        />
+                                }
                             </td>
                         </tr>
                     ))
