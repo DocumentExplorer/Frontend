@@ -3,7 +3,7 @@ import React from 'react'
 const ApiHOC = ({ test, component: Component, ...data }) => {
     console.log(test)
     return (
-        test === true
+        (test) === true
             ? <Waiting />
             : <Component {...data} test={test} />
     )
