@@ -27,7 +27,10 @@ export function getPermissions() {
     }
 }
 
-export function putPermissions(permissions) {
+export function putPermissions(permissions, callback) {
+
+    console.log(permissions)
+
     function success() {
         return {
             type: PermissionsConstants.PUT_PERMISSIONS_SUCCESS
@@ -45,6 +48,7 @@ export function putPermissions(permissions) {
         PermissionsService.putPermissions(permissions)
             .then(() => {
                 dispatch(success())
+                callback()
             }).catch(() => {
                 dispatch(lostSession())
             })

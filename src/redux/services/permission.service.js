@@ -16,16 +16,17 @@ function getPermissions() {
             },
             method: 'GET'
         }).then((res) => {
-            console.log(res)
+            
             resolve(res.data)
         }).catch((err) => {
-            console.log(err)
+            
             reject()
         })
     })
 }
 
 function putPermissions(permissions) {
+    console.log(permissions)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/permissions`,
@@ -33,11 +34,13 @@ function putPermissions(permissions) {
                 'Authorization': getToken(),
                 'Content-Type': 'application/json'
             },
-            method: 'GET',
+            method: 'PUT',
             data: permissions
         }).then((res) => {
+            console.log(res)
             resolve()
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })

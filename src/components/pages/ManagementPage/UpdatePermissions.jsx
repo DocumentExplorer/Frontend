@@ -38,18 +38,18 @@ export const UpdatePermissions = ({ permissions, handleChange }) => (
                             </td>
                             <td>
                                 {
-                                    permissions[value] === 'competent' ?
+                                    permissions[value] === 'complementer' ?
                                         <input
                                             type="radio"
                                             onChange={handleChange}
-                                            value="competent"
+                                            value="complementer"
                                             name={value}
                                             defaultChecked
                                         />
                                         : <input
                                             type="radio"
                                             onChange={handleChange}
-                                            value="competent"
+                                            value="complementer"
                                             name={value}
                                         />
                                 }
