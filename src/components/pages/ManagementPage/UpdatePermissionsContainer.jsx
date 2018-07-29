@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { getPermissions } from '../../../redux/actions'
+import { getPermissions, putPermissions } from '../../../redux/actions'
 import ApiHOC from '../../helpers/ApiHOC';
 import { UpdatePermissions } from './UpdatePermissions';
 import { Button } from 'mdbreact'
 import { MyModal } from '../../Modal/MyModal';
+import _ from 'lodash'
 
 class UpdatePermissionsContainer extends React.Component {
 
@@ -25,11 +26,17 @@ class UpdatePermissionsContainer extends React.Component {
     }
 
     updatePermissions() {
-
+        console.log('update')
+        this.props.putPermissions(this.state.permissions)
     }
 
-    handleChange() {
-
+    handleChange(e) {
+        this.setState({
+            permissions: {
+                ...this.state.permissions,
+                [e.target.name]: e.target.value
+            }
+        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -74,5 +81,5 @@ function mapStateToProps({ permissions }) {
     }
 }
 
-const component = connect(mapStateToProps, { getPermissions })(UpdatePermissionsContainer)
+const component = connect(mapStateToProps, { getPermissions, putPermissions })(UpdatePermissionsContainer)
 export default component

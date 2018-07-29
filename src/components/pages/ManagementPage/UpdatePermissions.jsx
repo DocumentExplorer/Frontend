@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Table, Col } from 'mdbreact'
 
-export const UpdatePermissions = ({ permissions }) => (
+export const UpdatePermissions = ({ permissions, handleChange }) => (
     <Fragment>
         <Table>
             <thead>
@@ -23,14 +23,14 @@ export const UpdatePermissions = ({ permissions }) => (
                                     permissions[value] === 'user' ?
                                         <input
                                             type="radio"
-                                            onChange={this.handleChange}
+                                            onChange={handleChange}
                                             value="user"
                                             name={value}
                                             defaultChecked
                                         />
                                         : <input
                                             type="radio"
-                                            onChange={this.handleChange}
+                                            onChange={handleChange}
                                             value="user"
                                             name={value}
                                         />
@@ -41,14 +41,14 @@ export const UpdatePermissions = ({ permissions }) => (
                                     permissions[value] === 'competent' ?
                                         <input
                                             type="radio"
-                                            onChange={this.handleChange}
+                                            onChange={handleChange}
                                             value="competent"
                                             name={value}
                                             defaultChecked
                                         />
                                         : <input
                                             type="radio"
-                                            onChange={this.handleChange}
+                                            onChange={handleChange}
                                             value="competent"
                                             name={value}
                                         />

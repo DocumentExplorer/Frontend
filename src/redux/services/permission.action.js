@@ -16,8 +16,10 @@ function getPermissions() {
             },
             method: 'GET'
         }).then((res) => {
+            console.log(res)
             resolve(res.data)
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })
