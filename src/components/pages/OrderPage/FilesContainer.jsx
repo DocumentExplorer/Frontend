@@ -2,6 +2,8 @@ import React from 'react'
 import { Row } from 'mdbreact'
 import { FilesList } from './Files'
 import _ from 'lodash'
+import { connect } from 'react-redux'
+import { download } from '../../../redux/actions'
 
 class FilesContainer extends React.Component {
 
@@ -10,7 +12,7 @@ class FilesContainer extends React.Component {
     }
 
     download(id) {
-        console.log(id)
+        this.props.download(id)
     }
 
     componentWillMount() {
@@ -46,4 +48,10 @@ class FilesContainer extends React.Component {
     }
 }
 
-export default FilesContainer
+const mapStateToProps = ({ file }) => {
+    return {
+        file
+    }
+}
+
+export default connect(mapStateToProps, { download })(FilesContainer)

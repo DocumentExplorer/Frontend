@@ -1,6 +1,10 @@
 import { FileConstants } from '../constants'
 
-export default function (state, action) {
+const initState = {
+
+}
+
+export default function (state = initState, action) {
     switch (action.type) {
         case FileConstants.GET_FILE_SUCCESS:
             return state

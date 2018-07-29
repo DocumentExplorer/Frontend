@@ -74,6 +74,7 @@ export function changePassword(data) {
     })
 }
 
+
 export const UserService = {
     getUsers,
     deleteUser,

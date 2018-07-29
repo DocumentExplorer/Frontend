@@ -52,7 +52,7 @@ class UsersContainer extends React.Component {
             <Fragment>
                 <h2>Użytkownicy</h2>
                 <FindUserForm handleSearching={this.handleSearching.bind(this)} value={this.state.user} />
-                <Users {...this.props} users={this.state.users} />
+                <Users {...this.props} users={this.state.users} dane="masło"/>
             </Fragment>
         )
     }
