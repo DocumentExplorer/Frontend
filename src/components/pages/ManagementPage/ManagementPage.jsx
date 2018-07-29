@@ -8,6 +8,7 @@ import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
 import { DeleteUserConfirmation } from './DeleteUserConfirmation'
+import UpdatePermissionsContainer from './UpdatePermissionsContainer'
 import Logs from '../../Logs/Logs'
 import _ from 'lodash'
 
@@ -88,7 +89,9 @@ class ManagementPage extends React.Component {
         this.props.deleteUser(this.state.deleteId)
     }
 
+    handlePermissions() {
 
+    }
 
     handleSelect(role) {
         this.setState({
@@ -104,7 +107,7 @@ class ManagementPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers()
-        this.props.getLogs()
+
     }
 
     render() {
@@ -122,15 +125,10 @@ class ManagementPage extends React.Component {
                             deleteUser={this.deleteUser}
                             changeLocation={this.changeLocationUsername}
                         />
+                        <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
+                        <UpdatePermissionsContainer />
                         <div style={{ height: '50px' }}>
                         </div>
-                        <ApiHOC
-                            test={this.props.logs.requestLogs}
-                            component={Logs}
-                            data={this.props.logs.logs}
-                            changeLocation={this.changeLocationoLog}
-                        />
-                        <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
                         <MyModal
                             test={this.state.addWindow}
                             toggle={this.toggleAdd}

@@ -4,10 +4,9 @@ import _ from 'lodash'
 import { Redirect } from 'react-router-dom'
 
 export const OrderInformation = ({ order, footer: Footer, ...props }) => {
-    
     return (
         <Row>
-            <Card {...props}>
+            <Card style={{ width: '100%', marginTop: '50px' }}>
                 <CardBody>
                     <CardTitle>
                         <Fa icon="file-o" />
