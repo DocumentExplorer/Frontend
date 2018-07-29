@@ -3,7 +3,7 @@ import ApiHOC from '../../helpers/ApiHOC'
 import { Container, Row, Col, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
 import { connect } from 'react-redux'
 import { getUsers, register, deleteUser, getLogs } from '../../../redux/actions'
-import { Users } from '../../Users/Users';
+import UsersContainer from './UsersContainer';
 import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
@@ -119,7 +119,7 @@ class ManagementPage extends React.Component {
                     <Col>
                         <ApiHOC
                             test={this.props.users.request}
-                            component={Users}
+                            component={UsersContainer}
                             data={this.props.users.users}
                             addWindow={this.props.users.request}
                             deleteUser={this.deleteUser}
