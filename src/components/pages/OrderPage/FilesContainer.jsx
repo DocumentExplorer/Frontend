@@ -7,12 +7,9 @@ class FilesContainer extends React.Component {
 
     constructor() {
         super()
-        this.state = {
-            files: {}
-        }
     }
 
-    componentDidMount() {
+    componentWillMount() {
         this.setState({
             files: this.props.order
         })
@@ -25,12 +22,17 @@ class FilesContainer extends React.Component {
     }
 
     render() {
-        console.log(this.props)
+        console.log(this.state)
+        let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
+        console.log(files)
         return (
-            <Row>
+            <Row style={{ marginBottom: '80px' }}>
                 <FilesList
                     names={['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId']}
-                    files={_.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])}
+                    files={
+                        Object.keys(files).map((value) => {
+                            return [value, files[value]]
+                        })}
                     requires={_.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
                         'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])}
                 />
