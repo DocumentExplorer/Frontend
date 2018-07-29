@@ -9,6 +9,10 @@ class FilesContainer extends React.Component {
         super()
     }
 
+    download(id) {
+        console.log(id)
+    }
+
     componentWillMount() {
         this.setState({
             files: this.props.order
@@ -28,6 +32,7 @@ class FilesContainer extends React.Component {
         return (
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList
+                    download={this.download}
                     names={['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId']}
                     files={
                         Object.keys(files).map((value) => {
