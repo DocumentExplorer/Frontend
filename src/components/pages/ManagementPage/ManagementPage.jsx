@@ -89,10 +89,6 @@ class ManagementPage extends React.Component {
         this.props.deleteUser(this.state.deleteId)
     }
 
-    handlePermissions() {
-
-    }
-
     handleSelect(role) {
         this.setState({
             role: role.value
@@ -107,7 +103,9 @@ class ManagementPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers()
-
+        setInterval(() => {
+            this.props.getUsers()
+        }, 60000)
     }
 
     render() {
