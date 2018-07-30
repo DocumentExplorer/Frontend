@@ -12,9 +12,17 @@ class FilesContainer extends React.Component {
     constructor() {
         super()
         this.download = this.download.bind(this)
+        this.drop = this.drop.bind(this)
     }
 
-    addFile(data, file) {
+    drop(file) {
+        if (file[file.length - 1].type == "application/pdf") {
+            console.log(file)
+        }
+
+    }
+
+    addFile(file) {
         this.props.upload()
     }
 
@@ -57,6 +65,7 @@ class FilesContainer extends React.Component {
                     title="Dodaj pliki"
                     sumbitText="Wyślij"
                     sumbit={this.addFile}
+                    drop={this.drop}
                 />
             </Row>
         )
