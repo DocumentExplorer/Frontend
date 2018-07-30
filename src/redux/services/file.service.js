@@ -32,9 +32,11 @@ function download(id) {
     })
 }
 
-function upload(data, file) {
+function upload(file) {
     let formData = new FormData()
+    console.log(file)
     formData.append("file", file)
+    console.log(formData)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/files/upload`,
@@ -45,7 +47,7 @@ function upload(data, file) {
             },
             data: formData
         }).then((res) => {
-            console.log(res)
+            console.log(res.config)
             resolve()
         }).catch((err) => {
             console.log(err)

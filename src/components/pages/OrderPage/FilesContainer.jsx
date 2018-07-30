@@ -11,19 +11,48 @@ class FilesContainer extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            message: '',
+            success: false,
+            border_color: '#777777'
+        }
         this.download = this.download.bind(this)
         this.drop = this.drop.bind(this)
+        this.addFile = this.addFile.bind(this)
     }
 
     drop(file) {
         if (file[file.length - 1].type == "application/pdf") {
             console.log(file)
+            this.setState({
+                message: 'Gotowy do przesłania',
+                success: true,
+                border_color: 'green',
+                file: file[file.length - 1]
+            })
+        } else {
+            this.setState({
+                message: 'Zły typ pliku',
+                success: false,
+                border_color: 'red'
+            })
         }
+
 
     }
 
-    addFile(file) {
-        this.props.upload()
+    addFile() {
+        if (this.state.success === true) {
+            this.props.upload(this.state.file)
+            this.setState({
+                success: false,
+                message: '',
+                border_color: '#777777'
+            })
+            setTimeout(() => {
+                this.props.toggleAdd()
+            }, 2000)
+        }
     }
 
     download(id) {
@@ -66,6 +95,9 @@ class FilesContainer extends React.Component {
                     sumbitText="Wyślij"
                     sumbit={this.addFile}
                     drop={this.drop}
+                    message={this.state.message}
+                    success={this.state.success}
+                    border_color={this.state.border_color}
                 />
             </Row>
         )

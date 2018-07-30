@@ -1,5 +1,6 @@
 import { FileConstants } from '../constants'
 import { FileService } from '../services'
+import { lostSession } from './app.action'
 
 export function download(id) {
 
@@ -20,12 +21,12 @@ export function download(id) {
             .then(() => {
                 dispatch(success())
             }).catch(() => {
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }
 
-export function upload(data, file) {
+export function upload(file) {
     function success() {
         return {
             type: FileConstants.POST_FILE_SUCCESS
@@ -45,11 +46,11 @@ export function upload(data, file) {
 
     return dispatch => {
         dispatch(request())
-        FileService.upload(data, file)
+        FileService.upload(file)
             .then(() => {
                 dispatch(success())
             }).catch(() => {
-                dispatch(failed())
+                dispatch(lostSession())
             })
     }
 }
