@@ -1,4 +1,4 @@
-import { ApiConstants } from '../constants'
+import { ApiConstants, OrdersConstants } from '../constants'
 import { OrdersService } from '../services';
 
 export function lostSession() {
@@ -7,22 +7,23 @@ export function lostSession() {
         type: ApiConstants.LOST_SESSION
     }
 }
-
-export function modifyOrderActualState(id) {
-    function success(order) {
-        return {
-            type: ApiConstants.MODIFY_ORDER_ACTUAL_STATE,
-            order
-        }
+function updateOrder(order) {
+    return {
+        type: OrdersConstants.GET_ORDER_SUCCESS,
+        order
     }
-    return dispatch => {
-        OrdersService.getOrderById(id)
-            .then((res) => {
-                dispatch(success(res))
-            })
-    }
-
 }
+
+export function updateActionOrder(id, dispatch) {
+    OrdersService.getOrderById(id)
+        .then((res) => {
+            console.log('update')
+            dispatch(updateOrder(res))
+        }).catch(() => {
+            dispatch(lostSession())
+        })
+}
+
 
 
 

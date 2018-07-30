@@ -20,7 +20,7 @@ export default function (state = initState, action) {
             return state
         case FileConstants.TOGGLE_ADD_FILE:
             let { fileType, isRequired } = action
-            if (fileType !== undefined && fileType.length !== 1) {
+            if (fileType !== undefined && fileType.length > 0) {
                 fileType = fileType.slice(0, -2)
             }
             return {

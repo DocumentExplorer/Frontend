@@ -50,7 +50,7 @@ class FilesContainer extends React.Component {
     }
 
     deleteFile() {
-        this.props.deleteFile(this.state.file_delete_id, () => {
+        this.props.deleteFile(this.state.file_delete_id, this.state.files.id, () => {
             this.props.modifyOrderActualState(this.state.files.id)
         })
         setTimeout(() => {
@@ -80,7 +80,7 @@ class FilesContainer extends React.Component {
                     border_color: '#777777'
                 })
                 this.props.toggleAdd()
-            }, 4000)
+            }, 2000)
         }
     }
 
