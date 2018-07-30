@@ -24,6 +24,7 @@ export const FilesList = ({ files, requires, ...props }) => {
 }
 
 const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
+    console.log(file)
     return (
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px' }}>
@@ -45,10 +46,9 @@ const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
                     }
                     {
                         file[1] === '00000000-0000-0000-0000-000000000000'
-                            ? <Button onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
-                            : <Button onClick={(e) => toggleDelete(file[0])}>Usuń</Button>
+                            ? <Button color="primary" onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
+                            : <Button color="danger" onClick={(e) => toggleDelete(file[1])}>Usuń</Button>
                     }
-
                 </CardFooter>
             </Card>
         </Col>

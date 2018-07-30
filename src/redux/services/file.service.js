@@ -73,7 +73,7 @@ function deleteFile(id) {
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/files/${id}`,
-            method: 'POST',
+            method: 'DELETE',
             headers: {
                 'Authorization': getToken()
             }

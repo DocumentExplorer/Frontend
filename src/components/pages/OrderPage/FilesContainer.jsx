@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { download, upload, toggleAdd, deleteFile, toggleDelete } from '../../../redux/actions'
 import { MyModal } from '../../Modal/MyModal'
 import { UploadModal } from './Upload'
+import { DeleteConfirmation } from '../ManagementPage/DeleteConfirmation';
 
 class FilesContainer extends React.Component {
 
@@ -14,11 +15,14 @@ class FilesContainer extends React.Component {
         this.state = {
             message: '',
             success: false,
-            border_color: '#777777'
+            border_color: '#777777',
+            modalDeleteFile: false
         }
         this.download = this.download.bind(this)
         this.drop = this.drop.bind(this)
         this.addFile = this.addFile.bind(this)
+        this.toggleDelete = this.toggleDelete.bind(this)
+        this.deleteFile = this.deleteFile.bind(this)
     }
 
     drop(file) {
@@ -39,8 +43,16 @@ class FilesContainer extends React.Component {
     }
 
     toggleDelete(id) {
-
+        this.setState({
+            file_delete_id: id,
+            modalDeleteFile: !this.state.modalDeleteFile
+        })
     }
+
+    deleteFile() {
+        this.props.deleteFile(this.state.file_delete_id)
+    }
+
 
     addFile() {
         console.log(this.props)
@@ -96,6 +108,7 @@ class FilesContainer extends React.Component {
                         })
                     }
                     toggle={this.props.toggleAdd}
+                    toggleDelete={this.toggleDelete}
                 />
                 <MyModal
                     test={this.props.file.modalAddFile}
@@ -108,6 +121,14 @@ class FilesContainer extends React.Component {
                     message={this.state.message}
                     success={this.state.success}
                     border_color={this.state.border_color}
+                />
+                <MyModal
+                    test={this.state.modalDeleteFile}
+                    toggle={this.toggleDelete}
+                    component={DeleteConfirmation}
+                    title="Usuwanie"
+                    sumbitText="Usuń"
+                    sumbit={this.deleteFile}
                 />
             </Row>
         )

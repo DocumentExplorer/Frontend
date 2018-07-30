@@ -7,7 +7,7 @@ import UsersContainer from './UsersContainer';
 import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
-import { DeleteUserConfirmation } from './DeleteUserConfirmation'
+import { DeleteConfirmation } from './DeleteConfirmation'
 import UpdatePermissionsContainer from './UpdatePermissionsContainer'
 import Logs from '../../Logs/Logs'
 import _ from 'lodash'
@@ -145,7 +145,7 @@ class ManagementPage extends React.Component {
                             toggle={this.toggleDelete}
                             sumbit={this.handleDelete}
                             sumbitText={"Usuń"}
-                            component={DeleteUserConfirmation}
+                            component={DeleteConfirmation}
                             title={"Usuwanie użytkownika"}
                             error={''}
                         />
