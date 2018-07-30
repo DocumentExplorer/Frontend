@@ -4,12 +4,23 @@ import { FilesList } from './Files'
 import _ from 'lodash'
 import { connect } from 'react-redux'
 import { download } from '../../../redux/actions'
+import { MyModal } from '../../Modal/MyModal'
 
 class FilesContainer extends React.Component {
 
     constructor() {
         super()
+        this.state = {
+            modalAddFile: false
+        }
+        this.toggleAddFile = this.toggleAddFile.bind(this)
         this.download = this.download.bind(this)
+    }
+
+    toggleAddFile() {
+        this.setState({
+            modalAddFile: !this.state.modalAddFile
+        })
     }
 
     download(id) {
@@ -43,6 +54,13 @@ class FilesContainer extends React.Component {
                         })}
                     requires={_.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
                         'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])}
+                />
+                <MyModal
+                    test={this.state.modalAddFile}
+                    toggle={this.toggleAddFile}
+                    component={}
+                    title="Dodaj pliki"
+                    sumbitText="Wyślij"
                 />
             </Row>
         )

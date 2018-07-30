@@ -24,3 +24,33 @@ export function download(id) {
             })
     }
 }
+
+export function upload(data, file) {
+    function success() {
+        return {
+            type: FileConstants.POST_FILE_SUCCESS
+        }
+    }
+
+    function failed() {
+        return {
+            type: FileConstants.POST_FILE_FAIL
+        }
+    }
+    function request() {
+        return {
+            type: FileConstants.POST_FILE_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        FileService.upload(data, file)
+            .then(() => {
+                dispatch(success())
+            }).catch(() => {
+                dispatch(failed())
+            })
+    }
+
+}

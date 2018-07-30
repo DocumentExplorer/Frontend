@@ -10,6 +10,12 @@ export default function (state = initState, action) {
             return state
         case FileConstants.GET_FILE_FAIL:
             return state
+        case FileConstants.POST_FILE_SUCCESS:
+            return state
+        case FileConstants.POST_FILE_FAIL:
+            return state
+        case FileConstants.POST_FILE_REQUEST:
+            return state
         default:
             return state
     }

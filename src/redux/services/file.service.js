@@ -3,7 +3,8 @@ import { ApiConstants } from '../constants'
 import { getToken } from '../../components/helpers/getToken';
 
 export const FileService = {
-    download
+    download,
+    upload
 }
 
 function download(id) {
@@ -27,6 +28,24 @@ function download(id) {
         }).catch((err) => {
             console.log(err)
             reject()
+        })
+    })
+}
+
+function upload(typeFile, file) {
+    let formData = new FormData()
+    formData.append("file", file)
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/files/${id}`,
+            method: 'POST',
+            headers: {
+                'Authorization': getToken(),
+                'Content-Type': 'multipart/form-data'
+            },
+            data: formData
+        }).then((res) => {
+
         })
     })
 }
