@@ -70,3 +70,28 @@ export function toggleAdd(fileType, isRequired) {
         dispatch(toggle(fileType, isRequired))
     }
 }
+
+export function deleteFile(id) {
+    function success() {
+        return {
+            type: FileConstants.DELETE_FILE_SUCCESS
+        }
+    }
+
+    function failed() {
+        return {
+            type: FileConstants.DELETE_FILE_FAIL
+        }
+    }
+
+    return dispatch => {
+        FileService.deleteFile(id)
+            .then(() => {
+                dispatch(success())
+            }).catch(() => {
+                dispatch(failed())
+            })
+
+    }
+
+}

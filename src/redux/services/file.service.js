@@ -4,7 +4,8 @@ import { getToken } from '../../components/helpers/getToken';
 
 export const FileService = {
     download,
-    upload
+    upload,
+    deleteFile
 }
 
 function download(id) {
@@ -67,3 +68,23 @@ function upload(data, file) {
         })
     })
 }
+
+function deleteFile(id) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/files/${id}`,
+            method: 'POST',
+            headers: {
+                'Authorization': getToken()
+            }
+        }).then((res) => {
+            console.log(res)
+            resolve()
+        }).catch((err) => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
+

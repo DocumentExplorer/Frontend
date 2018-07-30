@@ -1,7 +1,8 @@
 import { FileConstants } from '../constants'
 
 const initState = {
-    modalAddFile: false
+    modalAddFile: false,
+    isFileDelivered: false
 }
 
 export default function (state = initState, action) {
@@ -21,12 +22,19 @@ export default function (state = initState, action) {
             if (fileType !== undefined) {
                 fileType = fileType.slice(0, -2)
             }
-            console.log(fileType)
             return {
                 ...state,
                 modalAddFile: !state.modalAddFile,
                 fileType,
                 isRequired
+            }
+        case FileConstants.DELETE_FILE_SUCCESS:
+            return {
+                ...state
+            }
+        case FileConstants.DELETE_FILE_FAIL:
+            return {
+                ...state
             }
         default:
             return state
