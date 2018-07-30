@@ -1,4 +1,4 @@
-import { OrdersConstants } from '../constants'
+import { OrdersConstants, ApiConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat, { convertToNumbers } from '../../components/helpers/DateFormat'
 
@@ -81,6 +81,11 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
                 getOrderRequest: false
 
             }
+        case ApiConstants.MODIFY_ORDER_ACTUAL_STATE:
+            return {
+                ...state,
+                order: action.order
+            }
         case OrdersConstants.GET_ORDER_FAIL:
             return {
                 ...state,
@@ -112,6 +117,19 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
                 ...state,
                 put_order_error: ''
             }
+        case OrdersConstants.PUT_REQUIREMENTS_SUCCESS:
+            return {
+                ...state
+            }
+        case OrdersConstants.PUT_REQUIREMENTS_FAIL:
+            return {
+                ...state
+            }
+        case OrdersConstants.PUT_REQUIREMENTS_REQUEST:
+            return {
+                ...state
+            }
+        
         default:
             return state
     }

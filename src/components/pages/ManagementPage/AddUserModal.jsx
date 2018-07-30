@@ -5,6 +5,7 @@ import Select from 'react-select-me'
 const options = [
     { value: 'admin', label: 'Admin' },
     { value: 'user', label: 'User' },
+    { value: 'complementer', label: 'Complementer' }
 ];
 
 export const AddUserModal = ({ handleChange, handleSelect, role, ...props }) => {

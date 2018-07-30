@@ -1,5 +1,5 @@
 import { OrdersService } from '../services'
-import { OrdersConstants } from '../constants'
+import { OrdersConstants, ApiConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
 import { lostSession } from './app.action'
@@ -27,6 +27,7 @@ export function getOrderById(id) {
         dispatch(request())
         OrdersService.getOrderById(id)
             .then((order) => {
+                console.log('działaanie')
                 dispatch(success(order))
             }).catch(() => {
                 dispatch(failed())
@@ -188,5 +189,48 @@ export function putOrder(order, callback) {
             dispatch(failed())
         })
     }
+}
 
+export function modifyOrderActualState(id) {
+    function success(order) {
+        return {
+            type: ApiConstants.MODIFY_ORDER_ACTUAL_STATE,
+            order
+        }
+    }
+    return dispatch => {
+        OrdersService.getOrderById(id)
+            .then((res) => {
+                console.log(res)
+                dispatch(success(res))
+            })
+    }
+
+}
+
+export function putRequirements(requirements) {
+    function success() {
+        return {
+            type: OrdersConstants.PUT_ORDER_SUCCESS
+        }
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.PUT_ORDER_FAIL
+        }
+    }
+    function request() {
+        return {
+            type: OrdersConstants.PUT_ORDER_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        OrdersService.putRequirements(requirements).then(() => {
+            dispatch(success())
+        }).catch(() => {
+            dispatch(failed())
+        })
+    }
 }

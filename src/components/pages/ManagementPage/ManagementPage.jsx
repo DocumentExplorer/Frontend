@@ -3,11 +3,11 @@ import ApiHOC from '../../helpers/ApiHOC'
 import { Container, Row, Col, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
 import { connect } from 'react-redux'
 import { getUsers, register, deleteUser, getLogs } from '../../../redux/actions'
-import { Users } from '../../Users/Users';
+import UsersContainer from './UsersContainer';
 import './management.css'
 import { MyModal } from '../../Modal/MyModal'
 import { AddUserModal } from './AddUserModal'
-import { DeleteUserConfirmation } from './DeleteUserConfirmation'
+import { DeleteConfirmation } from './DeleteConfirmation'
 import UpdatePermissionsContainer from './UpdatePermissionsContainer'
 import Logs from '../../Logs/Logs'
 import _ from 'lodash'
@@ -89,10 +89,6 @@ class ManagementPage extends React.Component {
         this.props.deleteUser(this.state.deleteId)
     }
 
-    handlePermissions() {
-
-    }
-
     handleSelect(role) {
         this.setState({
             role: role.value
@@ -107,7 +103,9 @@ class ManagementPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers()
-
+        setInterval(() => {
+            this.props.getUsers()
+        }, 60000)
     }
 
     render() {
@@ -119,7 +117,7 @@ class ManagementPage extends React.Component {
                     <Col>
                         <ApiHOC
                             test={this.props.users.request}
-                            component={Users}
+                            component={UsersContainer}
                             data={this.props.users.users}
                             addWindow={this.props.users.request}
                             deleteUser={this.deleteUser}
@@ -147,7 +145,7 @@ class ManagementPage extends React.Component {
                             toggle={this.toggleDelete}
                             sumbit={this.handleDelete}
                             sumbitText={"Usuń"}
-                            component={DeleteUserConfirmation}
+                            component={DeleteConfirmation}
                             title={"Usuwanie użytkownika"}
                             error={''}
                         />

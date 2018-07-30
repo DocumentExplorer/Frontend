@@ -10,6 +10,7 @@ import { addNewOrder } from '../DashboardPage/NewOrder'
 import _ from 'lodash'
 import Permissions from './Permissions'
 import { Footer } from './Footer'
+import FilesContainer from './FilesContainer'
 
 class OrderPage extends React.Component {
 
@@ -103,6 +104,11 @@ class OrderPage extends React.Component {
                     handleChange={this.handleChange}
                     modifyResult={this.state.modifyResult}
                     handleModify={this.handleModify}
+                />
+                <ApiHOC
+                    component={FilesContainer}
+                    test={this.props.orders.getOrderRequest}
+                    order={this.props.orders.order}
                 />
             </Container>
         )

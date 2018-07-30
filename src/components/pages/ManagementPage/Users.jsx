@@ -3,10 +3,9 @@ import { Table } from 'mdbreact'
 import { Fa } from 'mdbreact'
 import { withRouter } from 'react-router-dom'
 
-export const Users = ({ data, changeLocation, ...rest }) => {
+export const Users = ({ users, changeLocation, ...rest }) => {
     return (
         <div style={{ display: 'block', maxHeight: '300px', overflowY: 'auto', marginBottom: '30px' }}>
-            <h3>Użytkownicy</h3>
             <Table className="users-list">
                 <thead >
                     <tr>
@@ -18,7 +17,7 @@ export const Users = ({ data, changeLocation, ...rest }) => {
                 </thead>
                 <tbody>
                     {
-                        data.map((value, index) => (
+                        users.map((value, index) => (
                             <tr key={index} className="user-list-item">
                                 <td onClick={() => changeLocation(value.username)}>{index}</td>
                                 <td onClick={() => changeLocation(value.username)}>
