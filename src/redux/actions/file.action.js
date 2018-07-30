@@ -55,6 +55,18 @@ export function upload(data, file) {
     }
 }
 
+export function toggleDelete() {
+    function toggle() {
+        return {
+            type: FileConstants.TOGGLE_DELETE_FILE
+        }
+    }
+
+    return dispatch => {
+        dispatch(toggle())
+    }
+}
+
 export function toggleAdd(fileType, isRequired) {
 
     function toggle(fileType, isRequired) {
@@ -91,7 +103,5 @@ export function deleteFile(id) {
             }).catch(() => {
                 dispatch(failed())
             })
-
     }
-
 }

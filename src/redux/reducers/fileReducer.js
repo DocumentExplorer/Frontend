@@ -2,6 +2,7 @@ import { FileConstants } from '../constants'
 
 const initState = {
     modalAddFile: false,
+    modalDeleteFile: false,
     isFileDelivered: false
 }
 
@@ -27,6 +28,11 @@ export default function (state = initState, action) {
                 modalAddFile: !state.modalAddFile,
                 fileType,
                 isRequired
+            }
+        case FileConstants.TOGGLE_DELETE_FILE:
+            return {
+                ...state,
+                modalDeleteFile: !state.modalDeleteFile
             }
         case FileConstants.DELETE_FILE_SUCCESS:
             return {

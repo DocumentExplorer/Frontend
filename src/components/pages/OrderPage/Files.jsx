@@ -23,7 +23,7 @@ export const FilesList = ({ files, requires, ...props }) => {
     )
 }
 
-const File = ({ file, isRequired, download, toggle }) => {
+const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
     return (
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px' }}>
@@ -43,7 +43,12 @@ const File = ({ file, isRequired, download, toggle }) => {
                             ? ''
                             : <Button onClick={(e) => download(file[1])}>Pobierz</Button>
                     }
-                    <Button onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
+                    {
+                        file[1] === '00000000-0000-0000-0000-000000000000'
+                            ? <Button onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
+                            : <Button onClick={(e) => toggleDelete(file[0])}>Usuń</Button>
+                    }
+
                 </CardFooter>
             </Card>
         </Col>

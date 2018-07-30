@@ -3,7 +3,7 @@ import { Row } from 'mdbreact'
 import { FilesList } from './Files'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { download, upload, toggleAdd } from '../../../redux/actions'
+import { download, upload, toggleAdd, deleteFile, toggleDelete } from '../../../redux/actions'
 import { MyModal } from '../../Modal/MyModal'
 import { UploadModal } from './Upload'
 
@@ -36,6 +36,10 @@ class FilesContainer extends React.Component {
                 border_color: 'red'
             })
         }
+    }
+
+    toggleDelete(id) {
+
     }
 
     addFile() {
@@ -116,4 +120,4 @@ const mapStateToProps = ({ file }) => {
     }
 }
 
-export default connect(mapStateToProps, { download, upload, toggleAdd })(FilesContainer)
+export default connect(mapStateToProps, { download, upload, toggleAdd, toggleDelete, deleteFile })(FilesContainer)
