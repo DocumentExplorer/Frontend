@@ -99,10 +99,31 @@ function putOrder(order) {
     })
 }
 
+function putRequirements(requirements) {
+    return new Promise((resolve, reject) => {
+        axios({
+            url: `${ApiConstants.rootURL}/orders/requirements`,
+            method: 'PUT',
+            headers: {
+                'Authorization': getToken(),
+                'Content-Type': 'application/json'
+            },
+            data: requirements
+        }).then((res) => {
+            console.log(res)
+            resolve()
+        }).catch((err) => {
+            console.log(err)
+            reject()
+        })
+    })
+}
+
 export const OrdersService = {
     getOrders,
     postOrder,
     getOrderById,
     deleteOrder,
-    putOrder
+    putOrder,
+    putRequirements
 }

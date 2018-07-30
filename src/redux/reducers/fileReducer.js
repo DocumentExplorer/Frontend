@@ -17,9 +17,16 @@ export default function (state = initState, action) {
         case FileConstants.POST_FILE_REQUEST:
             return state
         case FileConstants.TOGGLE_ADD_FILE:
+            let { fileType, isRequired } = action
+            if (fileType !== undefined) {
+                fileType = fileType.slice(0, -2)
+            }
+            console.log(fileType)
             return {
                 ...state,
-                modalAddFile: !state.modalAddFile
+                modalAddFile: !state.modalAddFile,
+                fileType,
+                isRequired
             }
         default:
             return state

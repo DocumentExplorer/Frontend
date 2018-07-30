@@ -3,7 +3,6 @@ import { Col, Card, CardTitle, CardBody, CardFooter, CardHeader, Button } from '
 import _ from 'lodash'
 
 export const FilesList = ({ files, requires, ...props }) => {
-    console.log(files, requires)
     let array = []
     for (let i = 0; i < 9; i++) {
         array.push(
@@ -25,7 +24,6 @@ export const FilesList = ({ files, requires, ...props }) => {
 }
 
 const File = ({ file, isRequired, download, toggle }) => {
-    console.log(file, isRequired)
     return (
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px' }}>
@@ -45,7 +43,7 @@ const File = ({ file, isRequired, download, toggle }) => {
                             ? ''
                             : <Button onClick={(e) => download(file[1])}>Pobierz</Button>
                     }
-                    <Button onClick={(e) => toggle()}>Wyślij</Button>
+                    <Button onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
                 </CardFooter>
             </Card>
         </Col>

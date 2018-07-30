@@ -26,7 +26,7 @@ export function download(id) {
     }
 }
 
-export function upload(file) {
+export function upload(data, file) {
     function success() {
         return {
             type: FileConstants.POST_FILE_SUCCESS
@@ -46,7 +46,7 @@ export function upload(file) {
 
     return dispatch => {
         dispatch(request())
-        FileService.upload(file)
+        FileService.upload(data, file)
             .then(() => {
                 dispatch(success())
             }).catch(() => {
@@ -55,15 +55,18 @@ export function upload(file) {
     }
 }
 
-export function toggleAdd() {
+export function toggleAdd(fileType, isRequired) {
 
-    function toggle() {
+    function toggle(fileType, isRequired) {
         return {
-            type: FileConstants.TOGGLE_ADD_FILE
+            type: FileConstants.TOGGLE_ADD_FILE,
+            fileType,
+            isRequired
         }
     }
+    console.log(fileType, isRequired)
 
     return dispatch => {
-        dispatch(toggle())
+        dispatch(toggle(fileType, isRequired))
     }
 }

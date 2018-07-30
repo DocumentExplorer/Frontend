@@ -23,7 +23,6 @@ class FilesContainer extends React.Component {
 
     drop(file) {
         if (file[file.length - 1].type == "application/pdf") {
-            console.log(file)
             this.setState({
                 message: 'Gotowy do przesłania',
                 success: true,
@@ -37,13 +36,16 @@ class FilesContainer extends React.Component {
                 border_color: 'red'
             })
         }
-
-
     }
 
     addFile() {
+        console.log(this.props)
         if (this.state.success === true) {
-            this.props.upload(this.state.file)
+            this.props.upload({
+                OrderId: this.state.files.id,
+                fileType: this.props.file.fileType,
+                isRequired: this.props.file.isRequired
+            }, this.state.file)
             this.setState({
                 success: false,
                 message: '',
@@ -72,7 +74,8 @@ class FilesContainer extends React.Component {
 
     render() {
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
-        console.log(this.props)
+        let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
+            'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
         return (
 
             <Row style={{ marginBottom: '80px' }}>
@@ -83,8 +86,11 @@ class FilesContainer extends React.Component {
                         Object.keys(files).map((value) => {
                             return [value, files[value]]
                         })}
-                    requires={_.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
-                        'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])}
+                    requires={
+                        Object.keys(requires).map((value) => {
+                            return [value, requires[value]]
+                        })
+                    }
                     toggle={this.props.toggleAdd}
                 />
                 <MyModal

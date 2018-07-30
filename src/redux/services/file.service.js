@@ -32,11 +32,10 @@ function download(id) {
     })
 }
 
-function upload(file) {
+function upload(data, file) {
+    console.log(data)
     let formData = new FormData()
-    console.log(file)
     formData.append("file", file)
-    console.log(formData)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/files/upload`,
@@ -47,8 +46,21 @@ function upload(file) {
             },
             data: formData
         }).then((res) => {
-            console.log(res.config)
-            resolve()
+            console.log(res)
+            axios({
+                url: `${ApiConstants.rootURL}/${res.data.location}`,
+                method: 'PUT',
+                headers: {
+                    'Authorization': getToken(),
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            }).then((res) => {
+                console.log(res)
+                resolve()
+            }).catch((err) => {
+                console.log(err)
+            })
         }).catch((err) => {
             console.log(err)
             reject()

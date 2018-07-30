@@ -188,5 +188,31 @@ export function putOrder(order, callback) {
             dispatch(failed())
         })
     }
+}
 
+export function putRequirements(requirements) {
+    function success() {
+        return {
+            type: OrdersConstants.PUT_ORDER_SUCCESS
+        }
+    }
+    function failed() {
+        return {
+            type: OrdersConstants.PUT_ORDER_FAIL
+        }
+    }
+    function request() {
+        return {
+            type: OrdersConstants.PUT_ORDER_REQUEST
+        }
+    }
+
+    return dispatch => {
+        dispatch(request())
+        OrdersService.putRequirements(requirements).then(() => {
+            dispatch(success())
+        }).catch(() => {
+            dispatch(failed())
+        })
+    }
 }
