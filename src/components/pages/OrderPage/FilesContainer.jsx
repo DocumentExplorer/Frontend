@@ -9,6 +9,7 @@ class FilesContainer extends React.Component {
 
     constructor() {
         super()
+        this.download = this.download.bind(this)
     }
 
     download(id) {
