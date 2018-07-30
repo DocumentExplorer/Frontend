@@ -4,10 +4,9 @@ import Navbar from './Navbar/Navbar'
 import { LoginPage, Dashboard, OrderPage, OrdersPage, ManagementPage, UserPage, LogPage } from './pages'
 import { PrivateRoute } from './helpers/PrivateRoute'
 import { AdminRoute } from './helpers/AdminRoute'
-import { checkLogining } from '../redux/actions'
+import { checkLogining, toggleAdd } from '../redux/actions'
 import { connect } from 'react-redux'
 import './App.css'
-
 
 class App extends Component {
   componentDidMount() {
@@ -35,4 +34,4 @@ class App extends Component {
 }
 
 
-export default connect(undefined, { checkLogining })(App);
+export default connect(undefined, { checkLogining, toggleAdd })(App);

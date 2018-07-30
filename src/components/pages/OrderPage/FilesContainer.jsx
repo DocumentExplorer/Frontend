@@ -3,24 +3,19 @@ import { Row } from 'mdbreact'
 import { FilesList } from './Files'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { download } from '../../../redux/actions'
+import { download, upload, toggleAdd } from '../../../redux/actions'
 import { MyModal } from '../../Modal/MyModal'
+import { UploadModal } from './Upload'
 
 class FilesContainer extends React.Component {
 
     constructor() {
         super()
-        this.state = {
-            modalAddFile: false
-        }
-        this.toggleAddFile = this.toggleAddFile.bind(this)
         this.download = this.download.bind(this)
     }
 
-    toggleAddFile() {
-        this.setState({
-            modalAddFile: !this.state.modalAddFile
-        })
+    addFile(data, file) {
+        this.props.upload()
     }
 
     download(id) {
@@ -32,7 +27,6 @@ class FilesContainer extends React.Component {
             files: this.props.order
         })
     }
-
     componentWillReceiveProps(nextProps) {
         this.setState({
             files: nextProps.order
@@ -40,10 +34,10 @@ class FilesContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
-        console.log(files)
+        console.log(this.props)
         return (
+
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList
                     download={this.download}
@@ -54,13 +48,15 @@ class FilesContainer extends React.Component {
                         })}
                     requires={_.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
                         'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])}
+                    toggle={this.props.toggleAdd}
                 />
                 <MyModal
-                    test={this.state.modalAddFile}
-                    toggle={this.toggleAddFile}
-                    component={}
+                    test={this.props.file.modalAddFile}
+                    toggle={this.props.toggleAdd}
+                    component={UploadModal}
                     title="Dodaj pliki"
                     sumbitText="Wyślij"
+                    sumbit={this.addFile}
                 />
             </Row>
         )
@@ -73,4 +69,4 @@ const mapStateToProps = ({ file }) => {
     }
 }
 
-export default connect(mapStateToProps, { download })(FilesContainer)
+export default connect(mapStateToProps, { download, upload, toggleAdd })(FilesContainer)

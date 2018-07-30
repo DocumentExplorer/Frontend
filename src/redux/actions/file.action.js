@@ -52,5 +52,17 @@ export function upload(data, file) {
                 dispatch(failed())
             })
     }
+}
 
+export function toggleAdd() {
+
+    function toggle() {
+        return {
+            type: FileConstants.TOGGLE_ADD_FILE
+        }
+    }
+
+    return dispatch => {
+        dispatch(toggle())
+    }
 }

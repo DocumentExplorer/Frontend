@@ -24,7 +24,7 @@ export const FilesList = ({ files, requires, ...props }) => {
     )
 }
 
-const File = ({ file, isRequired, download }) => {
+const File = ({ file, isRequired, download, toggle }) => {
     console.log(file, isRequired)
     return (
         <Col sm="6" md="4">
@@ -45,7 +45,7 @@ const File = ({ file, isRequired, download }) => {
                             ? ''
                             : <Button onClick={(e) => download(file[1])}>Pobierz</Button>
                     }
-                    <Button>Wyślij</Button>
+                    <Button onClick={(e) => toggle()}>Wyślij</Button>
                 </CardFooter>
             </Card>
         </Col>

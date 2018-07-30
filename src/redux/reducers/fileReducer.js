@@ -1,7 +1,7 @@
 import { FileConstants } from '../constants'
 
 const initState = {
-
+    modalAddFile: false
 }
 
 export default function (state = initState, action) {
@@ -16,6 +16,11 @@ export default function (state = initState, action) {
             return state
         case FileConstants.POST_FILE_REQUEST:
             return state
+        case FileConstants.TOGGLE_ADD_FILE:
+            return {
+                ...state,
+                modalAddFile: !state.modalAddFile
+            }
         default:
             return state
     }
