@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ApiConstants } from '../constants'
+import { ApiConstants} from '../constants'
 import { getToken } from '../../components/helpers/getToken';
 
 export const FileService = {

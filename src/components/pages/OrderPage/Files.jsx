@@ -24,7 +24,6 @@ export const FilesList = ({ files, requires, ...props }) => {
 }
 
 const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
-    console.log(file)
     return (
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px' }}>

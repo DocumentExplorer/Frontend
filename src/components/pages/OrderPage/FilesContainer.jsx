@@ -3,7 +3,7 @@ import { Row } from 'mdbreact'
 import { FilesList } from './Files'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { download, upload, toggleAdd, deleteFile, toggleDelete } from '../../../redux/actions'
+import { download, upload, toggleAdd, deleteFile, toggleDelete, modifyOrderActualState } from '../../../redux/actions'
 import { MyModal } from '../../Modal/MyModal'
 import { UploadModal } from './Upload'
 import { DeleteConfirmation } from '../ManagementPage/DeleteConfirmation';
@@ -50,7 +50,12 @@ class FilesContainer extends React.Component {
     }
 
     deleteFile() {
-        this.props.deleteFile(this.state.file_delete_id)
+        this.props.deleteFile(this.state.file_delete_id, () => {
+            this.props.modifyOrderActualState(this.state.files.id)
+        })
+        setTimeout(() => {
+            this.toggleDelete()
+        }, 500)
     }
 
 
@@ -61,15 +66,21 @@ class FilesContainer extends React.Component {
                 OrderId: this.state.files.id,
                 fileType: this.props.file.fileType,
                 isRequired: this.props.file.isRequired
-            }, this.state.file)
-            this.setState({
-                success: false,
-                message: '',
-                border_color: '#777777'
+            }, this.state.file, () => {
+                this.setState({
+                    success: true,
+                    message: 'Udało się',
+                    border_color: 'green'
+                })
             })
             setTimeout(() => {
+                this.setState({
+                    success: false,
+                    message: '',
+                    border_color: '#777777'
+                })
                 this.props.toggleAdd()
-            }, 2000)
+            }, 4000)
         }
     }
 
@@ -92,6 +103,7 @@ class FilesContainer extends React.Component {
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
+        console.log(this.props)
         return (
 
             <Row style={{ marginBottom: '80px' }}>
@@ -141,4 +153,4 @@ const mapStateToProps = ({ file }) => {
     }
 }
 
-export default connect(mapStateToProps, { download, upload, toggleAdd, toggleDelete, deleteFile })(FilesContainer)
+export default connect(mapStateToProps, { download, upload, toggleAdd, toggleDelete, deleteFile, modifyOrderActualState })(FilesContainer)

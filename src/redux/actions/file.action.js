@@ -1,6 +1,7 @@
-import { FileConstants } from '../constants'
+import { FileConstants, OrdersConstants } from '../constants'
 import { FileService } from '../services'
 import { lostSession } from './app.action'
+import { getOrderById } from './order.action'
 
 export function download(id) {
 
@@ -26,7 +27,7 @@ export function download(id) {
     }
 }
 
-export function upload(data, file) {
+export function upload(data, file,callback) {
     function success() {
         return {
             type: FileConstants.POST_FILE_SUCCESS
@@ -38,17 +39,12 @@ export function upload(data, file) {
             type: FileConstants.POST_FILE_FAIL
         }
     }
-    function request() {
-        return {
-            type: FileConstants.POST_FILE_REQUEST
-        }
-    }
 
     return dispatch => {
-        dispatch(request())
         FileService.upload(data, file)
             .then(() => {
                 dispatch(success())
+                callback()
             }).catch(() => {
                 dispatch(lostSession())
             })
@@ -83,7 +79,7 @@ export function toggleAdd(fileType, isRequired) {
     }
 }
 
-export function deleteFile(id) {
+export function deleteFile(id, callback) {
     function success() {
         return {
             type: FileConstants.DELETE_FILE_SUCCESS
@@ -100,6 +96,7 @@ export function deleteFile(id) {
         FileService.deleteFile(id)
             .then(() => {
                 dispatch(success())
+                callback()
             }).catch(() => {
                 dispatch(failed())
             })
