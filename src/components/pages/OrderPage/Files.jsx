@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Card, CardTitle, CardBody, CardFooter, CardHeader, Button } from 'mdbreact'
+import { Col, Card, CardTitle, CardBody, CardFooter, CardHeader, Button, Input } from 'mdbreact'
 import _ from 'lodash'
 
 export const FilesList = ({ files, requires, ...props }) => {
@@ -31,6 +31,7 @@ const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
                     <h4>{file[0]}</h4>
                 </CardHeader>
                 <CardBody>
+                    
                     {
                         file[1] === '00000000-0000-0000-0000-000000000000'
                             ? 'Brak pliku'

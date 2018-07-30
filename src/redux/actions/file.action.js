@@ -66,7 +66,6 @@ export function toggleDelete() {
 }
 
 export function toggleAdd(fileType, isRequired) {
-
     function toggle(fileType, isRequired) {
         return {
             type: FileConstants.TOGGLE_ADD_FILE,

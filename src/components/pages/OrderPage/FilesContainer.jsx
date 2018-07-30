@@ -23,6 +23,14 @@ class FilesContainer extends React.Component {
         this.addFile = this.addFile.bind(this)
         this.toggleDelete = this.toggleDelete.bind(this)
         this.deleteFile = this.deleteFile.bind(this)
+        this.onChange = this.onChange.bind(this)
+    }
+
+    onChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        console.log(this.state)
     }
 
     drop(file) {
@@ -62,17 +70,33 @@ class FilesContainer extends React.Component {
     addFile() {
         console.log(this.props)
         if (this.state.success === true) {
-            this.props.upload({
-                OrderId: this.state.files.id,
-                fileType: this.props.file.fileType,
-                isRequired: this.props.file.isRequired
-            }, this.state.file, () => {
-                this.setState({
-                    success: true,
-                    message: 'Udało się',
-                    border_color: 'green'
+            if (this.props.file.fileType === 'fvk') {
+                this.props.upload({
+                    OrderId: this.state.files.id,
+                    fileType: this.props.file.fileType,
+                    isRequired: this.props.file.isRequired,
+                    invoiceNumber: this.state.invoiceNumber
+                }, this.state.file, () => {
+                    this.setState({
+                        success: true,
+                        message: 'Udało się',
+                        border_color: 'green'
+                    })
                 })
-            })
+            } else {
+                this.props.upload({
+                    OrderId: this.state.files.id,
+                    fileType: this.props.file.fileType,
+                    isRequired: this.props.file.isRequired
+                }, this.state.file, () => {
+                    this.setState({
+                        success: true,
+                        message: 'Udało się',
+                        border_color: 'green'
+                    })
+                })
+            }
+
             setTimeout(() => {
                 this.setState({
                     success: false,
@@ -133,6 +157,8 @@ class FilesContainer extends React.Component {
                     message={this.state.message}
                     success={this.state.success}
                     border_color={this.state.border_color}
+                    onChange={this.onChange}
+                    fileType={this.props.file.fileType}
                 />
                 <MyModal
                     test={this.state.modalDeleteFile}
