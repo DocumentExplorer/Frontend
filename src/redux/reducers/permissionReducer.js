@@ -2,7 +2,8 @@ import { PermissionsConstants } from '../constants'
 
 const initState = {
     put_permission_result: '',
-    put_permission_success: false
+    put_permission_success: false,
+    requestPermissions: true
 }
 
 export default function (state = initState, action) {

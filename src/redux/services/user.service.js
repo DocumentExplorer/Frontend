@@ -3,21 +3,23 @@ import { ApiConstants } from '../constants'
 import { getToken } from '../../components/helpers/getToken';
 
 function getUsers() {
-    return new Promise((resolve, reject) => {
-        axios({
-            url: `${ApiConstants.rootURL}/users`,
-            method: 'GET',
-            headers: {
-                'Authorization': getToken()
-            }
-        }).then((res) => {
-            resolve(res)
+    if (localStorage.getItem('role') === 'admin') {
+        return new Promise((resolve, reject) => {
+            axios({
+                url: `${ApiConstants.rootURL}/users`,
+                method: 'GET',
+                headers: {
+                    'Authorization': getToken()
+                }
+            }).then((res) => {
+                resolve(res)
 
-        }).catch((err) => {
-            console.log(err)
-            reject(err)
+            }).catch((err) => {
+                console.log(err)
+                reject(err)
+            })
         })
-    })
+    }
 }
 
 function getUser(username) {
@@ -68,7 +70,7 @@ export function changePassword(data) {
             console.log(res)
             resolve()
         }).catch((err) => {
-            
+
             reject()
         })
     })

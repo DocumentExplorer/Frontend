@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import './order.css'
 import ApiHOC from '../../helpers/ApiHOC'
 import { connect } from 'react-redux'
-import { getOrderById, deleteOrder, putOrder } from '../../../redux/actions'
+import { getOrderById, deleteOrder, putOrder, getPermissions } from '../../../redux/actions'
 import { Container, Button } from 'mdbreact'
 import { OrderInformation } from './OrderInformation'
 import { MyModal } from '../../Modal/MyModal';
@@ -11,6 +11,7 @@ import _ from 'lodash'
 import Permissions from './Permissions'
 import { Footer } from './Footer'
 import FilesContainer from './FilesContainer'
+import { PermissionsList } from './PermissionsList';
 
 class OrderPage extends React.Component {
 
@@ -31,6 +32,7 @@ class OrderPage extends React.Component {
     componentDidMount() {
         const { match: { params: { id } } } = this.props
         this.props.getOrderById(id)
+        this.props.getPermissions()
         this.setState({
             id
         })
@@ -62,7 +64,6 @@ class OrderPage extends React.Component {
     }
 
     handleModify() {
-        console.log('mody')
         let error
         let arrayOfProperties = ['id', 'number', 'clientCountry', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber']
         const order = _.pick(this.state, arrayOfProperties)
@@ -89,6 +90,7 @@ class OrderPage extends React.Component {
     }
 
     render() {
+        console.log(this.props.permissions)
         return (
             <Container>
                 <ApiHOC
@@ -105,6 +107,15 @@ class OrderPage extends React.Component {
                     modifyResult={this.state.modifyResult}
                     handleModify={this.handleModify}
                 />
+                {
+                    localStorage.getItem('role') !== 'admin'
+                        ? <ApiHOC
+                            component={PermissionsList}
+                            test={this.props.permissions.requestPermissions}
+                            permissions={this.props.permissions.permissions}
+                        />
+                        : ''
+                }
                 <ApiHOC
                     component={FilesContainer}
                     test={this.props.orders.getOrderRequest}
@@ -115,13 +126,14 @@ class OrderPage extends React.Component {
     }
 }
 
-function mapStateToProps({ orders }) {
+function mapStateToProps({ orders, permissions }) {
     return {
-        orders
+        orders,
+        permissions
     }
 }
 
 
 
-const component = connect(mapStateToProps, { getOrderById, deleteOrder, putOrder })(OrderPage)
+const component = connect(mapStateToProps, { getOrderById, deleteOrder, putOrder, getPermissions })(OrderPage)
 export { component as OrderPage }
