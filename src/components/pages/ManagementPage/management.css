@@ -36,3 +36,8 @@
     cursor: pointer;
     background: rgba(151, 149, 149, 0.5);
 }
+
+.logs-table tr:hover{
+    background: rgb(177, 177, 177);
+    cursor: pointer;
+}

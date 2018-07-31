@@ -55,8 +55,8 @@ export const FindResult = ({ request, ...props }) => {
     )
 }
 
-const Result = ({ logs }) => (
-    <Table className="custom-row">
+const Result = ({ logs, changeLocation }) => (
+    <Table className="custom-row logs-table">
         <thead>
             <tr>
                 <th>#</th>
@@ -74,7 +74,7 @@ const Result = ({ logs }) => (
         <tbody>
             {
                 logs.map((value, index) => (
-                    <tr key={index}>
+                    <tr key={index} onClick={() => changeLocation(value.orderId, value.event)}>
                         <td>{index}</td>
                         <td>{value.event}</td>
                         <td>{value.number}</td>

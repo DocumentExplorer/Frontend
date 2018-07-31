@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { findLogs } from '../../../redux/actions'
 import { Container } from 'mdbreact'
 import { FindForm, FindResult } from './LogsViewer'
+import { withRouter } from 'react-router-dom'
 import _ from 'lodash'
 
 class FindLogs extends React.Component {
@@ -13,6 +14,7 @@ class FindLogs extends React.Component {
             logs: [],
             log: {}
         }
+        this.changeLocation = this.changeLocation.bind(this)
         this.onClick = this.onClick.bind(this)
         this.onChange = this.onChange.bind(this)
     }
@@ -31,6 +33,14 @@ class FindLogs extends React.Component {
             }
         })
         console.log(this.state.log)
+    }
+
+    changeLocation(id, event) {
+        console.log(event)
+        if (!(_.startsWith(event, 'Usun'))) {
+            this.props.history.push(`/order/${id}`)
+        }
+
     }
 
     onClick() {
@@ -55,6 +65,7 @@ class FindLogs extends React.Component {
                 <FindResult
                     logs={this.state.logs}
                     request={this.props.logs.requestFinding}
+                    changeLocation={this.changeLocation}
                 />
             </Fragment>
         )
@@ -67,4 +78,4 @@ const mapStateToProps = ({ logs }) => {
     }
 }
 
-export default connect(mapStateToProps, { findLogs })(FindLogs)
+export default withRouter(connect(mapStateToProps, { findLogs })(FindLogs))
