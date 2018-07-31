@@ -28,15 +28,23 @@ const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px' }}>
                 <CardHeader>
-                    <h4>{file[0]}</h4>
+                    <h4>{file[0].slice(0, -2)}</h4>
+
                 </CardHeader>
                 <CardBody>
-                    
+
                     {
                         file[1] === '00000000-0000-0000-0000-000000000000'
                             ? 'Brak pliku'
                             : 'Plik jest'
                     }
+                    <p>
+                        {
+                            isRequired[1] == true
+                                ? 'Plik jest wymagany'
+                                : 'Plik nie jest wymagany'
+                        }
+                    </p>
                 </CardBody>
                 <CardFooter>
                     {
