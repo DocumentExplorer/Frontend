@@ -9,19 +9,28 @@ export const FindForm = ({ onClick, onChange, log }) => {
                 <CardBody>
                     <Row>
                         <Col sm="12" md="4">
-                            <Input name="event" label="Typ Zdarzenia" onChange={(e) => onChange(e)} value={log.event} />
-                            <Input name="number" label="Numer zdarzenia" onChange={(e) => onChange(e)} value={log.number} />
-                            <Input name="owner1Name" label="Właściciel" onChange={(e) => onChange(e)} value={log.owner1Name} />
-                            <Input name="username" label="Dokonał zmiany" onChange={(e) => onChange(e)} value={log.username} />
+                            <label htmlFor="event" className="grey-text">Typ zdarznia</label>
+                            <input id="event" name="event" label="Typ Zdarzenia" onChange={(e) => onChange(e)} value={log.event} className="form-control" />
+                            <label htmlFor="number" className="grey-text">Numer zdarzenia</label>
+                            <input id="number" name="number" label="Numer zdarzenia" onChange={(e) => onChange(e)} value={log.number} className="form-control" />
+                            <label htmlFor="owner1Name" className="grey-text">Właściciel</label>
+                            <input id="owner1Name" name="owner1Name" label="Właściciel" onChange={(e) => onChange(e)} value={log.owner1Name} className="form-control" />
+                            <label htmlFor="username" className="grey-text">Dokonał zmiany</label>
+                            <input id="username" name="username" onChange={(e) => onChange(e)} value={log.username} className="form-control" />
                         </Col>
                         <Col sm="12" md="4">
-                            <Input name="clientCountry" label="Kraj klienta" onChange={(e) => onChange(e)} value={log.clientCountry} />
-                            <Input name="clientIdentificationNumber" label="NIP klienta" onChange={(e) => onChange(e)} value={log.clientIdentificationNumber} />
-                            <Input name="brokerCountry" label="kraj pośrednika" onChange={(e) => onChange(e)} value={log.brokerCountry} />
-                            <Input name="brokerIdentificationNumber" label="NIP pośrednika" onChange={(e) => onChange(e)} value={log.brokerIdentificationNumber} />
+                            <label htmlFor="clientCountry" className="grey-text">Kraj klienta</label>
+                            <input id="clientCountry" name="clientCountry" className="form-control" onChange={(e) => onChange(e)} value={log.clientCountry} />
+                            <label htmlFor="clientIdentificationNumber" className="grey-text">NIP klienta</label>
+                            <input id="clientIdentificationNumber" className="form-control" name="clientIdentificationNumber" onChange={(e) => onChange(e)} value={log.clientIdentificationNumber} />
+                            <label htmlFor="brokerCountry" className="grey-text">Kraj pośrednika</label>
+                            <input id="brokerCountry" name="brokerCountry" className="form-control" onChange={(e) => onChange(e)} value={log.brokerCountry} />
+                            <label htmlFor="brokerIdentificationNumber" className="grey-text">NIP pośrednika</label>
+                            <input id="brokerIdentificationNumber" className="form-control" name="brokerIdentificationNumber" onChange={(e) => onChange(e)} value={log.brokerIdentificationNumber} />
                         </Col>
                         <Col sm="12" md="4">
-                            <Input name="invoiceNumber" label="Numer faktury" onChange={(e) => onChange(e)} value={log.invoiceNumber} />
+                            <label id="invoiceNumber" htmlFor="invoiceNumber" className="grey-text">Numer faktury</label>
+                            <input name="invoiceNumber" className="form-control" onChange={(e) => onChange(e)} value={log.invoiceNumber} />
                         </Col>
                         <Button
                             color="primary"
