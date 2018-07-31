@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { findLogs } from '../../../redux/actions'
+import { Container } from 'mdbreact'
+import { FindForm, FindResult } from './LogsViewer'
 
 class FindLogs extends React.Component {
+
+
+
     render() {
         return (
-            <div></div>
+            <Fragment>
+                <Container>
+                    <FindForm />
+                </Container>
+                {/* <FindResult /> */}
+            </Fragment>
         )
     }
 }

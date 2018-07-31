@@ -17,5 +17,7 @@ export default function (state = initState, action) {
                 ...state,
                 requestFindLogs: true
             }
+        default:
+            return state
     }
 }
