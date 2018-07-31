@@ -39,7 +39,7 @@ class FilesContainer extends React.Component {
                 message: 'Gotowy do przesłania',
                 success: true,
                 border_color: 'green',
-                file: file[file.length - 1]
+                fileToPost: file[file.length - 1]
             })
         } else {
             this.setState({
@@ -68,15 +68,14 @@ class FilesContainer extends React.Component {
 
 
     addFile() {
-        console.log(this.props)
         if (this.state.success === true) {
-            if (this.props.file.fileType === 'fvk') {
+            if (this.props.fileToPost.fileType === 'fvk') {
                 this.props.upload({
-                    OrderId: this.state.files.id,
-                    fileType: this.props.file.fileType,
-                    isRequired: this.props.file.isRequired,
+                    OrderId: this.state.file.id,
+                    fileType: this.props.fileToPost.fileType,
+                    isRequired: this.props.fileToPost.isRequired,
                     invoiceNumber: this.state.invoiceNumber
-                }, this.state.file, () => {
+                }, this.state.fileToPost, () => {
                     this.setState({
                         success: true,
                         message: 'Udało się',
@@ -85,10 +84,10 @@ class FilesContainer extends React.Component {
                 })
             } else {
                 this.props.upload({
-                    OrderId: this.state.files.id,
-                    fileType: this.props.file.fileType,
-                    isRequired: this.props.file.isRequired
-                }, this.state.file, () => {
+                    OrderId: this.state.fileToPost.id,
+                    fileType: this.props.fileToPost.fileType,
+                    isRequired: this.props.fileToPost.isRequired
+                }, this.state.fileToPost, () => {
                     this.setState({
                         success: true,
                         message: 'Udało się',
@@ -113,23 +112,18 @@ class FilesContainer extends React.Component {
     }
 
     componentWillMount() {
+        console.log(this.props.order)
         this.setState({
             files: this.props.order
         })
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            files: nextProps.order
-        })
-    }
 
     render() {
+        console.log(this.state.files)
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
-        console.log(this.props)
         return (
-
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList
                     download={this.download}

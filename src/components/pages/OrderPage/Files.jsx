@@ -3,6 +3,7 @@ import { Col, Card, CardTitle, CardBody, CardFooter, CardHeader, Button, Input }
 import _ from 'lodash'
 
 export const FilesList = ({ files, requires, ...props }) => {
+    console.log(files)
     let array = []
     for (let i = 0; i < 9; i++) {
         array.push(
@@ -29,10 +30,8 @@ const File = ({ file, isRequired, download, toggle, toggleDelete }) => {
             <Card style={{ marginTop: '40px', marginBottom: '20px' }}>
                 <CardHeader>
                     <h4>{file[0].slice(0, -2)}</h4>
-
                 </CardHeader>
                 <CardBody>
-
                     {
                         file[1] === '00000000-0000-0000-0000-000000000000'
                             ? 'Brak pliku'
