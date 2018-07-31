@@ -11,7 +11,7 @@ export const PermissionsList = ({ permissions }) => {
     })
     return (
         <Row>
-            <Card className="custom-row" style={{ background: 'yellow', width: '100%' }}>
+            <Card className="custom-row" style={{ background: 'yellow', width: '90%', marginLeft: 'auto', marginRight: 'auto' }}>
                 <CardHeader>Uwaga!!!</CardHeader>
                 <CardBody>
                     Drogi użytkowniku masz możliwość modyfikacji tylko tych plików:
