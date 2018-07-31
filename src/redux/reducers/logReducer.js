@@ -1,7 +1,7 @@
 import { LogsConstants } from '../constants'
 
 const initState = {
-    requestFindLogs: true,
+    requestFinding: true,
 }
 
 export default function (state = initState, action) {
@@ -10,12 +10,12 @@ export default function (state = initState, action) {
             return {
                 ...state,
                 logs: action.logs,
-                requestFindLogs: false
+                requestFinding: false
             }
         case LogsConstants.FIND_LOGS_REQUEST:
             return {
                 ...state,
-                requestFindLogs: true
+                requestFinding: true
             }
         default:
             return state

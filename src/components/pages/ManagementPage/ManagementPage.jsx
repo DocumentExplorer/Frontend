@@ -104,14 +104,9 @@ class ManagementPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers()
-        setInterval(() => {
-            this.props.getUsers()
-        }, 60000)
     }
 
     render() {
-        console.log('management')
-        console.log(this.props.logs)
         return (
             <Fragment>
                 <Container>
