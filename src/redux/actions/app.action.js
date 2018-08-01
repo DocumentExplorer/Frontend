@@ -8,6 +8,7 @@ export function lostSession() {
     }
 }
 function updateOrder(order) {
+    console.log(order)
     return {
         type: OrdersConstants.GET_ORDER_SUCCESS,
         order

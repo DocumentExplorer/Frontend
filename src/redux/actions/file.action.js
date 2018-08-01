@@ -46,7 +46,10 @@ export function upload(data, file, callback) {
             .then(() => {
                 dispatch(success())
                 updateActionOrder(data.orderId, dispatch)
-                callback()
+                setTimeout(() => {
+                    callback()
+                }, 2000)
+
             }).catch(() => {
                 dispatch(lostSession())
             })

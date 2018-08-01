@@ -151,6 +151,12 @@ class FilesContainer extends React.Component {
         this.props.download(id)
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            files: nextProps.order
+        })
+    }
+
     componentWillMount() {
         this.setState({
             files: this.props.order
@@ -163,6 +169,7 @@ class FilesContainer extends React.Component {
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
+        console.log(this.props.order)
         return (
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList
