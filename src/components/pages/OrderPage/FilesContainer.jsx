@@ -107,6 +107,19 @@ class FilesContainer extends React.Component {
         }
     }
 
+    changeRequire(fileType, isRequired) {
+        this.setState({
+            [fileType]: {
+                fileType,
+                isRequired: ![this.state.fileType.isRequired]
+            }
+        })
+    }
+
+    updateRequire() {
+
+    }
+
     download(id) {
         this.props.download(id)
     }
@@ -120,6 +133,7 @@ class FilesContainer extends React.Component {
 
     render() {
         console.log(this.state.files)
+        console.log(this.props.permissions)
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
@@ -137,8 +151,10 @@ class FilesContainer extends React.Component {
                             return [value, requires[value]]
                         })
                     }
+                    permissions={this.props.permissions}
                     toggle={this.props.toggleAdd}
                     toggleDelete={this.toggleDelete}
+
                 />
                 <MyModal
                     test={this.props.file.modalAddFile}

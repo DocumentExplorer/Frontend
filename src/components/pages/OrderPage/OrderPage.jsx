@@ -8,7 +8,6 @@ import { OrderInformation } from './OrderInformation'
 import { MyModal } from '../../Modal/MyModal';
 import { addNewOrder } from '../DashboardPage/NewOrder'
 import _ from 'lodash'
-import Permissions from './Permissions'
 import { Footer } from './Footer'
 import FilesContainer from './FilesContainer'
 import { PermissionsList } from './PermissionsList';
@@ -90,7 +89,7 @@ class OrderPage extends React.Component {
     }
 
     render() {
-        
+
         return (
             <Container>
                 <ApiHOC
@@ -120,6 +119,8 @@ class OrderPage extends React.Component {
                     component={FilesContainer}
                     test={this.props.orders.getOrderRequest}
                     order={this.props.orders.order}
+                    permissions={this.props.permissions}
+
                 />
             </Container>
         )
