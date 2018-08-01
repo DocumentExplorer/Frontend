@@ -11,11 +11,21 @@ import { OnActionHOC } from '../../helpers/OnActionHOC'
 import NewOrder from './NewOrder'
 import { logout, getLacks } from '../../../redux/actions'
 import InstantWork from './InstantWork';
+import { withRouter } from 'react-router-dom'
 
 class Dashboard extends React.Component {
 
+    constructor() {
+        super()
+        this.changeLocation = this.changeLocation.bind(this)
+    }
+
     componentDidMount() {
         this.props.getLacks()
+    }
+
+    changeLocation(id) {
+        this.props.history.push(`/order/${id}`)
     }
 
     render() {
@@ -25,6 +35,8 @@ class Dashboard extends React.Component {
                 <ApiHOC
                     test={this.props.lacks.requestLacks}
                     component={InstantWork}
+                    lacks={this.props.lacks.lacks}
+                    changeLocation={this.changeLocation}
                 />
                 {
                     localStorage.getItem('role') == 'complementer'
@@ -67,5 +79,5 @@ function mapStateToProps({ orders, loginResult, lacks }) {
         lacks
     }
 }
-const result = connect(mapStateToProps, { logout, getLacks })(Dashboard)
+const result = withRouter(connect(mapStateToProps, { logout, getLacks })(Dashboard))
 export { result as Dashboard }
