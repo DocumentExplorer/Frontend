@@ -6,6 +6,7 @@ import registerReducer from './reducers/registerReducer'
 import logReducer from './reducers/logReducer'
 import permissionReducer from './reducers/permissionReducer'
 import fileReducer from './reducers/fileReducer'
+import lacksReducer from './reducers/lacksReducer'
 
 const RootReducer = combineReducers({
     loginResult: loginReducer,
@@ -14,7 +15,8 @@ const RootReducer = combineReducers({
     registerResult: registerReducer,
     logs: logReducer,
     permissions: permissionReducer,
-    file: fileReducer
+    file: fileReducer,
+    lacks: lacksReducer
 })
 
 export default RootReducer

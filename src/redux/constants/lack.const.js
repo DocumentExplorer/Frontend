@@ -1,0 +1,4 @@
+export const LackConstants = {
+    GET_LACKS_SUCCESS: 'GET_LACKS_SUCCESS',
+    GET_LACKS_REQUEST: 'GET_LACKS_REQUEST'
+}

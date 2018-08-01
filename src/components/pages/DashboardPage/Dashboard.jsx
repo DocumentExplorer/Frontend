@@ -9,29 +9,23 @@ import FindedOrders from './FindedOrders'
 import { Choose } from '../../helpers/Choose'
 import { OnActionHOC } from '../../helpers/OnActionHOC'
 import NewOrder from './NewOrder'
-import { logout } from '../../../redux/actions'
+import { logout, getLacks } from '../../../redux/actions'
+import InstantWork from './InstantWork';
 
 class Dashboard extends React.Component {
 
     componentDidMount() {
-        // console.log(Date.parse(localStorage.getItem('expiryAt')) - new Date().getTime())
-        // if (Date.parse(localStorage.getItem('expiryAt')) - new Date().getTime() > 0) {
-        //     let end = Date.parse(localStorage.getItem('expiryAt'))
-        //     console.log('działa')
-        //     console.log((end - new Date().getTime()) / 1000)
-        //     setTimeout(() => {
-        //         this.props.logout()
-        //     }, (end - new Date().getTime()) / 1000)
-
-        // } else {
-
-        //     this.props.logout()
-        // }
+        this.props.getLacks()
     }
 
     render() {
+        console.log(this.props.lacks)
         return (
             <Container>
+                <ApiHOC
+                    test={this.props.lacks.requestLacks}
+                    component={InstantWork}
+                />
                 {
                     localStorage.getItem('role') == 'complementer'
                         ? ''
@@ -66,11 +60,12 @@ class Dashboard extends React.Component {
 }
 
 
-function mapStateToProps({ orders, loginResult }) {
+function mapStateToProps({ orders, loginResult, lacks }) {
     return {
         orders,
-        loginResult
+        loginResult,
+        lacks
     }
 }
-const result = connect(mapStateToProps, { logout })(Dashboard)
+const result = connect(mapStateToProps, { logout, getLacks })(Dashboard)
 export { result as Dashboard }
