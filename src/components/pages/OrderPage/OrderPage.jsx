@@ -91,7 +91,7 @@ class OrderPage extends React.Component {
     }
 
     render() {
-        console.log(this.props.order)
+        
         return (
             <Container>
                 <ApiHOC
@@ -108,15 +108,6 @@ class OrderPage extends React.Component {
                     modifyResult={this.state.modifyResult}
                     handleModify={this.handleModify}
                 />
-                {/* {
-                    localStorage.getItem('role') !== 'admin'
-                        ? <ApiHOC
-                            component={PermissionsList}
-                            test={this.props.permissions.requestPermissions}
-                            permissions={this.props.permissions.permissions}
-                        />
-                        : ''
-                } */}
                 <ApiHOC
                     component={FilesContainer}
                     test={this.props.orders.getOrderRequest}
