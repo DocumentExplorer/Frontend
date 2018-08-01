@@ -120,6 +120,7 @@ function putOrder(order) {
 }
 
 function putRequirements(requirements) {
+    console.log(requirements)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/orders/requirements`,

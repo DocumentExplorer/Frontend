@@ -211,7 +211,7 @@ export function modifyOrderActualState(id) {
 export function putRequirements(requirements) {
     function success() {
         return {
-            type: OrdersConstants.PUT_ORDER_SUCCESS
+            type: OrdersConstants.PUT_REQUIREMENTS_SUCCESS_SUCCESS
         }
     }
 
@@ -219,7 +219,7 @@ export function putRequirements(requirements) {
         OrdersService.putRequirements(requirements).then(() => {
             dispatch(success())
         }).catch(() => {
-            
+            dispatch(success())
         })
     }
 }

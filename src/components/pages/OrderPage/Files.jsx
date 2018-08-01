@@ -3,7 +3,6 @@ import { Col, Card, CardTitle, CardBody, CardFooter, CardHeader, Button, Input }
 import _ from 'lodash'
 
 export const FilesList = ({ files, requires, ...props }) => {
-    console.log(files)
     let array = []
     for (let i = 0; i < 9; i++) {
         array.push(

@@ -118,9 +118,8 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
                 put_order_error: ''
             }
         case OrdersConstants.PUT_REQUIREMENTS_SUCCESS:
-            return {
-                ...state
-            }
+            console.log(state)
+            return state
         default:
             return state
     }

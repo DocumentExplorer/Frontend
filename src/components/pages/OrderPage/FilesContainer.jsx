@@ -31,7 +31,7 @@ class FilesContainer extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
-        console.log(this.state)
+        
     }
 
     drop(file) {
@@ -111,29 +111,33 @@ class FilesContainer extends React.Component {
     changeRequired(file, isRequired) {
         let name = isRequired[0]
         let value = isRequired[1]
-        console.log(name)
+        
         this.setState({
             files: {
                 ...this.state.files,
                 [name]: !value
             }
         })
-        console.log(this.state.files)
+        this.props.putRequirements({
+            orderId: this.props.order.id,
+            fileType: file,
+            isRequired: !value
+        })
+        
     }
     download(id) {
         this.props.download(id)
     }
 
     componentWillMount() {
-        console.log(this.props.order)
         this.setState({
             files: this.props.order
         })
     }
 
     render() {
-        console.log(this.state.files)
-        console.log(this.props.permissions)
+       
+        
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
