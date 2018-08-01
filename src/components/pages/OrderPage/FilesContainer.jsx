@@ -111,7 +111,7 @@ class FilesContainer extends React.Component {
     changeRequired(file, isRequired) {
         let name = isRequired[0]
         let value = isRequired[1]
-        
+        console.log(file)
         this.setState({
             files: {
                 ...this.state.files,

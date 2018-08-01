@@ -35,7 +35,7 @@ const File = ({ file, isRequired, download, toggle, toggleDelete, permissions, c
                 <CardHeader className="header">
                     <h4>{file[0].slice(0, -2)}</h4>
                     {
-                        filetered[key] === localStorage.getItem('role') || localStorage.getItem('role') === 'admin'
+                        (filetered[key] === localStorage.getItem('role') || localStorage.getItem('role') === 'admin') && file[1] === '00000000-0000-0000-0000-000000000000'
                             ?
                             <label className="switch">
                                 <input type="checkbox" checked={isRequired[1]} onChange={(e) => changeRequired(file[0].slice(0, -2), isRequired)} />
@@ -67,7 +67,7 @@ const File = ({ file, isRequired, download, toggle, toggleDelete, permissions, c
                             : <Button onClick={(e) => download(file[1])}>Pobierz</Button>
                     }
                     {
-                        filetered[key] === localStorage.getItem('role') || localStorage.getItem('role') === 'admin'
+                        (filetered[key] === localStorage.getItem('role') || localStorage.getItem('role') === 'admin') && isRequired[1]
                             ? file[1] === '00000000-0000-0000-0000-000000000000'
                                 ? <Button color="primary" onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
                                 : <Button color="danger" onClick={(e) => toggleDelete(file[1])}>Usuń</Button>
