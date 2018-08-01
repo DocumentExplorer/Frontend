@@ -54,7 +54,7 @@ class FilesContainer extends React.Component {
                 border_color: 'red'
             })
         }
-        console.log(this.state.fileToPost)
+
     }
 
     toggleDelete(id) {
@@ -74,15 +74,24 @@ class FilesContainer extends React.Component {
     }
 
     toggleUpload(fileType, isRequired) {
-        fileType = fileType.slice(0, -2)
-        this.setState({
-            modalAddFile: !this.state.modalAddFile,
-            fileToSend: {
-                fileType,
-                isRequired,
-            }
-        })
-        console.log(this.state)
+        if (fileType != undefined && isRequired != undefined) {
+            fileType = fileType.slice(0, -2)
+            this.setState({
+                modalAddFile: !this.state.modalAddFile,
+                fileToSend: {
+                    fileType,
+                    isRequired,
+                }
+            })
+        } else {
+            this.setState({
+                modalAddFile: !this.state.modalAddFile,
+                success: false,
+                message: '',
+                border_color: '#777777'
+            })
+        }
+
     }
 
 
@@ -91,7 +100,7 @@ class FilesContainer extends React.Component {
         if (this.state.success === true) {
             if (this.state.fileToSend.fileType === 'fvk') {
                 if (this.state.invoiceNumber !== undefined && this.state.invoiceNumber.length > 0) {
-                    console.log(this.state.invoiceNumber)
+
                     this.props.upload(Object.assign(
                         this.state.fileToSend, {
                             invoiceNumber: this.state.invoiceNumber,
@@ -101,6 +110,7 @@ class FilesContainer extends React.Component {
                                 modalAddFile: false,
                                 success: true,
                                 message: '',
+                                border_color: '#777777',
                                 fileToSend: {},
                             })
                         })
@@ -124,7 +134,6 @@ class FilesContainer extends React.Component {
     changeRequired(file, isRequired) {
         let name = isRequired[0]
         let value = isRequired[1]
-        console.log(file)
         this.setState({
             files: {
                 ...this.state.files,
@@ -154,7 +163,6 @@ class FilesContainer extends React.Component {
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
-        console.log(this.props)
         return (
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList
