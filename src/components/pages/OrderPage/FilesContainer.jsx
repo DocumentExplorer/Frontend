@@ -3,7 +3,7 @@ import { Row } from 'mdbreact'
 import { FilesList } from './Files'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { download, upload, toggleAdd, deleteFile, toggleDelete, modifyOrderActualState } from '../../../redux/actions'
+import { download, upload, toggleAdd, deleteFile, toggleDelete, modifyOrderActualState, putRequirements } from '../../../redux/actions'
 import { MyModal } from '../../Modal/MyModal'
 import { UploadModal } from './Upload'
 import { DeleteConfirmation } from '../ManagementPage/DeleteConfirmation';
@@ -24,6 +24,7 @@ class FilesContainer extends React.Component {
         this.toggleDelete = this.toggleDelete.bind(this)
         this.deleteFile = this.deleteFile.bind(this)
         this.onChange = this.onChange.bind(this)
+        this.changeRequired = this.changeRequired.bind(this)
     }
 
     onChange(e) {
@@ -107,19 +108,18 @@ class FilesContainer extends React.Component {
         }
     }
 
-    changeRequire(fileType, isRequired) {
+    changeRequired(file, isRequired) {
+        let name = isRequired[0]
+        let value = isRequired[1]
+        console.log(name)
         this.setState({
-            [fileType]: {
-                fileType,
-                isRequired: ![this.state.fileType.isRequired]
+            files: {
+                ...this.state.files,
+                [name]: !value
             }
         })
+        console.log(this.state.files)
     }
-
-    updateRequire() {
-
-    }
-
     download(id) {
         this.props.download(id)
     }
@@ -154,7 +154,7 @@ class FilesContainer extends React.Component {
                     permissions={this.props.permissions}
                     toggle={this.props.toggleAdd}
                     toggleDelete={this.toggleDelete}
-
+                    changeRequired={this.changeRequired}
                 />
                 <MyModal
                     test={this.props.file.modalAddFile}
@@ -189,4 +189,4 @@ const mapStateToProps = ({ file }) => {
     }
 }
 
-export default connect(mapStateToProps, { download, upload, toggleAdd, toggleDelete, deleteFile, modifyOrderActualState })(FilesContainer)
+export default connect(mapStateToProps, { download, upload, toggleAdd, toggleDelete, deleteFile, modifyOrderActualState, putRequirements })(FilesContainer)

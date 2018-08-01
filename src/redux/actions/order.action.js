@@ -214,23 +214,12 @@ export function putRequirements(requirements) {
             type: OrdersConstants.PUT_ORDER_SUCCESS
         }
     }
-    function failed() {
-        return {
-            type: OrdersConstants.PUT_ORDER_FAIL
-        }
-    }
-    function request() {
-        return {
-            type: OrdersConstants.PUT_ORDER_REQUEST
-        }
-    }
 
     return dispatch => {
-        dispatch(request())
         OrdersService.putRequirements(requirements).then(() => {
             dispatch(success())
         }).catch(() => {
-            dispatch(failed())
+            
         })
     }
 }
