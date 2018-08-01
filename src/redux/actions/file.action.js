@@ -45,7 +45,7 @@ export function upload(data, file, callback) {
         FileService.upload(data, file)
             .then(() => {
                 dispatch(success())
-                updateActionOrder(data.OrderId, dispatch)
+                updateActionOrder(data.orderId, dispatch)
                 callback()
             }).catch(() => {
                 dispatch(lostSession())

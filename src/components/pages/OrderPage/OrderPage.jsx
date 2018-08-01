@@ -45,7 +45,8 @@ class OrderPage extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            modifyResult: nextProps.orders.put_order_error
+            modifyResult: nextProps.orders.put_order_error,
+            order: nextProps.orders
         })
     }
 
@@ -106,7 +107,7 @@ class OrderPage extends React.Component {
                     modifyResult={this.state.modifyResult}
                     handleModify={this.handleModify}
                 />
-                {
+                {/* {
                     localStorage.getItem('role') !== 'admin'
                         ? <ApiHOC
                             component={PermissionsList}
@@ -114,7 +115,7 @@ class OrderPage extends React.Component {
                             permissions={this.props.permissions.permissions}
                         />
                         : ''
-                }
+                } */}
                 <ApiHOC
                     component={FilesContainer}
                     test={this.props.orders.getOrderRequest}

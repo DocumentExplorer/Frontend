@@ -29,6 +29,7 @@ const File = ({ file, isRequired, download, toggle, toggleDelete, permissions, c
     })
     let key = Object.keys(filetered)[0]
     let mock = !isRequired
+    
     return (
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px', minHeight: '300px' }}>
