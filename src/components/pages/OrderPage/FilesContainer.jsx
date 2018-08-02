@@ -96,11 +96,11 @@ class FilesContainer extends React.Component {
 
 
     addFile() {
-
+        
         if (this.state.success === true) {
+            
             if (this.state.fileToSend.fileType === 'fvk') {
-                if (this.state.invoiceNumber !== undefined && this.state.invoiceNumber.length > 0) {
-
+                if (this.state.invoiceNumber !== undefined && this.state.invoiceNumber.length > 0 && this.state.invoiceNumber.length < 5) {
                     this.props.upload(Object.assign(
                         this.state.fileToSend, {
                             invoiceNumber: this.state.invoiceNumber,
@@ -117,7 +117,7 @@ class FilesContainer extends React.Component {
                 } else {
                     this.setState({
                         success: false,
-                        message: 'Brak numeru faktury'
+                        message: 'Brak numeru lub za długi numer faktury'
                     })
                 }
             } else {

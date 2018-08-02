@@ -9,9 +9,15 @@ const DeleteOrderConfirmation = () => (
 )
 
 export const Footer = ({ handleDelete, handleModify, toggleModalModify, toggleModalRemove, modifyResult, ...props }) => {
+    console.log(props)
     return (
         <React.Fragment>
-            <Button color="danger" onClick={(e) => toggleModalRemove()}>Usuń</Button>
+            {
+                localStorage.getItem('role') === 'admin' || localStorage.getItem('username') === props.order.owner1Name
+                    ? <Button color="danger" onClick={(e) => toggleModalRemove()}>Usuń</Button>
+                    : ''
+            }
+
             <Button color="primary" onClick={(e) => toggleModalModify()}>Modyfikuj</Button>
             <MyModal
                 test={props.modalRemove}

@@ -36,6 +36,9 @@ function download(id, fileType) {
 }
 
 function upload(data, file) {
+    if (data.invoiceNumber !== undefined) {
+        data.invoiceNumber = parseInt(data.invoiceNumber)
+    }
     console.log(data)
     let formData = new FormData()
     formData.append("file", file)

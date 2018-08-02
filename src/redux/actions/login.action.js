@@ -32,6 +32,7 @@ export function login(values) {
         LoginService.login(values).then((data) => {
             localStorage.setItem("token", data.token)
             localStorage.setItem("role", data.role)
+            localStorage.setItem("username", data.username)
             dispatch(success(data.role))
             var t = new Date()
             t.setSeconds(t.getSeconds() + data.expiry * 1000)
