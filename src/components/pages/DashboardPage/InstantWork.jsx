@@ -5,7 +5,7 @@ export default ({ lacks, changeLocation }) => (
 
     lacks.count !== 0 ?
         <Row className="custom-row">
-            <Card style={{ width: '80%', marginLeft: 'auto', marginRight: 'auto', background: '#ef7070' }}>
+            <Card style={{ width: '72%', marginLeft: '20px', background: '#ef7070' }}>
                 <CardBody>
                     <h4>Niekompletne zlecenia:</h4>
                     <br />
@@ -13,7 +13,7 @@ export default ({ lacks, changeLocation }) => (
                     <Row>
                         {
                             lacks.orders.map((value, index) => (
-                                <Col sm="12" onClick={() => changeLocation(value.orderId)} key={index}>
+                                <Col sm="12" onClick={() => changeLocation(value.orderId)} key={index} className="instant">
                                     Kliknij tutaj aby przejść do zlecenia: {value.count} (pozostało)
                             </Col>
                             ))
