@@ -11,7 +11,7 @@ export const FindForm = ({ onClick, onChange, log }) => {
                         <Col sm="12" md="4">
                             <label htmlFor="event" className="grey-text">Typ zdarznia</label>
                             <input id="event" name="event" label="Typ Zdarzenia" onChange={(e) => onChange(e)} value={log.event} className="form-control" />
-                            <label htmlFor="number" className="grey-text">Numer zdarzenia</label>
+                            <label htmlFor="number" className="grey-text">Numer zlecenia</label>
                             <input id="number" name="number" label="Numer zdarzenia" onChange={(e) => onChange(e)} value={log.number} className="form-control" />
                             <label htmlFor="owner1Name" className="grey-text">Właściciel</label>
                             <input id="owner1Name" name="owner1Name" label="Właściciel" onChange={(e) => onChange(e)} value={log.owner1Name} className="form-control" />
@@ -61,7 +61,7 @@ const Result = ({ logs, changeLocation }) => (
             <tr>
                 <th>#</th>
                 <th>Zdarzenie</th>
-                <th>Numer</th>
+                <th>Numer zlecenia</th>
                 <th>Właściciel</th>
                 <th>Użytkownik</th>
                 <th>Kraj klienta</th>

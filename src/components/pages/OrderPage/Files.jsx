@@ -30,7 +30,7 @@ const File = ({ file, isRequired, download, toggle, toggleDelete, permissions, c
     })
     let key = Object.keys(filetered)[0]
     let mock = !isRequired
-    
+
     return (
         <Col sm="6" md="4">
             <Card style={{ marginTop: '40px', marginBottom: '20px', minHeight: '300px' }}>
@@ -66,13 +66,13 @@ const File = ({ file, isRequired, download, toggle, toggleDelete, permissions, c
                     {
                         file[1] === '00000000-0000-0000-0000-000000000000'
                             ? ''
-                            : <Button onClick={(e) => download(file[1])}>Pobierz</Button>
+                            : <Button onClick={(e) => download(file[0].slice(0, -2))}>Pobierz</Button>
                     }
                     {
                         (filetered[key] === localStorage.getItem('role') || localStorage.getItem('role') === 'admin') && isRequired[1]
                             ? file[1] === '00000000-0000-0000-0000-000000000000'
                                 ? <Button color="primary" onClick={(e) => toggle(file[0], isRequired[1])}>Wyślij</Button>
-                                : <Button color="danger" onClick={(e) => toggleDelete(file[1])}>Usuń</Button>
+                                : <Button color="danger" onClick={(e) => toggleDelete(file[0].slice(0, -2))}>Usuń</Button>
                             : ''
                     }
                 </CardFooter>

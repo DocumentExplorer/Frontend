@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ApiConstants} from '../constants'
+import { ApiConstants } from '../constants'
 import { getToken } from '../../components/helpers/getToken';
 
 export const FileService = {
@@ -8,10 +8,11 @@ export const FileService = {
     deleteFile
 }
 
-function download(id) {
+function download(id, fileType) {
+    console.log(id, fileType)
     return new Promise((resolve, reject) => {
         axios({
-            url: `${ApiConstants.rootURL}/files/${id}`,
+            url: `${ApiConstants.rootURL}/files/${id}/${fileType}`,
             method: 'GET',
             headers: {
                 'Authorization': getToken(),
@@ -24,6 +25,7 @@ function download(id) {
                 { type: 'application/pdf' }
             )
             const fileURL = URL.createObjectURL(file)
+
             window.open(fileURL)
             resolve()
         }).catch((err) => {
@@ -69,10 +71,11 @@ function upload(data, file) {
     })
 }
 
-function deleteFile(id) {
+function deleteFile(id, fileType) {
+    console.log(id, fileType)
     return new Promise((resolve, reject) => {
         axios({
-            url: `${ApiConstants.rootURL}/files/${id}`,
+            url: `${ApiConstants.rootURL}/files/${id}/${fileType}`,
             method: 'DELETE',
             headers: {
                 'Authorization': getToken()

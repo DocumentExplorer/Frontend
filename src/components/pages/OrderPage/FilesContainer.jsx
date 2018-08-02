@@ -57,15 +57,15 @@ class FilesContainer extends React.Component {
 
     }
 
-    toggleDelete(id) {
+    toggleDelete(fileType) {
         this.setState({
-            file_delete_id: id,
+            file_delete_fileType: fileType,
             modalDeleteFile: !this.state.modalDeleteFile
         })
     }
 
     deleteFile() {
-        this.props.deleteFile(this.state.file_delete_id, this.state.files.id, () => {
+        this.props.deleteFile(this.props.order.id, this.state.file_delete_fileType, () => {
             this.props.modifyOrderActualState(this.state.files.id)
         })
         setTimeout(() => {
@@ -147,8 +147,8 @@ class FilesContainer extends React.Component {
         })
 
     }
-    download(id) {
-        this.props.download(id)
+    download(fileType) {
+        this.props.download(this.props.order.id, fileType)
     }
 
     componentWillReceiveProps(nextProps) {

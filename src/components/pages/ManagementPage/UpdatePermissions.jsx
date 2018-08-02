@@ -8,7 +8,7 @@ export const UpdatePermissions = ({ permissions, handleChange }) => (
                 <tr>
                     <td>Typ</td>
                     <td>Użytkownik</td>
-                    <td>Competent</td>
+                    <td>Komplementer</td>
                 </tr>
             </thead>
             <tbody>
