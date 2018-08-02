@@ -32,13 +32,13 @@ class List extends React.Component {
                 })))
             }
         }
-
+        let reversed = _.reverse(this.state.years)
         return (
             <Fragment>
 
                 <ListGroup className="wrapper">
                     <h2>Lata</h2>
-                    {this.state.years.map((item, i) => (
+                    {reversed.map((item, i) => (
                         <ListGroupItem key={i} onClick={this.handleClick.bind(this, item.year)}>
                             <Fa icon="folder" />
                             {item.year}

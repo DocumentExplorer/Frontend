@@ -77,6 +77,7 @@ const Result = ({ logs, changeLocation }) => (
                     <tr key={index} onClick={() => changeLocation(value.orderId, value.event)}>
                         <td>{index}</td>
                         <td>{value.event}</td>
+                        <td>{value.eventDate}</td>
                         <td>{value.number}</td>
                         <td>{value.owner1Name}</td>
                         <td>{value.username}</td>
