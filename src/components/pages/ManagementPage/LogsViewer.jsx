@@ -61,6 +61,7 @@ const Result = ({ logs, changeLocation }) => (
             <tr>
                 <th>#</th>
                 <th>Zdarzenie</th>
+                <th>Data</th>
                 <th>Numer zlecenia</th>
                 <th>Właściciel</th>
                 <th>Użytkownik</th>
