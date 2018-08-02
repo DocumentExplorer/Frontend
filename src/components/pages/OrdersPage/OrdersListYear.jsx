@@ -36,36 +36,38 @@ export default class extends React.Component {
                 }
             })
         })
-        console.log(months)
         return (
             <Container className="custom-row" >
                 <h1 className="text-center">{year}</h1>
                 <Row>
                     {
+
                         months.map((value, i) => (
-                            <Col key={i} md="12">
-                                <Card className="month">
-                                    <CardBody>
-                                        <CardTitle>
-                                            {names[value.month - 1]}
-                                        </CardTitle>
-                                    </CardBody>
-                                </Card>
-                                <Row>
-                                    {
-                                        value.ordersByMonth.map((item, index) => (
-                                            <Col md="6" sm="12" key={index}>
-                                                
+                            value.ordersByMonth.length !== 0 ?
+                                <Col key={i} md="12">
+                                    <Card className="month">
+                                        <CardBody>
+                                            <CardTitle>
+                                                {names[value.month - 1]}
+                                            </CardTitle>
+                                        </CardBody>
+                                    </Card>
+                                    <Row>
+                                        {
+                                            value.ordersByMonth.map((item, index) => (
+                                                <Col md="6" sm="12" key={index}>
+
                                                     <Order
                                                         value={item}
                                                         color={value.color}
                                                     />
-                                            </Col>
+                                                </Col>
 
-                                        ))
-                                    }
-                                </Row>
-                            </Col>
+                                            ))
+                                        }
+                                    </Row>
+                                </Col>
+                                : ''
                         ))
                     }
                 </Row>
