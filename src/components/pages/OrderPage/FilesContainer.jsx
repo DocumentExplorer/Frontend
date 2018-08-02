@@ -36,6 +36,20 @@ class FilesContainer extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         })
+        if (this.state.invoiceNumber !== undefined) {
+            if (this.state.invoiceNumber.length === 0 || this.state.invoiceNumber.length > 4) {
+                this.setState({
+                    success: false,
+                    message: 'Numer faktury ma od 1 do 4 znaków'
+                })
+            } else {
+                this.setState({
+                    success: true,
+                    message: ''
+                })
+            }
+        }
+        
 
     }
 
@@ -96,10 +110,10 @@ class FilesContainer extends React.Component {
 
 
     addFile() {
-        
+
         if (this.state.success === true) {
-            
             if (this.state.fileToSend.fileType === 'fvk') {
+                console.log(this.state.invoiceNumber)
                 if (this.state.invoiceNumber !== undefined && this.state.invoiceNumber.length > 0 && this.state.invoiceNumber.length < 5) {
                     this.props.upload(Object.assign(
                         this.state.fileToSend, {
@@ -175,7 +189,7 @@ class FilesContainer extends React.Component {
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
-        console.log(this.state.files)
+
         return (
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList

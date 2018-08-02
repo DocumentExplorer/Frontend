@@ -4,6 +4,7 @@ import { MyModal } from '../../Modal/MyModal';
 import { connect } from 'react-redux'
 import { postOrder } from '../../../redux/actions'
 import _ from 'lodash'
+import { withRouter } from 'react-router-dom'
 
 class NewOrder extends React.Component {
 
@@ -48,8 +49,8 @@ class NewOrder extends React.Component {
             })
         } else {
             if (error !== true) {
-                this.props.postOrder(order, () => {
-                    setTimeout(() => this.toggleNewOrderModal(), 2000)
+                this.props.postOrder(order, (id) => {
+                    this.props.history.push(`/order/${id}`)
                 })
             }
         }
@@ -95,4 +96,4 @@ const mapStateToProps = ({ orders }) => {
     }
 }
 
-export default connect(mapStateToProps, { postOrder })(NewOrder)
+export default withRouter(connect(mapStateToProps, { postOrder })(NewOrder))

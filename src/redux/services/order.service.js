@@ -53,7 +53,7 @@ function postOrder(order) {
             data: order
         }).then((res) => {
             console.log(res)
-            resolve()
+            resolve(res.data.id)
         }).catch((err) => {
             console.log(err)
             reject()

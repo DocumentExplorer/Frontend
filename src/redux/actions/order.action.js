@@ -138,9 +138,9 @@ export function postOrder(order, callback) {
     return dispatch => {
         dispatch(request())
         OrdersService.postOrder(order)
-            .then(() => {
+            .then((id) => {
                 dispatch(success())
-                callback()
+                callback(id)
             }).catch(() => {
                 dispatch(failed())
             })
