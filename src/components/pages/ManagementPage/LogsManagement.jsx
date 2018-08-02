@@ -12,7 +12,17 @@ class FindLogs extends React.Component {
         super()
         this.state = {
             logs: [],
-            log: {}
+            log: {
+                event: "",
+                number: "",
+                clientCountry: "",
+                owner1Name: "",
+                username: "",
+                clientIdentificationNumber: "",
+                brokerCountry: "",
+                brokerIdentificationNumber: "",
+                invoiceNumber: ""
+            }
         }
         this.changeLocation = this.changeLocation.bind(this)
         this.onClick = this.onClick.bind(this)
@@ -45,11 +55,7 @@ class FindLogs extends React.Component {
 
     onClick() {
         let data = _.pick(this.state.log, ['event', 'number', 'clientCountry', 'owner1Name', 'username', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber', 'invoiceNumber'])
-        console.log(data)
         this.props.findLogs(data)
-        this.setState({
-            log: {}
-        })
     }
 
     render() {

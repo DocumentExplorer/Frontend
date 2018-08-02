@@ -1,6 +1,7 @@
 import { LogsConstants, LoginConstants } from '../constants'
 import { LogsService } from '../services'
 import { lostSession } from './app.action';
+import _ from 'lodash'
 
 export function findLogs(log) {
 
@@ -18,7 +19,17 @@ export function findLogs(log) {
     }
 
     return dispatch => {
-        LogsService.findLogs(log)
+        if (log.invoiceNumber !== "") {
+            log.invoiceNumber = parseInt(log.invoiceNumber)
+        }
+        if (log.number !== "") {
+            log.number = parseInt(log.number)
+        }
+        const logToSend = _.pickBy(log, (value, key) => {
+            return value !== ""
+        })
+        console.log(logToSend)
+        LogsService.findLogs(logToSend)
             .then((logs) => {
                 dispatch(success(logs))
             }).catch(() => {
