@@ -91,7 +91,7 @@ class OrderPage extends React.Component {
     }
 
     render() {
-        
+        console.log(this.props.orders.order)
         return (
             <Container>
                 <ApiHOC

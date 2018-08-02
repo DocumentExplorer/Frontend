@@ -2,7 +2,7 @@ import { OrdersService } from '../services'
 import { OrdersConstants, ApiConstants } from '../constants'
 import _ from 'lodash'
 import DateFormat from '../../components/helpers/DateFormat';
-import { lostSession } from './app.action'
+import { lostSession, updateActionOrder } from './app.action'
 
 export function getOrderById(id) {
     function success(order) {
@@ -163,10 +163,9 @@ export function deleteOrder(id, callback) {
 }
 
 export function putOrder(order, callback) {
-    function success(order) {
+    function success() {
         return {
-            type: OrdersConstants.PUT_ORDER_SUCCESS,
-            order
+            type: OrdersConstants.PUT_ORDER_SUCCESS
         }
     }
     function failed() {
@@ -181,9 +180,11 @@ export function putOrder(order, callback) {
     }
 
     return dispatch => {
+        console.log(order)
         dispatch(request())
         OrdersService.putOrder(order).then(() => {
-            dispatch(success(order))
+            dispatch(success())
+            updateActionOrder(order.id, dispatch)
             callback()
         }).catch(() => {
             dispatch(failed())
