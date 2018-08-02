@@ -55,21 +55,19 @@ class UpdatePermissionsContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         let allow = false
         if ((this.props.permissions.requestPermissions == false) && (this.state.modalUpdate == true)) {
-            console.log('dawaj')
             allow = true
         }
         return (
             <Fragment>
-                <Button onClick={this.toggleModalUpdate}>Pozwolenia</Button>
+                <Button onClick={this.toggleModalUpdate}>Uprawnienia</Button>
                 <MyModal
                     test={allow}
                     component={UpdatePermissions}
                     sumbit={this.updatePermissions}
                     sumbitText="Zmień"
-                    title="Uprawnienia"
+                    title="Zmiana Uprawnień"
                     toggle={this.toggleModalUpdate}
                     handleChange={this.handleChange}
                     permissions={this.state.permissions}
