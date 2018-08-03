@@ -1,4 +1,0 @@
-export const LogsConstants = {
-    FIND_LOGS_SUCCESS: 'FIND_LOGS_SUCCESS',
-    FIND_LOGS_REQUEST: 'FIND_LOGS_REQUEST'
-}
