@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Table, Col } from 'mdbreact'
+import { Table } from 'mdbreact'
 
 export const UpdatePermissions = ({ permissions, handleChange }) => (
     <Fragment>
@@ -8,7 +8,7 @@ export const UpdatePermissions = ({ permissions, handleChange }) => (
                 <tr>
                     <td>Typ</td>
                     <td>Użytkownik</td>
-                    <td>Competent</td>
+                    <td>Komplementer</td>
                 </tr>
             </thead>
             <tbody>

@@ -3,7 +3,7 @@ import { Row } from 'mdbreact'
 import { FilesList } from './Files'
 import _ from 'lodash'
 import { connect } from 'react-redux'
-import { download, upload, toggleAdd, deleteFile, toggleDelete, modifyOrderActualState } from '../../../redux/actions'
+import { download, upload, deleteFile, toggleDelete, modifyOrderActualState, putRequirements } from '../../../redux/actions'
 import { MyModal } from '../../Modal/MyModal'
 import { UploadModal } from './Upload'
 import { DeleteConfirmation } from '../ManagementPage/DeleteConfirmation';
@@ -16,7 +16,11 @@ class FilesContainer extends React.Component {
             message: '',
             success: false,
             border_color: '#777777',
-            modalDeleteFile: false
+            modalDeleteFile: false,
+            modalAddFile: false,
+            fileToSend: {
+
+            }
         }
         this.download = this.download.bind(this)
         this.drop = this.drop.bind(this)
@@ -24,13 +28,29 @@ class FilesContainer extends React.Component {
         this.toggleDelete = this.toggleDelete.bind(this)
         this.deleteFile = this.deleteFile.bind(this)
         this.onChange = this.onChange.bind(this)
+        this.changeRequired = this.changeRequired.bind(this)
+        this.toggleUpload = this.toggleUpload.bind(this)
     }
 
     onChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         })
-        console.log(this.state)
+        if (this.state.invoiceNumber !== undefined) {
+            if (this.state.invoiceNumber.length === 0 || this.state.invoiceNumber.length > 4) {
+                this.setState({
+                    success: false,
+                    message: 'Numer faktury ma od 1 do 4 znaków'
+                })
+            } else {
+                this.setState({
+                    success: true,
+                    message: ''
+                })
+            }
+        }
+        
+
     }
 
     drop(file) {
@@ -39,7 +59,7 @@ class FilesContainer extends React.Component {
                 message: 'Gotowy do przesłania',
                 success: true,
                 border_color: 'green',
-                file: file[file.length - 1]
+                fileToPost: file[file.length - 1],
             })
         } else {
             this.setState({
@@ -48,17 +68,18 @@ class FilesContainer extends React.Component {
                 border_color: 'red'
             })
         }
+
     }
 
-    toggleDelete(id) {
+    toggleDelete(fileType) {
         this.setState({
-            file_delete_id: id,
+            file_delete_fileType: fileType,
             modalDeleteFile: !this.state.modalDeleteFile
         })
     }
 
     deleteFile() {
-        this.props.deleteFile(this.state.file_delete_id, this.state.files.id, () => {
+        this.props.deleteFile(this.props.order.id, this.state.file_delete_fileType, () => {
             this.props.modifyOrderActualState(this.state.files.id)
         })
         setTimeout(() => {
@@ -66,50 +87,93 @@ class FilesContainer extends React.Component {
         }, 500)
     }
 
+    toggleUpload(fileType, isRequired) {
+        if (fileType != undefined && isRequired != undefined) {
+            fileType = fileType.slice(0, -2)
+            this.setState({
+                modalAddFile: !this.state.modalAddFile,
+                fileToSend: {
+                    fileType,
+                    isRequired,
+                }
+            })
+        } else {
+            this.setState({
+                modalAddFile: !this.state.modalAddFile,
+                success: false,
+                message: '',
+                border_color: '#777777'
+            })
+        }
+
+    }
+
 
     addFile() {
-        console.log(this.props)
+
         if (this.state.success === true) {
-            if (this.props.file.fileType === 'fvk') {
-                this.props.upload({
-                    OrderId: this.state.files.id,
-                    fileType: this.props.file.fileType,
-                    isRequired: this.props.file.isRequired,
-                    invoiceNumber: this.state.invoiceNumber
-                }, this.state.file, () => {
+            if (this.state.fileToSend.fileType === 'fvk') {
+                if (this.state.invoiceNumber !== undefined && this.state.invoiceNumber.length > 0 && this.state.invoiceNumber.length < 5) {
+                    this.props.upload(Object.assign(
+                        this.state.fileToSend, {
+                            invoiceNumber: this.state.invoiceNumber,
+                            orderId: this.props.order.id
+                        }), this.state.fileToPost, () => {
+                            this.setState({
+                                modalAddFile: false,
+                                success: true,
+                                message: '',
+                                border_color: '#777777',
+                                fileToSend: {},
+                            })
+                        })
+                } else {
                     this.setState({
-                        success: true,
-                        message: 'Udało się',
-                        border_color: 'green'
+                        success: false,
+                        message: 'Brak numeru lub za długi numer faktury'
                     })
-                })
+                }
             } else {
-                this.props.upload({
-                    OrderId: this.state.files.id,
-                    fileType: this.props.file.fileType,
-                    isRequired: this.props.file.isRequired
-                }, this.state.file, () => {
+                this.props.upload(Object.assign(this.state.fileToSend, { orderId: this.props.order.id }), this.state.fileToPost, () => {
                     this.setState({
-                        success: true,
-                        message: 'Udało się',
-                        border_color: 'green'
+                        modalAddFile: false
                     })
                 })
             }
-
-            setTimeout(() => {
-                this.setState({
-                    success: false,
-                    message: '',
-                    border_color: '#777777'
-                })
-                this.props.toggleAdd()
-            }, 2000)
         }
     }
 
-    download(id) {
-        this.props.download(id)
+
+    changeRequired(file, isRequired) {
+        let name = isRequired[0]
+        let value = isRequired[1]
+        this.setState({
+            files: {
+                ...this.state.files,
+                [name]: !value
+            }
+        })
+        this.props.putRequirements({
+            orderId: this.props.order.id,
+            fileType: file,
+            isRequired: !value
+        })
+
+    }
+    download(fileType) {
+        this.props.download(this.props.order.id, fileType)
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            files: nextProps.order
+        })
+    }
+
+    componentDidMount() {
+        this.setState({
+            files: this.props.order
+        })
     }
 
     componentWillMount() {
@@ -117,19 +181,15 @@ class FilesContainer extends React.Component {
             files: this.props.order
         })
     }
-    componentWillReceiveProps(nextProps) {
-        this.setState({
-            files: nextProps.order
-        })
-    }
 
     render() {
+
+
         let files = _.pick(this.state.files, ['fvkId', 'fvpId', 'cmrId', 'nipId', 'notaId', 'ppId', 'rkId', 'zkId', 'zpId'])
         let requires = _.pick(this.state.files, ['isFVKRequired', 'isFVPRequired', 'isCMRRequired', 'isNIPRequired',
             'isNotaRequired', 'isPPRequired', 'isRKRequired', 'isZKRequired', 'isZPRequired'])
-        console.log(this.props)
-        return (
 
+        return (
             <Row style={{ marginBottom: '80px' }}>
                 <FilesList
                     download={this.download}
@@ -143,12 +203,14 @@ class FilesContainer extends React.Component {
                             return [value, requires[value]]
                         })
                     }
-                    toggle={this.props.toggleAdd}
+                    permissions={this.props.permissions}
+                    toggle={this.toggleUpload}
                     toggleDelete={this.toggleDelete}
+                    changeRequired={this.changeRequired}
                 />
                 <MyModal
-                    test={this.props.file.modalAddFile}
-                    toggle={this.props.toggleAdd}
+                    test={this.state.modalAddFile}
+                    toggle={this.toggleUpload}
                     component={UploadModal}
                     title="Dodaj pliki"
                     sumbitText="Wyślij"
@@ -158,7 +220,7 @@ class FilesContainer extends React.Component {
                     success={this.state.success}
                     border_color={this.state.border_color}
                     onChange={this.onChange}
-                    fileType={this.props.file.fileType}
+                    fileType={this.state.fileToSend.fileType}
                 />
                 <MyModal
                     test={this.state.modalDeleteFile}
@@ -179,4 +241,4 @@ const mapStateToProps = ({ file }) => {
     }
 }
 
-export default connect(mapStateToProps, { download, upload, toggleAdd, toggleDelete, deleteFile, modifyOrderActualState })(FilesContainer)
+export default connect(mapStateToProps, { download, upload, toggleDelete, deleteFile, modifyOrderActualState, putRequirements })(FilesContainer)

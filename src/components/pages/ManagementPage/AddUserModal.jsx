@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Input, Fa } from 'mdbreact'
+import { Input } from 'mdbreact'
 import Select from 'react-select-me'
 
 const options = [

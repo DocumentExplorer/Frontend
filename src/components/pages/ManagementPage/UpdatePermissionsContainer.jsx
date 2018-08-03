@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getPermissions, putPermissions } from '../../../redux/actions'
-import ApiHOC from '../../helpers/ApiHOC';
 import { UpdatePermissions } from './UpdatePermissions';
 import { Button } from 'mdbreact'
 import { MyModal } from '../../Modal/MyModal';
-import _ from 'lodash'
+
 
 class UpdatePermissionsContainer extends React.Component {
 
@@ -26,7 +25,6 @@ class UpdatePermissionsContainer extends React.Component {
     }
 
     updatePermissions() {
-        console.log('update')
         this.props.putPermissions(this.state.permissions, () => {
             this.toggleModalUpdate()
             this.props.getPermissions()
@@ -41,7 +39,6 @@ class UpdatePermissionsContainer extends React.Component {
                 [e.target.name]: e.target.value
             }
         })
-        console.log(this.state.permissions)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -55,21 +52,19 @@ class UpdatePermissionsContainer extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         let allow = false
         if ((this.props.permissions.requestPermissions == false) && (this.state.modalUpdate == true)) {
-            console.log('dawaj')
             allow = true
         }
         return (
             <Fragment>
-                <Button onClick={this.toggleModalUpdate}>Pozwolenia</Button>
+                <Button onClick={this.toggleModalUpdate}>Uprawnienia</Button>
                 <MyModal
                     test={allow}
                     component={UpdatePermissions}
                     sumbit={this.updatePermissions}
                     sumbitText="Zmień"
-                    title="Uprawnienia"
+                    title="Zmiana Uprawnień"
                     toggle={this.toggleModalUpdate}
                     handleChange={this.handleChange}
                     permissions={this.state.permissions}

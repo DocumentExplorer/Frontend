@@ -22,7 +22,6 @@ class User extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps)
         this.setState({
             put_password: nextProps.users.put_password
         })
@@ -48,7 +47,6 @@ class User extends React.Component {
         } else {
             this.props.changePassword(this.props.user.id, this.state.password, () => {
                 setTimeout(() => {
-                    console.log('Wywołaj')
                     this.props.clearValidation()
                 }, 9000)
             })

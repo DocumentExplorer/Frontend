@@ -1,6 +1,6 @@
-import { UserConstants, RegisterConstants } from '../constants'
+import { UserConstants } from '../constants'
 import _ from 'lodash'
-import User from '../../components/pages/UserPage/User';
+
 
 let initState = {
     request: true,
@@ -66,7 +66,6 @@ export default function (state = initState, action) {
                 put_password_success: false
             }
         case UserConstants.CLEAR_VALIDATION:
-            console.log('dawj')
             return {
                 ...state,
                 put_password: ''

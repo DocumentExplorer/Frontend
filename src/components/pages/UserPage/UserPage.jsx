@@ -17,7 +17,6 @@ class UserPage extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
             <ApiHOC
                 test={this.props.users.requestUser}

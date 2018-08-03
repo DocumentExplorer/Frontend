@@ -1,9 +1,9 @@
-import { FileConstants, OrdersConstants } from '../constants'
-import { FileService, OrdersService } from '../services'
+import { FileConstants} from '../constants'
+import { FileService} from '../services'
 import { lostSession, updateActionOrder } from './app.action'
-import { getOrderById } from './order.action'
 
-export function download(id) {
+
+export function download(id, fileType) {
 
     function success() {
         return {
@@ -11,14 +11,8 @@ export function download(id) {
         }
     }
 
-    function failed() {
-        return {
-            type: FileConstants.GET_FILE_FAIL
-        }
-    }
-
     return dispatch => {
-        FileService.download(id)
+        FileService.download(id, fileType)
             .then(() => {
                 dispatch(success())
             }).catch(() => {
@@ -34,18 +28,11 @@ export function upload(data, file, callback) {
         }
     }
 
-    function failed() {
-        return {
-            type: FileConstants.POST_FILE_FAIL
-        }
-    }
-
     return dispatch => {
-        console.log(data)
         FileService.upload(data, file)
             .then(() => {
                 dispatch(success())
-                updateActionOrder(data.OrderId, dispatch)
+                updateActionOrder(data.orderId, dispatch)
                 callback()
             }).catch(() => {
                 dispatch(lostSession())
@@ -80,7 +67,7 @@ export function toggleAdd(fileType, isRequired) {
     }
 }
 
-export function deleteFile(id, orderId, callback) {
+export function deleteFile(id, fileType, callback) {
     function success() {
         return {
             type: FileConstants.DELETE_FILE_SUCCESS
@@ -94,10 +81,10 @@ export function deleteFile(id, orderId, callback) {
     }
 
     return dispatch => {
-        FileService.deleteFile(id)
+        FileService.deleteFile(id, fileType)
             .then(() => {
                 dispatch(success())
-                updateActionOrder(orderId, dispatch)
+                updateActionOrder(id, dispatch)
                 callback()
             }).catch(() => {
                 dispatch(failed())

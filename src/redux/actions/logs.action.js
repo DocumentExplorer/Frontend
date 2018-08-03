@@ -1,59 +1,40 @@
-import { LogsConstants, LoginConstants } from '../constants'
+import { LogsConstants } from '../constants'
 import { LogsService } from '../services'
-import { lostSession } from './app.action';
+import _ from 'lodash'
 
-export function getLogs() {
+export function findLogs(log) {
+
     function success(logs) {
         return {
-            type: LogsConstants.GET_LOGS_SUCCESS,
+            type: LogsConstants.FIND_LOGS_SUCCESS,
             logs
         }
     }
+
     function request() {
         return {
-            type: LogsConstants.GET_LOGS_REQUEST
+            type: LogsConstants.FIND_LOGS_REQUEST
         }
     }
 
     return dispatch => {
+        if (log.invoiceNumber !== "") {
+            log.invoiceNumber = parseInt(log.invoiceNumber)
+        }
+        if (log.number !== "") {
+            log.number = parseInt(log.number)
+        }
+        const logToSend = _.pickBy(log, (value, key) => {
+            return value !== ""
+        })
         dispatch(request())
-        console.log('start')
-        LogsService.getLogs()
-            .then((data) => {
-                dispatch(success(data))
+        LogsService.findLogs(logToSend)
+            .then((logs) => {
+                dispatch(success(logs))
             }).catch(() => {
-                dispatch(lostSession())
+                dispatch(request())
             })
     }
-}
 
-export function getLogById(id) {
-    function success(log) {
-        return {
-            type: LogsConstants.GET_LOG_SUCCESS,
-            log
-        }
-    }
-    function failed() {
-        return {
-            type: LogsConstants.GET_LOG_FAIL
-        }
-    }
-    function request() {
-        return {
-            type: LogsConstants.GET_LOG_REQUEST
-        }
-    }
-
-    return dispatch => {
-        dispatch(request())
-        LogsService.getLogById(id)
-            .then((data) => {
-                console.log(data)
-                dispatch(success(data))
-            }).catch(() => {
-                dispatch(failed())
-            })
-    }
 }
 

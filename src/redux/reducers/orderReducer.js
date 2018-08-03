@@ -104,8 +104,7 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
         case OrdersConstants.PUT_ORDER_SUCCESS:
             return {
                 ...state,
-                put_order_error: '',
-                order: action.order
+                put_order_error: ''
             }
         case OrdersConstants.PUT_ORDER_FAIL:
             return {
@@ -118,18 +117,7 @@ export default function (state = { choose: true, newOrderResult: '', getOrderReq
                 put_order_error: ''
             }
         case OrdersConstants.PUT_REQUIREMENTS_SUCCESS:
-            return {
-                ...state
-            }
-        case OrdersConstants.PUT_REQUIREMENTS_FAIL:
-            return {
-                ...state
-            }
-        case OrdersConstants.PUT_REQUIREMENTS_REQUEST:
-            return {
-                ...state
-            }
-        
+            return state
         default:
             return state
     }

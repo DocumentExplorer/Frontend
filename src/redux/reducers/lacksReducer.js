@@ -1,21 +1,21 @@
-import { LogsConstants } from '../constants'
+import { LackConstants } from "../constants";
 
 const initState = {
-    requestFinding: true,
+    requestLacks: true
 }
 
 export default function (state = initState, action) {
     switch (action.type) {
-        case LogsConstants.FIND_LOGS_SUCCESS:
+        case LackConstants.GET_LACKS_SUCCESS:
             return {
                 ...state,
-                logs: action.logs,
-                requestFinding: false
+                lacks: action.lacks,
+                requestLacks: false
             }
-        case LogsConstants.FIND_LOGS_REQUEST:
+        case LackConstants.GET_LACKS_REQUEST:
             return {
                 ...state,
-                requestFinding: true
+                requestLacks: true
             }
         default:
             return state

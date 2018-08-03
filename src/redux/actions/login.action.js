@@ -32,10 +32,8 @@ export function login(values) {
         LoginService.login(values).then((data) => {
             localStorage.setItem("token", data.token)
             localStorage.setItem("role", data.role)
+            localStorage.setItem("username", data.username)
             dispatch(success(data.role))
-            var t = new Date()
-            t.setSeconds(t.getSeconds() + data.expiry * 1000)
-            localStorage.setItem('expiryAt', t.toDateString())
             setTimeout(() => {
                 dispatch(lostSession())
             }, data.expiry * 1000)
@@ -67,7 +65,6 @@ export function checkLogining() {
     }
     return dispatch => {
         if (localStorage.getItem('token') && localStorage.getItem('role')) {
-            console.log('Sprawdzam')
             dispatch(success(localStorage.getItem('role')))
         }
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Input, Button, Row, Col } from 'mdbreact'
+import { Card, CardBody, Input, Button} from 'mdbreact'
 import _ from 'lodash'
 import { finding } from '../../redux/actions/order.action'
 import { connect } from 'react-redux'
@@ -27,7 +27,6 @@ class FindForm extends React.Component {
                 picked[key] = value
             }
         })
-        console.log(picked)
         this.props.finding(picked)
         event.preventDefault()
     }

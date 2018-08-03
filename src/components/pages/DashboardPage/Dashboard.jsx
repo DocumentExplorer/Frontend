@@ -9,32 +9,42 @@ import FindedOrders from './FindedOrders'
 import { Choose } from '../../helpers/Choose'
 import { OnActionHOC } from '../../helpers/OnActionHOC'
 import NewOrder from './NewOrder'
-import { logout } from '../../../redux/actions'
+import { logout, getLacks } from '../../../redux/actions'
+import InstantWork from './InstantWork';
+import { withRouter } from 'react-router-dom'
 
 class Dashboard extends React.Component {
 
+    constructor() {
+        super()
+        this.changeLocation = this.changeLocation.bind(this)
+    }
+
     componentDidMount() {
-        // console.log(Date.parse(localStorage.getItem('expiryAt')) - new Date().getTime())
-        // if (Date.parse(localStorage.getItem('expiryAt')) - new Date().getTime() > 0) {
-        //     let end = Date.parse(localStorage.getItem('expiryAt'))
-        //     console.log('działa')
-        //     console.log((end - new Date().getTime()) / 1000)
-        //     setTimeout(() => {
-        //         this.props.logout()
-        //     }, (end - new Date().getTime()) / 1000)
+        this.props.getLacks()
+    }
 
-        // } else {
-
-        //     this.props.logout()
-        // }
+    changeLocation(id) {
+        this.props.history.push(`/order/${id}`)
     }
 
     render() {
         return (
             <Container>
-                <Row className="custom-row">
-                    <NewOrder />
-                </Row>
+                <ApiHOC
+                    test={this.props.lacks.requestLacks}
+                    component={InstantWork}
+                    lacks={this.props.lacks.lacks}
+                    changeLocation={this.changeLocation}
+                />
+                {
+                    localStorage.getItem('role') == 'complementer'
+                        ? ''
+                        : <Row className="custom-row">
+                            <NewOrder />
+                        </Row>
+                }
+
                 <Row className="custom-row">
                     <Col md="9" sm="12">
                         <FindForm />
@@ -61,11 +71,12 @@ class Dashboard extends React.Component {
 }
 
 
-function mapStateToProps({ orders, loginResult }) {
+function mapStateToProps({ orders, loginResult, lacks }) {
     return {
         orders,
-        loginResult
+        loginResult,
+        lacks
     }
 }
-const result = connect(mapStateToProps, { logout })(Dashboard)
+const result = withRouter(connect(mapStateToProps, { logout, getLacks })(Dashboard))
 export { result as Dashboard }

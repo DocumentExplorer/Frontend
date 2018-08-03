@@ -1,6 +1,6 @@
 import React from 'react'
 import './jumbotron.css'
-import { Col, Row, Container } from 'mdbreact'
+import { Col, Row } from 'mdbreact'
 
 export const Jumbotron = ({ header: Header, body: Body, ...props }) => (
     <div className="jumbotron">

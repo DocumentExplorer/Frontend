@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import ApiHOC from '../../helpers/ApiHOC'
-import { Container, Row, Col, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
+import { Container, Row, Col, Button } from 'mdbreact'
 import { connect } from 'react-redux'
 import { getUsers, register, deleteUser, getLogs } from '../../../redux/actions'
 import UsersContainer from './UsersContainer';
@@ -11,6 +11,7 @@ import { DeleteConfirmation } from './DeleteConfirmation'
 import UpdatePermissionsContainer from './UpdatePermissionsContainer'
 import Logs from '../../Logs/Logs'
 import _ from 'lodash'
+import LogsManagement from './LogsManagement'
 
 class ManagementPage extends React.Component {
 
@@ -103,66 +104,63 @@ class ManagementPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers()
-        setInterval(() => {
-            this.props.getUsers()
-        }, 60000)
     }
 
     render() {
-        console.log('management')
-        console.log(this.props.logs)
         return (
-            <Container>
-                <Row className="custom-row">
-                    <Col>
-                        <ApiHOC
-                            test={this.props.users.request}
-                            component={UsersContainer}
-                            data={this.props.users.users}
-                            addWindow={this.props.users.request}
-                            deleteUser={this.deleteUser}
-                            changeLocation={this.changeLocationUsername}
-                        />
-                        <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
-                        <UpdatePermissionsContainer />
-                        <div style={{ height: '50px' }}>
-                        </div>
-                        <MyModal
-                            test={this.state.addWindow}
-                            toggle={this.toggleAdd}
-                            handleChange={this.handleChange}
-                            handleSelect={this.handleSelect}
-                            sumbit={this.handleSubmit}
-                            sumbitText={"Dodaj"}
-                            component={AddUserModal}
-                            title={"Tworzenie użytkownika"}
-                            role={this.state.role}
-                            message={this.state.registerErrors}
-                            success={this.props.registerSuccess}
-                        />
-                        <MyModal
-                            test={this.state.deleteWindow}
-                            toggle={this.toggleDelete}
-                            sumbit={this.handleDelete}
-                            sumbitText={"Usuń"}
-                            component={DeleteConfirmation}
-                            title={"Usuwanie użytkownika"}
-                            error={''}
-                        />
-                    </Col>
-                </Row>
-            </Container>
+            <Fragment>
+                <Container>
+                    <Row className="custom-row">
+                        <Col>
+                            <ApiHOC
+                                test={this.props.users.request}
+                                component={UsersContainer}
+                                data={this.props.users.users}
+                                addWindow={this.props.users.request}
+                                deleteUser={this.deleteUser}
+                                changeLocation={this.changeLocationUsername}
+                            />
+                            <Button onClick={this.toggleAdd}>Dodaj użytkownika</Button>
+                            <UpdatePermissionsContainer />
+                            <div style={{ height: '50px' }}>
+                            </div>
+                            <MyModal
+                                test={this.state.addWindow}
+                                toggle={this.toggleAdd}
+                                handleChange={this.handleChange}
+                                handleSelect={this.handleSelect}
+                                sumbit={this.handleSubmit}
+                                sumbitText={"Dodaj"}
+                                component={AddUserModal}
+                                title={"Tworzenie użytkownika"}
+                                role={this.state.role}
+                                message={this.state.registerErrors}
+                                success={this.props.registerSuccess}
+                            />
+                            <MyModal
+                                test={this.state.deleteWindow}
+                                toggle={this.toggleDelete}
+                                sumbit={this.handleDelete}
+                                sumbitText={"Usuń"}
+                                component={DeleteConfirmation}
+                                title={"Usuwanie użytkownika"}
+                                error={''}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+                <LogsManagement />
+            </Fragment>
         )
     }
 }
 
-function mapStateToProps({ users, registerResult, logs }) {
+function mapStateToProps({ users, registerResult }) {
     return {
         users,
-        registerResult,
-        logs
+        registerResult
     }
 }
 
-const component = connect(mapStateToProps, { getUsers, register, deleteUser, getLogs })(ManagementPage)
+const component = connect(mapStateToProps, { getUsers, register, deleteUser })(ManagementPage)
 export { component as ManagementPage }

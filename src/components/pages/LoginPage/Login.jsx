@@ -1,10 +1,11 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Container, Row, Col, Input, Button } from 'mdbreact';
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { login } from '../../../redux/actions'
 import ValidationError from '../../messages/ValidationError'
 import './login.css'
+import { LoginForm } from './LoginForm';
 
 class Login extends React.Component {
     constructor(props) {
@@ -67,28 +68,15 @@ class Login extends React.Component {
                 <Row>
                     <Col md="3"></Col>
                     <Col md="6">
-                        <form className="login-form" style={{ paddingTop: this.state.windowHeight / 4 + 'px' }}
-                            onSubmit={this.handleSubmit}
-                        >
-                            <p className="h3 text-center mb-4">Logowanie</p>
-                            <div className="grey-text">
-                                <Input name="username" label="Username" icon="user" type="text"
-                                    onChange={this.handleChange}
-                                    onBlur={this.handleBlur}
-                                    className={checkErrorForUsername}
-                                />
-                                <p className="warning">{this.state.errors.username}</p>
-                                <Input name="password" label="Hasło" icon="lock" type="password"
-                                    onChange={this.handleChange}
-                                    onBlur={this.handleBlur}
-                                    className={checkErrorForPassword}
-                                />
-                                <p className="warning">{this.state.errors.password}</p>
-                            </div>
-                            <div className="text-center">
-                                <Button type="submit">Login</Button>
-                            </div>
-                        </form>
+                        <LoginForm
+                            errors={this.state.errors}
+                            handleBlur={this.handleBlur}
+                            handleChange={this.handleChange}
+                            handleSubmit={this.handleSubmit}
+                            checkErrorForUsername={checkErrorForUsername}
+                            checkErrorForPassword={checkErrorForPassword}
+                            windowHeight={this.state.windowHeight}
+                        />
                         <ValidationError message={this.props.loginResult.loginResult} />
                     </Col>
                 </Row>

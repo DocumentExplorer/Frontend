@@ -2,15 +2,13 @@ import React, { Fragment } from 'react'
 import './order.css'
 import ApiHOC from '../../helpers/ApiHOC'
 import { connect } from 'react-redux'
-import { getOrderById, deleteOrder, putOrder } from '../../../redux/actions'
-import { Container, Button } from 'mdbreact'
+import { getOrderById, deleteOrder, putOrder, getPermissions } from '../../../redux/actions'
+import { Container } from 'mdbreact'
 import { OrderInformation } from './OrderInformation'
-import { MyModal } from '../../Modal/MyModal';
-import { addNewOrder } from '../DashboardPage/NewOrder'
 import _ from 'lodash'
-import Permissions from './Permissions'
 import { Footer } from './Footer'
 import FilesContainer from './FilesContainer'
+
 
 class OrderPage extends React.Component {
 
@@ -31,6 +29,7 @@ class OrderPage extends React.Component {
     componentDidMount() {
         const { match: { params: { id } } } = this.props
         this.props.getOrderById(id)
+        this.props.getPermissions()
         this.setState({
             id
         })
@@ -44,7 +43,8 @@ class OrderPage extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            modifyResult: nextProps.orders.put_order_error
+            modifyResult: nextProps.orders.put_order_error,
+            order: nextProps.orders
         })
     }
 
@@ -62,7 +62,6 @@ class OrderPage extends React.Component {
     }
 
     handleModify() {
-        console.log('mody')
         let error
         let arrayOfProperties = ['id', 'number', 'clientCountry', 'clientIdentificationNumber', 'brokerCountry', 'brokerIdentificationNumber']
         const order = _.pick(this.state, arrayOfProperties)
@@ -109,19 +108,22 @@ class OrderPage extends React.Component {
                     component={FilesContainer}
                     test={this.props.orders.getOrderRequest}
                     order={this.props.orders.order}
+                    permissions={this.props.permissions}
+
                 />
             </Container>
         )
     }
 }
 
-function mapStateToProps({ orders }) {
+function mapStateToProps({ orders, permissions }) {
     return {
-        orders
+        orders,
+        permissions
     }
 }
 
 
 
-const component = connect(mapStateToProps, { getOrderById, deleteOrder, putOrder })(OrderPage)
+const component = connect(mapStateToProps, { getOrderById, deleteOrder, putOrder, getPermissions })(OrderPage)
 export { component as OrderPage }
