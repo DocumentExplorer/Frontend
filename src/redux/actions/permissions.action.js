@@ -29,8 +29,6 @@ export function getPermissions() {
 
 export function putPermissions(permissions, callback) {
 
-    console.log(permissions)
-
     function success() {
         return {
             type: PermissionsConstants.PUT_PERMISSIONS_SUCCESS

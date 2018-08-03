@@ -6,7 +6,6 @@ import { lostSession, updateActionOrder } from './app.action'
 
 export function getOrderById(id) {
     function success(order) {
-
         return {
             type: OrdersConstants.GET_ORDER_SUCCESS,
             order
@@ -27,7 +26,6 @@ export function getOrderById(id) {
         dispatch(request())
         OrdersService.getOrderById(id)
             .then((order) => {
-                console.log('działaanie')
                 dispatch(success(order))
             }).catch(() => {
                 dispatch(failed())
@@ -42,12 +40,7 @@ export function finding(values) {
             matchOrders
         }
     }
-    function failed() {
-        return {
-            type: OrdersConstants.FIND_ORDERS_FAIL
-        }
-    }
-
+    
     function request() {
         return {
             type: OrdersConstants.FIND_ORDERS_REQUEST
@@ -74,7 +67,7 @@ export function finding(values) {
                     })
                 });
                 dispatch(success(filtered))
-            }).catch((err) => {
+            }).catch(() => {
                 dispatch(lostSession())
             })
     }
@@ -87,12 +80,7 @@ export function getOrders(callback) {
             data
         }
     }
-    function failed(error) {
-        return {
-            type: OrdersConstants.GET_ORDERS_FAIL,
-            error
-        }
-    }
+    
     function request() {
         return {
             type: OrdersConstants.GET_ORDERS_REQUEST
@@ -180,7 +168,6 @@ export function putOrder(order, callback) {
     }
 
     return dispatch => {
-        console.log(order)
         dispatch(request())
         OrdersService.putOrder(order).then(() => {
             dispatch(success())
@@ -202,7 +189,6 @@ export function modifyOrderActualState(id) {
     return dispatch => {
         OrdersService.getOrderById(id)
             .then((res) => {
-                console.log(res)
                 dispatch(success(res))
             })
     }
@@ -220,7 +206,7 @@ export function putRequirements(requirements) {
         OrdersService.putRequirements(requirements).then(() => {
             dispatch(success())
         }).catch(() => {
-            dispatch(success())
+            
         })
     }
 }

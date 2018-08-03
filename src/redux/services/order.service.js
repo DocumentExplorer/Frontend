@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { getData } from '../mock/data'
 import { getToken } from '../../components/helpers/getToken'
 import { ApiConstants } from '../constants'
 

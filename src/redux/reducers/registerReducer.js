@@ -1,4 +1,4 @@
-import { RegisterConstants, UserConstants } from '../constants'
+import { RegisterConstants } from '../constants'
 
 export default function (state = { error: '' }, action) {
     switch (action.type) {

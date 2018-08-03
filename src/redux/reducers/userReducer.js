@@ -1,6 +1,6 @@
-import { UserConstants, RegisterConstants } from '../constants'
+import { UserConstants } from '../constants'
 import _ from 'lodash'
-import User from '../../components/pages/UserPage/User';
+
 
 let initState = {
     request: true,

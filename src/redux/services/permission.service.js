@@ -35,7 +35,6 @@ function putPermissions(permissions) {
             method: 'PUT',
             data: permissions
         }).then((res) => {
-            console.log(res)
             resolve()
         }).catch((err) => {
             console.log(err)

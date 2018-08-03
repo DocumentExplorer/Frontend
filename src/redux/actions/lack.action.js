@@ -17,11 +17,10 @@ export function getLacks() {
     }
 
     return dispatch => {
+        dispatch(request())
         LackService.getLacks()
             .then((lacks) => {
                 dispatch(success(lacks))
-            }).catch(() => {
-                dispatch(request())
             })
     }
 }

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import { ApiConstants } from '../constants'
-import _ from 'lodash'
 import { getToken } from '../../components/helpers/getToken';
 
 function register(values) {
@@ -14,9 +13,9 @@ function register(values) {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            console.log(res)
             resolve()
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })

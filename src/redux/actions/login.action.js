@@ -34,9 +34,6 @@ export function login(values) {
             localStorage.setItem("role", data.role)
             localStorage.setItem("username", data.username)
             dispatch(success(data.role))
-            var t = new Date()
-            t.setSeconds(t.getSeconds() + data.expiry * 1000)
-            localStorage.setItem('expiryAt', t.toDateString())
             setTimeout(() => {
                 dispatch(lostSession())
             }, data.expiry * 1000)

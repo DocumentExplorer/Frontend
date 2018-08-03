@@ -1,6 +1,5 @@
-import { LogsConstants, LoginConstants } from '../constants'
+import { LogsConstants } from '../constants'
 import { LogsService } from '../services'
-import { lostSession } from './app.action';
 import _ from 'lodash'
 
 export function findLogs(log) {
@@ -28,7 +27,7 @@ export function findLogs(log) {
         const logToSend = _.pickBy(log, (value, key) => {
             return value !== ""
         })
-        console.log(logToSend)
+        dispatch(request())
         LogsService.findLogs(logToSend)
             .then((logs) => {
                 dispatch(success(logs))

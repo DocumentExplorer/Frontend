@@ -1,6 +1,5 @@
 import { UserService } from '../services'
 import { UserConstants } from '../constants'
-import { logout } from '../../components/helpers/logoutHelper'
 import { lostSession } from './app.action'
 
 export function getUsers() {
@@ -11,11 +10,6 @@ export function getUsers() {
         }
     }
 
-    function failed() {
-        return {
-            type: UserConstants.GET_USERS_FAIL
-        }
-    }
     function request() {
         return {
             type: UserConstants.GET_USERS_REQUEST

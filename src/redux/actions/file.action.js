@@ -1,19 +1,13 @@
-import { FileConstants, OrdersConstants } from '../constants'
-import { FileService, OrdersService } from '../services'
+import { FileConstants} from '../constants'
+import { FileService} from '../services'
 import { lostSession, updateActionOrder } from './app.action'
-import { getOrderById } from './order.action'
+
 
 export function download(id, fileType) {
 
     function success() {
         return {
             type: FileConstants.GET_FILE_SUCCESS
-        }
-    }
-
-    function failed() {
-        return {
-            type: FileConstants.GET_FILE_FAIL
         }
     }
 
@@ -34,14 +28,7 @@ export function upload(data, file, callback) {
         }
     }
 
-    function failed() {
-        return {
-            type: FileConstants.POST_FILE_FAIL
-        }
-    }
-
     return dispatch => {
-        console.log(data)
         FileService.upload(data, file)
             .then(() => {
                 dispatch(success())
