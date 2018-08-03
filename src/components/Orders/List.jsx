@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react'
 import OrderByYear from '../helpers/OrdersByYears'
 import _ from 'lodash'
-import DateFormat from '../helpers/DateFormat'
 import { ListGroup, ListGroupItem } from 'mdbreact'
 import { withRouter } from 'react-router-dom'
 import { Fa } from 'mdbreact'

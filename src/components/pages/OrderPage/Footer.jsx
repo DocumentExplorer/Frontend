@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Container, Button } from 'mdbreact'
+import { Button } from 'mdbreact'
 import { MyModal } from '../../Modal/MyModal';
 import { addNewOrder } from '../DashboardPage/NewOrder'
 
@@ -10,7 +10,7 @@ const DeleteOrderConfirmation = () => (
 
 export const Footer = ({ handleDelete, handleModify, toggleModalModify, toggleModalRemove, modifyResult, ...props }) => {
     return (
-        <React.Fragment>
+        <Fragment>
             {
                 localStorage.getItem('role') === 'admin' || localStorage.getItem('username') === props.order.owner1Name
                     ? <Button color="danger" onClick={(e) => toggleModalRemove()}>Usuń</Button>
@@ -37,6 +37,6 @@ export const Footer = ({ handleDelete, handleModify, toggleModalModify, toggleMo
                 success={false}
                 message={modifyResult}
             />
-        </React.Fragment>
+        </Fragment>
     )
 }

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Table, Col } from 'mdbreact'
+import { Table } from 'mdbreact'
 
 export const UpdatePermissions = ({ permissions, handleChange }) => (
     <Fragment>

@@ -5,6 +5,7 @@ import { Container, NavbarBrand, Navbar, NavbarNav, NavItem, Fa, Button } from '
 import { NavbarHOC } from './NavbarHOC.js'
 import { logout } from '../../redux/actions'
 
+
 function mapStateToProps({ loginResult }) {
     return {
         loginResult

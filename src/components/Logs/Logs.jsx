@@ -1,6 +1,5 @@
 import React from 'react'
 import { Table } from 'mdbreact'
-import { Fa } from 'mdbreact'
 import { withRouter } from 'react-router-dom'
 
 export const Logs = ({ data, changeLocation, ...rest }) => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Card, CardTitle, CardBody, CardFooter, CardHeader, Button, Input } from 'mdbreact'
+import { Col, Card, CardBody, CardFooter, CardHeader, Button } from 'mdbreact'
 import _ from 'lodash'
 
 export const FilesList = ({ files, requires, ...props }) => {

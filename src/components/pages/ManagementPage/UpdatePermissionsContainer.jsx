@@ -1,11 +1,10 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { getPermissions, putPermissions } from '../../../redux/actions'
-import ApiHOC from '../../helpers/ApiHOC';
 import { UpdatePermissions } from './UpdatePermissions';
 import { Button } from 'mdbreact'
 import { MyModal } from '../../Modal/MyModal';
-import _ from 'lodash'
+
 
 class UpdatePermissionsContainer extends React.Component {
 

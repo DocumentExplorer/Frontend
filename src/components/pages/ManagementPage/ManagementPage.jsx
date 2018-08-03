@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react'
 import ApiHOC from '../../helpers/ApiHOC'
-import { Container, Row, Col, Button, Modal, ModalBody, ModalHeader, ModalFooter } from 'mdbreact'
+import { Container, Row, Col, Button } from 'mdbreact'
 import { connect } from 'react-redux'
 import { getUsers, register, deleteUser, getLogs } from '../../../redux/actions'
 import UsersContainer from './UsersContainer';

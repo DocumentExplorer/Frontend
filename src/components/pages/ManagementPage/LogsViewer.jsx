@@ -47,6 +47,7 @@ export const FindForm = ({ onClick, onChange, log }) => {
 }
 
 export const FindResult = ({ request, ...props }) => {
+
     return (
         request === true
             ? <div style={{ height: '150px', display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '50px', background: '#666666', fontSize: '25px' }}>Proszę coś wybrać</div>

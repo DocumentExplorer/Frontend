@@ -3,14 +3,12 @@ import './order.css'
 import ApiHOC from '../../helpers/ApiHOC'
 import { connect } from 'react-redux'
 import { getOrderById, deleteOrder, putOrder, getPermissions } from '../../../redux/actions'
-import { Container, Button } from 'mdbreact'
+import { Container } from 'mdbreact'
 import { OrderInformation } from './OrderInformation'
-import { MyModal } from '../../Modal/MyModal';
-import { addNewOrder } from '../DashboardPage/NewOrder'
 import _ from 'lodash'
 import { Footer } from './Footer'
 import FilesContainer from './FilesContainer'
-import { PermissionsList } from './PermissionsList';
+
 
 class OrderPage extends React.Component {
 
