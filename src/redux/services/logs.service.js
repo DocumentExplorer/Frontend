@@ -19,9 +19,9 @@ function findLogs(log) {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            console.log(res.data)
             resolve(res.data)
         }).catch((err) => {
+            console.log(err)
             reject()
         })
     })

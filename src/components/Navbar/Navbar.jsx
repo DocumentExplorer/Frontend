@@ -11,27 +11,26 @@ function mapStateToProps({ loginResult }) {
     }
 }
 
-const NavbarAuthenticated = (props) => {
-    console.log(props)
-    return (
-        <Navbar color="default-color">
-            <Container>
-                <NavbarNav left>
-                    <NavItem>
-                        <Link to="/dashboard">
-                            <Fa icon="user" size="2x" />
-                        </Link>
-                    </NavItem>
-                </NavbarNav>
-                <NavbarNav right>
-                    <NavItem>
-                        <button type="button" className="btn btn-outline-primary waves-effect logout" onClick={props.logout}>Wyloguj</button>
-                    </NavItem>
-                </NavbarNav>
-            </Container>
-        </Navbar>
-    )
-}
+const NavbarAuthenticated = (props) => (
+
+    <Navbar color="default-color">
+        <Container>
+            <NavbarNav left>
+                <NavItem>
+                    <Link to="/dashboard">
+                        <Fa icon="user" size="2x" />
+                    </Link>
+                </NavItem>
+            </NavbarNav>
+            <NavbarNav right>
+                <NavItem>
+                    <button type="button" className="btn btn-outline-primary waves-effect logout" onClick={props.logout}>Wyloguj</button>
+                </NavItem>
+            </NavbarNav>
+        </Container>
+    </Navbar>
+
+)
 
 const NavbarAdmin = (props) => (
     <Navbar color="default-color">

@@ -26,7 +26,6 @@ class UpdatePermissionsContainer extends React.Component {
     }
 
     updatePermissions() {
-        console.log('update')
         this.props.putPermissions(this.state.permissions, () => {
             this.toggleModalUpdate()
             this.props.getPermissions()
@@ -41,7 +40,6 @@ class UpdatePermissionsContainer extends React.Component {
                 [e.target.name]: e.target.value
             }
         })
-        console.log(this.state.permissions)
     }
 
     componentWillReceiveProps(nextProps) {

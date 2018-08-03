@@ -65,7 +65,6 @@ export function checkLogining() {
     }
     return dispatch => {
         if (localStorage.getItem('token') && localStorage.getItem('role')) {
-            console.log('Sprawdzam')
             dispatch(success(localStorage.getItem('role')))
         }
     }

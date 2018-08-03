@@ -9,7 +9,6 @@ const DeleteOrderConfirmation = () => (
 )
 
 export const Footer = ({ handleDelete, handleModify, toggleModalModify, toggleModalRemove, modifyResult, ...props }) => {
-    console.log(props)
     return (
         <React.Fragment>
             {

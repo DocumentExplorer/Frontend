@@ -29,7 +29,6 @@ class Dashboard extends React.Component {
     }
 
     render() {
-        console.log(this.props.lacks)
         return (
             <Container>
                 <ApiHOC

@@ -9,7 +9,6 @@ export const FileService = {
 }
 
 function download(id, fileType) {
-    console.log(id, fileType)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/files/${id}/${fileType}`,
@@ -39,7 +38,6 @@ function upload(data, file) {
     if (data.invoiceNumber !== undefined) {
         data.invoiceNumber = parseInt(data.invoiceNumber)
     }
-    console.log(data)
     let formData = new FormData()
     formData.append("file", file)
     return new Promise((resolve, reject) => {
@@ -52,7 +50,6 @@ function upload(data, file) {
             },
             data: formData
         }).then((res) => {
-            console.log(res)
             axios({
                 url: `${ApiConstants.rootURL}/${res.data.location}`,
                 method: 'PUT',
@@ -62,7 +59,6 @@ function upload(data, file) {
                 },
                 data: data
             }).then((res) => {
-                console.log(res)
                 resolve()
             }).catch((err) => {
                 console.log(err)
@@ -75,7 +71,6 @@ function upload(data, file) {
 }
 
 function deleteFile(id, fileType) {
-    console.log(id, fileType)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/files/${id}/${fileType}`,
@@ -84,7 +79,6 @@ function deleteFile(id, fileType) {
                 'Authorization': getToken()
             }
         }).then((res) => {
-            console.log(res)
             resolve()
         }).catch((err) => {
             console.log(err)

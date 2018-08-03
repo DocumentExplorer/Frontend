@@ -16,7 +16,6 @@ class List extends React.Component {
     }
 
     handleClick(year) {
-        console.log(year)
         this.props.history.push(`/orders/${year}`)
     }
 

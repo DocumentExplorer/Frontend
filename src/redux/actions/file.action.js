@@ -34,7 +34,6 @@ export function upload(data, file, callback) {
                 dispatch(success())
                 updateActionOrder(data.orderId, dispatch)
                 callback()
-
             }).catch(() => {
                 dispatch(lostSession())
             })

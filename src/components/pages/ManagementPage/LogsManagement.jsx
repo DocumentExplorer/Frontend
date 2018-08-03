@@ -42,11 +42,9 @@ class FindLogs extends React.Component {
                 [e.target.name]: e.target.value
             }
         })
-        console.log(this.state.log)
     }
 
     changeLocation(id, event) {
-        console.log(event)
         if (!(_.startsWith(event, 'Usun'))) {
             this.props.history.push(`/order/${id}`)
         }

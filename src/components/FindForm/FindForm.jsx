@@ -27,7 +27,6 @@ class FindForm extends React.Component {
                 picked[key] = value
             }
         })
-        console.log(picked)
         this.props.finding(picked)
         event.preventDefault()
     }

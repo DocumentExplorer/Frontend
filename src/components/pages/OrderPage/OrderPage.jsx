@@ -44,7 +44,6 @@ class OrderPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(nextProps.order)
         this.setState({
             modifyResult: nextProps.orders.put_order_error,
             order: nextProps.orders
@@ -91,7 +90,6 @@ class OrderPage extends React.Component {
     }
 
     render() {
-        console.log(this.props.orders.order)
         return (
             <Container>
                 <ApiHOC

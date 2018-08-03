@@ -21,7 +21,6 @@ export function updateActionOrder(id, dispatch) {
 
     OrdersService.getOrderById(id)
         .then((res) => {
-            console.log('update')
             dispatch(updateOrder(res))
         }).catch(() => {
             dispatch(lostSession())

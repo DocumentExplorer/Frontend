@@ -24,7 +24,6 @@ function getPermissions() {
 }
 
 function putPermissions(permissions) {
-    console.log(permissions)
     return new Promise((resolve, reject) => {
         axios({
             url: `${ApiConstants.rootURL}/permissions`,

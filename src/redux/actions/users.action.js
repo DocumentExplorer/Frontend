@@ -93,7 +93,6 @@ export function changePassword(id, password, callback) {
         }
     }
     return dispatch => {
-        console.log(id, password)
         UserService.changePassword({ id, password })
             .then(() => {
                 dispatch(success())
