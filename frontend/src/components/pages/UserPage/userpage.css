@@ -1,0 +1,29 @@
+.change-password-button {
+    margin-top: 50px;
+}
+
+.jumbotron {
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.group {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.group h3 {
+    margin-left: 2rem;
+}
+
+.change-password h4{
+    margin-bottom: 50px;
+}
