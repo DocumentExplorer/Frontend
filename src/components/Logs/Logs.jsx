@@ -1,8 +1,9 @@
 import React from 'react'
 import { Table } from 'mdbreact'
 import { withRouter } from 'react-router-dom'
+import { LogItem } from './LogItem';
 
-export const Logs = ({ data, changeLocation, ...rest }) => (
+export const Logs = ({ data, ...rest }) => (
     <div style={{ display: 'block', maxHeight: '300px', overflowY: 'auto', marginBottom: '30px' }}>
         <h3>Logi</h3>
         <Table className="users-list">
@@ -18,21 +19,12 @@ export const Logs = ({ data, changeLocation, ...rest }) => (
             <tbody>
                 {
                     data.map((value, index) => (
-                        <tr key={index} className="user-list-item" onClick={() => changeLocation(value.id)}>
-                            <td>{index}</td>
-                            <td>
-                                {value.event}
-                            </td>
-                            <td>{value.eventDate}</td>
-                            <td>{value.username}</td>
-                            <td>{value.owner1Name}</td>
-                        </tr>
+                        <LogItem value={value} index={index}  {...rest} />
                     ))
                 }
             </tbody>
         </Table>
     </div>
 )
-
 
 export default withRouter(Logs)
