@@ -10,7 +10,7 @@ function login(values) {
             url: `${ApiConstants.rootURL}/users/login`,
             method: 'POST',
             data: values,
-            withCredentials: true,
+            withCredentials: false,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
